@@ -163,7 +163,7 @@ const ArticleList = () => {
         <Heading as="h2">Impact of Asthma on children</Heading>
         <Text as="p" fontSize="lg">
         Asthma is typically one of the most prevalent reasons why children visit the doctor, miss school, 
-        or have to go to the hospital. About one in ten Australian adolescents have asthma. If your child's 
+        or have to go to the hospital. About one in ten Australian adolescents have asthma. If your child&apos;s
         asthma is under control, they should be able to live a healthy and active existence (better health channel, 2012).
 
         </Text>

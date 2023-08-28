@@ -3,7 +3,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 ## Getting Started
 
 First, run the development server:
-#install  npm i @chakra-ui/react @emotion/react @emotion/styled framer-motion react-icons @chakra-ui/icons
+#install  npm i @chakra-ui/react @emotion/react @emotion/styled framer-motion react-icons @chakra-ui/icons react-player
 ```bash
 npm run dev
 # or
@@ -33,4 +33,5 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 ## install
-#install  npm i @chakra-ui/react @emotion/react @emotion/styled framer-motion react-icons @chakra-ui/icons
+
+npm i @chakra-ui/react @emotion/react @emotion/styled framer-motion react-icons @chakra-ui/icons react-player

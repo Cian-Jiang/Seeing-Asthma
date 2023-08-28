@@ -124,7 +124,7 @@ const ArticleList = () => {
             marginTop="2"
             color={useColorModeValue('gray.700', 'gray.200')}
             fontSize="lg">
-            Asthma symptoms in children may be more difficult to detect. Children have much smaller breathing tubes than adults. This means that even small changes in the way their airways work can have a big impact on their breathing, so this requires more attention from guardians and parents, as children are unable to tell us exactly what's going on with them, so it's more important for us to learn more about the subject and keep an eye on them when we're with them, and consult with authority on the subject to be prepared for the best possible scenario and to be aware of the signs and symptoms (Asthma Australia, 2021). 
+            Asthma symptoms in children may be more difficult to detect. Children have much smaller breathing tubes than adults. This means that even small changes in the way their airways work can have a big impact on their breathing, so this requires more attention from guardians and parents, as children are unable to tell us exactly what&apos;s going on with them, so it&apos;s more important for us to learn more about the subject and keep an eye on them when we&apos;re with them, and consult with authority on the subject to be prepared for the best possible scenario and to be aware of the signs and symptoms (Asthma Australia, 2021).
           </Text>
           
         </Box>
@@ -140,7 +140,7 @@ const ArticleList = () => {
         </Text>
         <Heading as="h3" size="md">Is your child breathing through their mouth or nose?</Heading>
         <Text as="p" fontSize="lg">
-        If they have a virus or a blocked nose due to allergies, breathing through their nose can be more difficult. Breathing air through their mouth may irritate their small breathing tubes when their nose can't filter, warm, or moisten the air they breathe.
+        If they have a virus or a blocked nose due to allergies, breathing through their nose can be more difficult. Breathing air through their mouth may irritate their small breathing tubes when their nose can&apos;t filter, warm, or moisten the air they breathe.
         </Text>
         <Heading as="h3" size="md">Changes in the way your child breathes: </Heading>
         <Text as="p" fontSize="lg">
@@ -163,10 +163,10 @@ Muscles between the ribs are sucked in when breathing <br />
 Blue lips <br />
 Inability to finish a sentence or eat because of difficulty breathing <br />
         </Text>
-        <Text as="p" fontSize="lg">Any sign of difficulty breathing should be seen by a doctor. These symptoms help the doctor understand your child's condition and decide what treatment is best for them. It is important to tell the doctor about all of your child's symptoms, even if you think they are normal. </Text>
+        <Text as="p" fontSize="lg">Any sign of difficulty breathing should be seen by a doctor. These symptoms help the doctor understand your child&apos;s condition and decide what treatment is best for them. It is important to tell the doctor about all of your child&apos;s symptoms, even if you think they are normal. </Text>
         <Heading as="h3" size="md">Wheezing </Heading>
         <Text as="p" fontSize="lg">
-        Wheezing is a high-pitched whistling sound made when the airway is narrowed. It is sometimes easy to hear, or the doctor may hear it when listening to your child's breathing with a stethoscope. Wheezing can be caused by many things, including asthma. However, not all children with asthma will wheeze. 
+        Wheezing is a high-pitched whistling sound made when the airway is narrowed. It is sometimes easy to hear, or the doctor may hear it when listening to your child&apos;s breathing with a stethoscope. Wheezing can be caused by many things, including asthma. However, not all children with asthma will wheeze.
 
         </Text>
         <Text as="p" fontSize="lg">
@@ -174,7 +174,7 @@ Inability to finish a sentence or eat because of difficulty breathing <br />
         <br />
 Is very frequent <br />
 Is worse at night or early in the morning <br />
-Occurs when your child doesn't have a cold <br />
+Occurs when your child doesn&apos;t have a cold <br />
 Responds to a certain trigger.<br />
 Consult your doctor if your child is wheezing.<br />
 
@@ -192,16 +192,16 @@ Coughs when excited or laughing.<br />
         </Text>
         <Heading as="h3" size="md">Chest tightness </Heading>
         <Text as="p" fontSize="lg">
-        When the airways are very narrow and it is difficult for air to move in and out, children may feel tightness in their chest. This may make them feel like there is a weight on their chest. Your child may say "I don't feel good" or "I have a tummy ache".
+        When the airways are very narrow and it is difficult for air to move in and out, children may feel tightness in their chest. This may make them feel like there is a weight on their chest. Your child may say &quot;I don&apos;t feel good&quot; or &quot;I have a tummy ache&quot;.
         </Text>
         <Text as="p" fontSize="lg">
-        High priority: If your child or a child in your care is experiencing this symptom, it's important to see a doctor to check their symptoms or seek a diagnosis.
+        High priority: If your child or a child in your care is experiencing this symptom, it&apos;s important to see a doctor to check their symptoms or seek a diagnosis.
 
         </Text>
         <Text as="p" fontSize="lg">
         What causes asthma?<br />
 
-Experts aren't sure why some people get asthma and others don't. You are more likely to develop asthma if someone in your immediate family has asthma, hay fever, allergies, or eczema (Healthdirect, 2019).
+Experts aren&apos;t sure why some people get asthma and others don&apos;t. You are more likely to develop asthma if someone in your immediate family has asthma, hay fever, allergies, or eczema (Healthdirect, 2019).
 
         </Text>
         <Text as="p" fontSize="lg">
