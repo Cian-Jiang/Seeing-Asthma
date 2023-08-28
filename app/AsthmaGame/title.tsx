@@ -42,19 +42,27 @@ export default function CallToActionWithVideo() {
                 bg: 'cyan.400',
                 zIndex: -1,
               }}>
-              Write once,
+                2016 event
             </Text>
             <br />
             <Text as={'span'} color={'cyan.400'}>
-              use everywhere!
+                thunderstorm asthma
             </Text>
           </Heading>
           <Text color={'gray.500'}>
-            Snippy is a rich coding snippets app that lets you create your own code
-            snippets, categorize them, and even sync them in the cloud so you can use them
-            anywhere. All that is free!
+              Epidemic thunderstorm asthma is thought to be triggered by an uncommon combination of high pollen levels and a certain type of thunderstorm, causing a large number of people to develop asthma symptoms over a short period of time.
           </Text>
-          
+            <Text color={'gray.500'}>
+                it says: Australia is highly vulnerable to any adverse impact of climate change on allergens and allergic diseases,A combination of high pollen levels, strong winds, hot temperatures, air moisture and a cold front triggered severe asthma attacks.
+
+            </Text>
+            <Text color={'gray.500'}>
+                This underlying vulnerability was highlighted in November 2016 when the world&apos;s largest, most
+                catastrophic epidemic thunderstorm asthma event occurred in Melbourne.
+            </Text>
+            <Text color={'gray.500'}>
+                Ten people died during or soon after a thunderstorm asthma event in Melbourne on November 21, 2016 which saw an unprecedented surge in demand for ambulances.
+            </Text>
         </Stack>
         <Flex
           flex={1}
@@ -73,7 +81,7 @@ export default function CallToActionWithVideo() {
           />
           <Box
             position={'relative'}
-            height={'300px'}
+            height={'400px'}
             rounded={'2xl'}
             boxShadow={'2xl'}
             width={'full'}
@@ -86,7 +94,7 @@ export default function CallToActionWithVideo() {
               w={'100%'}
               h={'100%'}
               src={
-                'https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=800&q=80'
+                'https://i.imgur.com/luhDUTJ.jpg'
               }
             />
           </Box>

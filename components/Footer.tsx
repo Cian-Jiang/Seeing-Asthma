@@ -1,13 +1,14 @@
 'use client'
 
 import {
-  Box,
-  chakra,
-  Container,
-  Stack,
-  Text,
-  useColorModeValue,
-  VisuallyHidden,
+    Avatar,
+    Box,
+    chakra,
+    Container,
+    Stack,
+    Text,
+    useColorModeValue,
+    VisuallyHidden,
 } from '@chakra-ui/react'
 import { FaInstagram, FaTwitter, FaYoutube } from 'react-icons/fa'
 import { ReactNode } from 'react'
@@ -46,25 +47,35 @@ const SocialButton = ({
 export default function Footer() {
   return (
     <Box
-      bg={useColorModeValue('gray.50', 'gray.900')}
+      bg={useColorModeValue('gray.250', 'gray.800')}
       color={useColorModeValue('gray.700', 'gray.200')}>
       <Container
         as={Stack}
-        maxW={'6xl'}
+        // maxW={'6xl'}
         py={4}
-        direction={{ base: 'column', md: 'row' }}
+        direction={{ base: 'column', md: 'column' }}
         spacing={4}
         justify={{ base: 'center', md: 'space-between' }}
         align={{ base: 'center', md: 'center' }}>
-        <Text>© 2022 Chakra Templates. All rights reserved</Text>
+          <br/>
+          <Avatar
+              size="xl"
+              src={
+                  'https://i.imgur.com/nqyVNFR.png'
+              }
+              mb={4}
+          />
+          <Text fontWeight={600}>Seeing Asthma</Text>
+        <Text>© 2023 health coder </Text>
         <Stack direction={'row'} spacing={6}>
-          <SocialButton label={'Twitter'} href={'#'}>
-            <FaTwitter />
-          </SocialButton>
-          <SocialButton label={'YouTube'} href={'#'}>
+          {/*<SocialButton label={'Twitter'} href={'#'}>*/}
+          {/*  <FaTwitter />*/}
+          {/*</SocialButton>*/}
+          <SocialButton label={'YouTube'} href={'https://www.youtube.com/channel/UC31qrqvS8rh_SvUVrUY0XQw'}>
+
             <FaYoutube />
           </SocialButton>
-          <SocialButton label={'Instagram'} href={'#'}>
+          <SocialButton label={'Instagram'} href={'https://mahara.infotech.monash.edu/group/view.php?id=2416'}>
             <FaInstagram />
           </SocialButton>
         </Stack>
