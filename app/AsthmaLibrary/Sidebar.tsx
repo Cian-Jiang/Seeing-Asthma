@@ -1,7 +1,7 @@
-'use client'
-import React, { ReactText, useState } from 'react';
-import ArticleList from './content';
+"use client"
+import React, { ReactNode, useState } from 'react';
 import {
+  IconButton,
   Box,
   CloseButton,
   Flex,
@@ -11,32 +11,96 @@ import {
   Drawer,
   DrawerContent,
   useDisclosure,
-  IconButton,
-  FlexProps, // 导入 FlexProps
+  BoxProps,
+  FlexProps,
 } from '@chakra-ui/react';
-import { FiHome, FiTrendingUp, FiCompass, FiStar, FiSettings, FiMenu } from 'react-icons/fi';
+import {
+  FiHome,
+  FiTrendingUp,
+  FiCompass,
+  FiStar,
+  FiSettings,
+  FiMenu,
+} from 'react-icons/fi';
 import { IconType } from 'react-icons';
+import { ReactText } from 'react';
+import HomeContent from './homecontent';
+import ArticleList from './content';
+import TrendingContent from './trendingcontent'
+import ExploreContent from './exploreContent'
 
 interface LinkItemProps {
   name: string;
   icon: IconType;
+  content: ReactNode; // 添加content属性以存储每个标签的内容
 }
 
 const LinkItems: Array<LinkItemProps> = [
-  { name: 'Home', icon: FiHome },
-  { name: 'Trending', icon: FiTrendingUp },
-  { name: 'Explore', icon: FiCompass },
-  { name: 'Favourites', icon: FiStar },
-  { name: 'Settings', icon: FiSettings },
+  { name: 'About Asthma', icon: FiHome, content: <div><HomeContent/></div> },
+  { name: 'asthma symptoms', icon: FiTrendingUp, content: <div><TrendingContent/></div> },
+  { name: 'Asthma in Children', icon: FiCompass, content: <div><ExploreContent/></div> },
+  { name: 'Favourites', icon: FiStar, content: <div>Favourites Content</div> },
+  { name: 'Settings', icon: FiSettings, content: <div>Settings Content</div> },
 ];
 
-interface SidebarProps {
-  onClose: () => void;
-  onTabClick: (tabName: string) => void;
-  selectedTab: string;
+export default function Sidebar() {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [selectedTab, setSelectedTab] = useState('About Asthma'); // 初始化选中的标签为Home
+
+  const handleTabClick = (name: string) => {
+    setSelectedTab(name);
+    onClose(); // 关闭移动设备上的侧边栏
+  };
+
+  return (
+    <Box minH="100vh" bg={useColorModeValue('gray.100', 'gray.900')}>
+      <SidebarContent
+        onClose={() => onClose}
+        selectedTab={selectedTab}
+        onTabClick={handleTabClick}
+        display={{ base: 'none', md: 'block' }}
+      />
+      <Drawer
+        isOpen={isOpen}
+        placement="left"
+        onClose={onClose}
+        returnFocusOnClose={false}
+        onOverlayClick={onClose}
+        size="full">
+        <DrawerContent>
+          <SidebarContent
+            onClose={onClose}
+            selectedTab={selectedTab}
+            onTabClick={handleTabClick}
+          />
+        </DrawerContent>
+      </Drawer>
+      {/* mobilenav */}
+      <MobileNav display={{ base: 'flex', md: 'none' }} onOpen={onOpen} />
+      <Box ml={{ base: 0, md: 60 }} p="4">
+        {/* 根据选中的标签显示内容 */}
+        {LinkItems.map((link) =>
+          link.name === selectedTab ? (
+            <div key={link.name}>{link.content}</div>
+          ) : null
+        )}
+      </Box>
+    </Box>
+  );
 }
 
-const SidebarContent = ({ onClose, onTabClick, selectedTab }: SidebarProps) => {
+interface SidebarProps extends BoxProps {
+  onClose: () => void;
+  selectedTab: string; 
+  onTabClick: (name: string) => void; 
+}
+
+const SidebarContent = ({
+  onClose,
+  selectedTab,
+  onTabClick,
+  ...rest
+}: SidebarProps) => {
   return (
     <Box
       bg={useColorModeValue('white', 'gray.900')}
@@ -45,8 +109,7 @@ const SidebarContent = ({ onClose, onTabClick, selectedTab }: SidebarProps) => {
       w={{ base: 'full', md: 60 }}
       pos="fixed"
       h="full"
-      overflowY="auto"
-    >
+      {...rest}>
       <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
         <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold">
           Logo
@@ -57,11 +120,8 @@ const SidebarContent = ({ onClose, onTabClick, selectedTab }: SidebarProps) => {
         <NavItem
           key={link.name}
           icon={link.icon}
-          onClick={() => {
-            onTabClick(link.name);
-            onClose();
-          }}
-          isActive={selectedTab === link.name}
+          isActive={link.name === selectedTab} 
+          onClick={() => onTabClick(link.name)} 
         >
           {link.name}
         </NavItem>
@@ -70,14 +130,14 @@ const SidebarContent = ({ onClose, onTabClick, selectedTab }: SidebarProps) => {
   );
 };
 
-interface NavItemProps {
+interface NavItemProps extends FlexProps {
   icon: IconType;
   children: ReactText;
-  onClick: () => void;
-  isActive: boolean;
+  isActive: boolean; 
+  onClick: () => void; 
 }
 
-const NavItem = ({ icon, children, onClick, isActive }: NavItemProps) => {
+const NavItem = ({ icon, children, isActive, onClick, ...rest }: NavItemProps) => {
   return (
     <Box
       as="a"
@@ -92,13 +152,12 @@ const NavItem = ({ icon, children, onClick, isActive }: NavItemProps) => {
         borderRadius="lg"
         role="group"
         cursor="pointer"
-        onClick={onClick}
         _hover={{
-          bg: 'cyan.400',
-          color: 'white',
+          bg: isActive ? 'cyan.400' : 'transparent', 
+          color: isActive ? 'white' : 'currentColor', 
         }}
-        bg={isActive ? 'cyan.400' : 'transparent'}
-        color={isActive ? 'white' : 'inherit'}
+        onClick={onClick} 
+        {...rest}
       >
         {icon && (
           <Icon
@@ -116,13 +175,11 @@ const NavItem = ({ icon, children, onClick, isActive }: NavItemProps) => {
   );
 };
 
-// 更新 MobileProps 接口，添加 display 属性
 interface MobileProps extends FlexProps {
   onOpen: () => void;
-  display: { base: string; md: string };
 }
 
-const MobileNav = ({ onOpen, display, ...rest }: MobileProps) => {
+const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
   return (
     <Flex
       ml={{ base: 0, md: 60 }}
@@ -133,48 +190,17 @@ const MobileNav = ({ onOpen, display, ...rest }: MobileProps) => {
       borderBottomWidth="1px"
       borderBottomColor={useColorModeValue('gray.200', 'gray.700')}
       justifyContent="flex-start"
-      {...display} // 将 display 属性传递给 Flex 组件
-      {...rest}
-    >
-      <IconButton variant="outline" onClick={onOpen} aria-label="open menu" icon={<FiMenu />} />
+      {...rest}>
+      <IconButton
+        variant="outline"
+        onClick={onOpen}
+        aria-label="open menu"
+        icon={<FiMenu />}
+      />
+
       <Text fontSize="2xl" ml="8" fontFamily="monospace" fontWeight="bold">
         Logo
       </Text>
     </Flex>
   );
 };
-
-export default function SimpleSidebar() {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const [selectedTab, setSelectedTab] = useState('Home');
-
-  const handleTabClick = (tabName: string) => {
-    setSelectedTab(tabName);
-  };
-
-  return (
-    <Box minH="100vh" bg={useColorModeValue('gray.100', 'gray.900')}>
-      <SidebarContent onClose={onClose} onTabClick={handleTabClick} selectedTab={selectedTab} />
-      <Drawer
-        isOpen={isOpen}
-        placement="left"
-        onClose={onClose}
-        returnFocusOnClose={false}
-        onOverlayClick={onClose}
-        size="full"
-      >
-        <DrawerContent>
-          <SidebarContent onClose={onClose} onTabClick={handleTabClick} selectedTab={selectedTab} />
-        </DrawerContent>
-      </Drawer>
-      <MobileNav display={{ base: 'flex', md: 'none' }} onOpen={onOpen} />
-      <Box ml={{ base: 0, md: 60 }} p="4">
-        {selectedTab === 'Home' && <div><ArticleList /></div>}
-        {selectedTab === 'Trending' && <div>Trending 内容</div>}
-        {selectedTab === 'Explore' && <div>Explore 内容</div>}
-        {selectedTab === 'Favourites' && <div>Favourites 内容</div>}
-        {selectedTab === 'Settings' && <div>Settings 内容</div>}
-      </Box>
-    </Box>
-  );
-}
