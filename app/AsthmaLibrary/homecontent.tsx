@@ -66,7 +66,7 @@ const BlogAuthor = (props: BlogAuthorProps) => {
 const ArticleList = () => {
   return (
     <Container maxW={'7xl'} p="12">
-      <Heading as="h1">Stories by Chakra Templates</Heading>
+      <Heading as="h1">You have to know about asthma</Heading>
       <Box
         marginTop={{ base: '1', sm: '5' }}
         display="flex"
@@ -112,10 +112,10 @@ const ArticleList = () => {
           flexDirection="column"
           justifyContent="center"
           marginTop={{ base: '3', sm: '0' }}>
-          <BlogTags tags={['Engineering', 'Product']} />
+          
           <Heading marginTop="1">
             <Text textDecoration="none" _hover={{ textDecoration: 'none' }}>
-              Blog article title
+            What is Asthma? 
             </Text>
           </Heading>
           <Text
@@ -123,38 +123,59 @@ const ArticleList = () => {
             marginTop="2"
             color={useColorModeValue('gray.700', 'gray.200')}
             fontSize="lg">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-            Lorem Ipsum has been the industry&apos;s standard dummy text ever since the
-            1500s, when an unknown printer took a galley of type and scrambled it to make
-            a type specimen book.
+            Asthma is a medical condition that effects the airways (the tubes that transport
+            oxygen to and from the lungs). At times, individuals with asthma have difficulty
+            inhaling because the airways in their lungs become constricted, but at other times, 
+            their breathing is normal.
+            Asthma is incurable, but it can typically be well managed. Most individuals with
+            asthma can maintain an active lifestyle and live a healthy existence (National Asthma 
+            Council Australia, 2019)
           </Text>
           
         </Box>
       </Box>
       
       <VStack paddingTop="40px" spacing="2" alignItems="flex-start">
-        <Heading as="h2">What we write about</Heading>
+        <Heading as="h2">Impact of Asthma</Heading>
         <Text as="p" fontSize="lg">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec condimentum quam
-          arcu, eu tempus tortor molestie at. Vestibulum pretium condimentum dignissim.
-          Vestibulum ultrices vitae nisi sed imperdiet. Mauris quis erat consequat,
-          commodo massa quis, feugiat sapien. Suspendisse placerat vulputate posuere.
-          Curabitur neque tortor, mattis nec lacus non, placerat congue elit.
+        All age groups are affected by the chronic respiratory disease asthma. 
+        It is caused by inflammation and tightening of the muscles around the airways, 
+        which results in respiratory difficulties.
         </Text>
         <Text as="p" fontSize="lg">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec condimentum quam
-          arcu, eu tempus tortor molestie at. Vestibulum pretium condimentum dignissim.
-          Vestibulum ultrices vitae nisi sed imperdiet. Mauris quis erat consequat,
-          commodo massa quis, feugiat sapien. Suspendisse placerat vulputate posuere.
-          Curabitur neque tortor, mattis nec lacus non, placerat congue elit.
+        People with untreated asthma may experience sleep disturbances, daytime fatigue, 
+        and concentration difficulties. People with asthma and their families may miss 
+        school and employment, which can have a financial impact on their families and 
+        the larger community. When asthma symptoms are severe, hospitalisation for treatment 
+        and observation may be necessary. In extreme circumstances, asthma can result in death.
+
         </Text>
         <Text as="p" fontSize="lg">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec condimentum quam
-          arcu, eu tempus tortor molestie at. Vestibulum pretium condimentum dignissim.
-          Vestibulum ultrices vitae nisi sed imperdiet. Mauris quis erat consequat,
-          commodo massa quis, feugiat sapien. Suspendisse placerat vulputate posuere.
-          Curabitur neque tortor, mattis nec lacus non, placerat congue elit.
+        Asthma leads to constricted airways and respiratory difficulties. It causes coughing, 
+        congestion, shortness of breath, and chest tightness as well. Asthma can be controlled 
+        with the proper treatment, despite being a potentially serious condition. Consult a 
+        medical professional if you are experiencing asthma symptoms (World Health Organization, 2023).
+
         </Text>
+      </VStack>
+
+      <VStack paddingTop="40px" spacing="2" alignItems="flex-start">
+        <Heading as="h2">Impact of Asthma on children</Heading>
+        <Text as="p" fontSize="lg">
+        Asthma is typically one of the most prevalent reasons why children visit the doctor, miss school, 
+        or have to go to the hospital. About one in ten Australian adolescents have asthma. If your child's 
+        asthma is under control, they should be able to live a healthy and active existence (better health channel, 2012).
+
+        </Text>
+        <Heading as="h2">What are the symptoms of Asthma?</Heading>
+        <Text as="p" fontSize="lg">
+        Asthma symptoms are signs, effects, or feelings that occur as a result of asthma. Asthma symptoms are 
+        caused by changes in the airways (breathing passages) of the lungs. These changes can lead to difficulty 
+        in breathing. However, depending on the asthma patient is usually accompanied by different symptoms, while
+         not all asthma patients show all symptoms.
+
+        </Text>
+        
       </VStack>
     </Container>
   )
