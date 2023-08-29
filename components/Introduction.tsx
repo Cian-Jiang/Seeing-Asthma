@@ -16,7 +16,7 @@ export default function Introduction() {
             Our Goals
         </Text>
       <Text fontSize={{ base: 'xl', md: '2xl' }} textAlign={'center'} maxW={'3xl'}>
-          Asthma is a disease that can't be seen with the naked eye and has no cure, but it can usually be managed well.
+          Asthma is a disease that can&apos;t be seen with the naked eye and has no cure, but it can usually be managed well.
           The mission of our team is to convert the invisible asthma into tangible data and information to communicate to you,
           and to better spread knowledge about asthma to children to help them and their parents live better lives.
       </Text>
