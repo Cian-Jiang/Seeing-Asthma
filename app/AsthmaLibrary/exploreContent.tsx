@@ -114,8 +114,8 @@ const ArticleList = () => {
           marginTop={{ base: '3', sm: '0' }}>
           
           <Heading marginTop="1">
-            <Text textDecoration="none" _hover={{ textDecoration: 'none' }}>
-            Overview
+            <Text textDecoration="none" _hover={{ textDecoration: 'none' }} color={'cyan.800'}>
+            -Overview
 
             </Text>
           </Heading>
@@ -131,8 +131,8 @@ const ArticleList = () => {
       </Box>
       
       <VStack paddingTop="40px" spacing="2" alignItems="flex-start">
-        <Heading as="h2">Symptoms of asthma vary from child to child and include:</Heading>
-        <Heading as="h3" size="lg">Shortness of breath or difficulty breathing</Heading>
+        <Heading as="h2" color={'cyan.800'}>-Symptoms of asthma vary from child to child and include:</Heading>
+        <Heading as="h3" size="lg" color={'cyan.600'}>Shortness of breath or difficulty breathing</Heading>
 
         <Text as="p" fontSize="lg">
         Think about how your child breathes when they are healthy. This makes it easier to spot symptoms when they are unwell. For all children, especially younger ones, look out for signs and symptoms of difficulty breathing or breath-holding:  
@@ -164,7 +164,7 @@ Blue lips <br />
 Inability to finish a sentence or eat because of difficulty breathing <br />
         </Text>
         <Text as="p" fontSize="lg">Any sign of difficulty breathing should be seen by a doctor. These symptoms help the doctor understand your child&apos;s condition and decide what treatment is best for them. It is important to tell the doctor about all of your child&apos;s symptoms, even if you think they are normal. </Text>
-        <Heading as="h3" size="md">Wheezing </Heading>
+        <Heading as="h3" size="lg" color={'cyan.600'}>Wheezing </Heading>
         <Text as="p" fontSize="lg">
         Wheezing is a high-pitched whistling sound made when the airway is narrowed. It is sometimes easy to hear, or the doctor may hear it when listening to your child&apos;s breathing with a stethoscope. Wheezing can be caused by many things, including asthma. However, not all children with asthma will wheeze.
 
@@ -180,7 +180,7 @@ Consult your doctor if your child is wheezing.<br />
 
 
         </Text>
-        <Heading as="h3" size="md">Cough </Heading>
+        <Heading as="h3" size="lg" color={'cyan.600'}>Cough </Heading>
         <Text as="p" fontSize="lg">
         There are many causes and different types of coughs in children. Sometimes coughing up mucus or phlegm. Regardless of the sound of the cough, consult your doctor if your child has any of the following conditions <br />
 
@@ -190,7 +190,7 @@ Coughs during sports or activities <br />
 Coughs when excited or laughing.<br />
 
         </Text>
-        <Heading as="h3" size="md">Chest tightness </Heading>
+        <Heading as="h3" size="lg" color={'cyan.600'}>Chest tightness </Heading>
         <Text as="p" fontSize="lg">
         When the airways are very narrow and it is difficult for air to move in and out, children may feel tightness in their chest. This may make them feel like there is a weight on their chest. Your child may say &quot;I don&apos;t feel good&quot; or &quot;I have a tummy ache&quot;.
         </Text>

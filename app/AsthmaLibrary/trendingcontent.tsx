@@ -114,8 +114,8 @@ const ArticleList = () => {
           marginTop={{ base: '3', sm: '0' }}>
           
           <Heading marginTop="1">
-            <Text textDecoration="none" _hover={{ textDecoration: 'none' }}>
-            Coughing 
+            <Text textDecoration="none" _hover={{ textDecoration: 'none' }} color={'cyan.800'}>
+            -Coughing 
             </Text>
           </Heading>
           <Text
@@ -150,8 +150,8 @@ const ArticleList = () => {
           marginTop={{ base: '3', sm: '0' }}>
         
           <Heading marginTop="1">
-            <Text textDecoration="none" _hover={{ textDecoration: 'none' }}>
-            wheezing  
+            <Text textDecoration="none" _hover={{ textDecoration: 'none' }} color={'cyan.800'}>
+            -wheezing  
             </Text>
           </Heading>
           <Text
@@ -249,8 +249,8 @@ const ArticleList = () => {
           marginTop={{ base: '3', sm: '0' }}>
           
           <Heading marginTop="1">
-            <Text textDecoration="none" _hover={{ textDecoration: 'none' }}>
-            Difficulty breathing  
+            <Text textDecoration="none" _hover={{ textDecoration: 'none' }} color={'cyan.800'}>
+            -Difficulty breathing  
             </Text>
           </Heading>
           <Text
@@ -277,8 +277,8 @@ const ArticleList = () => {
           marginTop={{ base: '3', sm: '0' }}>
         
           <Heading marginTop="1">
-            <Text textDecoration="none" _hover={{ textDecoration: 'none' }}>
-            Chest discomfort 
+            <Text textDecoration="none" _hover={{ textDecoration: 'none' }} color={'cyan.800'}>
+            -Chest discomfort 
             </Text>
           </Heading>
           <Text
