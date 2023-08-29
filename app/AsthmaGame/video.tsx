@@ -30,10 +30,11 @@ import {
     Text,
     UnorderedList,
     useColorMode,
+    useColorModeValue,
     useDisclosure
 } from '@chakra-ui/react';
 import {BsThreeDotsVertical} from "react-icons/bs";
-import { Search2Icon } from '@chakra-ui/icons';
+import {QuestionIcon, Search2Icon } from '@chakra-ui/icons';
 
 
 export default function Video() {
@@ -117,8 +118,7 @@ export default function Video() {
 
                                 <List spacing={3}>
                                     <ListItem>
-                                        <ListIcon as={Search2Icon} color='green.500' />
-
+                                        <ListIcon as={QuestionIcon} color='green.500' />
                                         <Button mb={4}  onClick={symptomsDisclosure.onOpen}>What are the symptoms?</Button>
                                         <Modal isOpen={symptomsDisclosure.isOpen} onClose={symptomsDisclosure.onClose}>
                                             <ModalOverlay />
@@ -140,7 +140,7 @@ export default function Video() {
                                     </ListItem>
 
                                     <ListItem>
-                                        <ListIcon as={Search2Icon} color='green.500' />
+                                        <ListIcon as={QuestionIcon} color='green.500' />
                                         <Button mb={4}  onClick={causesDisclosure.onOpen}>What causes thunderstorm asthma?</Button>
                                         <Modal isOpen={causesDisclosure.isOpen} onClose={causesDisclosure.onClose}>
                                             <ModalOverlay />
@@ -164,7 +164,7 @@ export default function Video() {
                                     </ListItem>
 
                                     <ListItem>
-                                        <ListIcon as={Search2Icon} color='green.500' />
+                                        <ListIcon as={QuestionIcon} color='green.500' />
                                         <Button mb={4}  onClick={riskDisclosure.onOpen}>Who is at risk?</Button>
                                         <Modal isOpen={riskDisclosure.isOpen} onClose={riskDisclosure.onClose}>
                                             <ModalOverlay />
@@ -187,7 +187,7 @@ export default function Video() {
                                     </ListItem>
 
                                     <ListItem>
-                                        <ListIcon as={Search2Icon} color='green.500' />
+                                        <ListIcon as={QuestionIcon} color='green.500' />
                                         <Button mb={4}  onClick={firstDisclosure.onOpen}> When we needs to immediately call ambulance?</Button>
                                         <Modal isOpen={firstDisclosure.isOpen} onClose={firstDisclosure.onClose}>
                                             <ModalOverlay />
