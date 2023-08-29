@@ -23,7 +23,7 @@ export default function HeroSection() {
           spacing={{ base: 8, md: 14 }}
           py={{ base: 20, md: 36 }}>
           <Box
-            bgImage="/doctors-using-transparent-tablet-with-hologram-medical-technology.jpg" // 替换为您的背景图片路径
+            bgImage="/doctors-using-transparent-tablet-with-hologram-medical-technology.jpg"
             bgPosition="center top"
             bgSize="cover"
             pos="absolute"
@@ -31,14 +31,15 @@ export default function HeroSection() {
             left={0}
             right={0}
             bottom={0}
-            opacity={0.8} // 可根据需要调整透明度
-            zIndex={-1} // 将背景图片置于最底层
+            opacity={0.8}
+            zIndex={-1}
             h="30%"
           />
           <Heading
             fontWeight={600}
             fontSize={{ base: '2xl', sm: '4xl', md: '6xl' }}
-            lineHeight={'110%'}>
+            lineHeight={{ base: '350%', sm: '1670%', md: '350%' }}
+          >
             Seeing <br />
             <Text as={'span'} color={'green.400'}>
               Asthma
@@ -60,7 +61,10 @@ export default function HeroSection() {
               px={6}
               _hover={{
                 bg: 'green.500',
-              }}>
+              }}
+              as="a"
+              href="#middle-section"
+              >
               Get Started
             </Button>
             
