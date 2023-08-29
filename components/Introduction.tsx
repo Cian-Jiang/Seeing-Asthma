@@ -1,9 +1,10 @@
 'use client'
 
-import { Avatar, Box, Stack, Text, useColorModeValue } from '@chakra-ui/react'
+import { Avatar, Box, Flex, Stack, Text, useColorModeValue } from '@chakra-ui/react'
 
 export default function Introduction() {
   return (
+
     <Stack
       bg={useColorModeValue('gray.50', 'gray.800')}
       py={16}
@@ -11,25 +12,82 @@ export default function Introduction() {
       spacing={{ base: 8, md: 10 }}
       align={'center'}
       direction={'column'}>
-      <Text fontSize={{ base: 'xl', md: '2xl' }} textAlign={'center'} maxW={'3xl'}>
-        We had an incredible experience working with Chakra Templates and were impressed
-        they made such a big difference in only three weeks. Our team is so grateful for
-        the wonderful improvements they made and their ability to get familiar with the
-        product concept so quickly.
-      </Text>
-      <Box textAlign={'center'}>
-        <Avatar
-          src={
-            'https://images.unsplash.com/photo-1586297135537-94bc9ba060aa?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80'
-          }
-          mb={2}
-        />
-
-        <Text fontWeight={600}>Jenny Wilson</Text>
-        <Text fontSize={'sm'} color={useColorModeValue('gray.400', 'gray.400')}>
-          Vice President
+        <Text fontSize={{ base: '3xl', md: '3xl' }} textAlign={'center'} maxW={'5xl'} as='b' color='skyblue'>
+            Our Goals
         </Text>
-      </Box>
+      <Text fontSize={{ base: 'xl', md: '2xl' }} textAlign={'center'} maxW={'3xl'}>
+          Asthma is a disease that can't be seen with the naked eye and has no cure, but it can usually be managed well.
+          The mission of our team is to convert the invisible asthma into tangible data and information to communicate to you,
+          and to better spread knowledge about asthma to children to help them and their parents live better lives.
+      </Text>
+        <Flex align="center" justify="center" wrap="wrap"  gap='3'>
+          <Box textAlign={'center'}>
+            <Avatar
+              src={
+                'https://i.imgur.com/dOH48NE.jpg'
+              }
+              mb={2}
+            />
+
+            <Text fontWeight={600}>Ridong Jiang</Text>
+            <Text fontSize={'sm'} color={useColorModeValue('gray.400', 'gray.400')}>
+                Full Stack developer
+            </Text>
+          </Box>
+            <Box textAlign={'center'}>
+                <Avatar
+                    src={
+                        'https://i.imgur.com/QeUEUK9.png'
+                    }
+                    mb={2}
+                />
+
+                <Text fontWeight={600}>Shiyu Wu</Text>
+                <Text fontSize={'sm'} color={useColorModeValue('gray.400', 'gray.400')}>
+                    Frontend developer
+                </Text>
+            </Box>
+            <Box textAlign={'center'}>
+                <Avatar
+                    src={
+                        'https://i.imgur.com/QeUEUK9.png'
+                    }
+                    mb={2}
+                />
+
+                <Text fontWeight={600}>Kaijia Yu</Text>
+                <Text fontSize={'sm'} color={useColorModeValue('gray.400', 'gray.400')}>
+                    Project Manager
+                </Text>
+            </Box>
+            <Box textAlign={'center'}>
+                <Avatar
+                    src={
+                        'https://i.imgur.com/QeUEUK9.png'
+                    }
+                    mb={2}
+                />
+
+                <Text fontWeight={600}>Sonia Lakhani</Text>
+                <Text fontSize={'sm'} color={useColorModeValue('gray.400', 'gray.400')}>
+                    Cyber Security
+                </Text>
+            </Box>
+            <Box textAlign={'center'}>
+                <Avatar
+                    src={
+                        'https://i.imgur.com/QeUEUK9.png'
+                    }
+                    mb={2}
+                />
+
+                <Text fontWeight={600}>Navrattan Singh Dhillon</Text>
+                <Text fontSize={'sm'} color={useColorModeValue('gray.400', 'gray.400')}>
+                    Data Engineer
+                </Text>
+            </Box>
+
+        </Flex>
     </Stack>
   )
 }
