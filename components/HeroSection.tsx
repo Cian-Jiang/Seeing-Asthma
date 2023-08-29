@@ -31,7 +31,7 @@ export default function HeroSection() {
             left={0}
             right={0}
             bottom={0}
-            opacity={0.8}
+            opacity={0.6}
             zIndex={-1}
             h="30%"
           />
@@ -39,13 +39,14 @@ export default function HeroSection() {
             fontWeight={600}
             fontSize={{ base: '2xl', sm: '4xl', md: '6xl' }}
             lineHeight={{ base: '350%', sm: '1670%', md: '350%' }}
+            style={{ WebkitTextStroke: '2px white' }}
           >
             Seeing <br />
-            <Text as={'span'} color={'green.400'}>
+            <Text as={'span'} color={'cyan.400'}>
               Asthma
             </Text>
           </Heading>
-          <Text color={'gray.500'}>
+          <Text color={'cyan.900'} fontWeight={600} fontSize={'2xl'}>
             Presenting invisible asthma to help you gain insight into it!
           </Text>
           <Stack
@@ -56,11 +57,11 @@ export default function HeroSection() {
             position={'relative'}>
             <Button
               colorScheme={'green'}
-              bg={'green.400'}
+              bg={'cyan.400'}
               rounded={'full'}
               px={6}
               _hover={{
-                bg: 'green.500',
+                bg: 'cyan.500',
               }}
               as="a"
               href="#middle-section"
