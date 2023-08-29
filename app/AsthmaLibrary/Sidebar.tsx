@@ -21,6 +21,9 @@ import {
   FiStar,
   FiSettings,
   FiMenu,
+  FiArchive,
+  FiUser,
+  FiEye,
 } from 'react-icons/fi';
 import { IconType } from 'react-icons';
 import { ReactText } from 'react';
@@ -36,9 +39,9 @@ interface LinkItemProps {
 }
 
 const LinkItems: Array<LinkItemProps> = [
-  { name: 'About Asthma', icon: FiHome, content: <div><HomeContent/></div> },
-  { name: 'asthma symptoms', icon: FiTrendingUp, content: <div><TrendingContent/></div> },
-  { name: 'Asthma in Children', icon: FiCompass, content: <div><ExploreContent/></div> },
+  { name: 'About Asthma', icon: FiArchive, content: <div><HomeContent/></div> },
+  { name: 'asthma symptoms', icon: FiEye, content: <div><TrendingContent/></div> },
+  { name: 'Asthma in Children', icon: FiUser, content: <div><ExploreContent/></div> },
   { name: 'Favourites', icon: FiStar, content: <div>Favourites Content</div> },
   { name: 'Settings', icon: FiSettings, content: <div>Settings Content</div> },
 ];
