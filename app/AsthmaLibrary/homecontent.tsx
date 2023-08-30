@@ -128,8 +128,14 @@ const ArticleList = () => {
             inhaling because the airways in their lungs become constricted, but at other times, 
             their breathing is normal.
             Asthma is incurable, but it can typically be well managed. Most individuals with
-            asthma can maintain an active lifestyle and live a healthy existence (National Asthma 
-            Council Australia, 2019)
+            asthma can maintain an active lifestyle and live a healthy existence 
+          </Text>
+          <Text
+            as="a"
+            href="https://www.nationalasthma.org.au/understanding-asthma/what-is-asthma"
+            marginTop="2"
+            fontSize="lg">
+            (National Asthma Council Australia, 2019)
           </Text>
           
         </Box>

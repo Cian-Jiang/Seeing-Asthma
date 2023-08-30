@@ -22,10 +22,10 @@ import {
   ChevronDownIcon,
   ChevronRightIcon,
 } from '@chakra-ui/icons'
+import { SetStateAction, useState } from 'react'
 
 export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure()
-
   return (
       <Box className="sticky-navbar">
         <Flex

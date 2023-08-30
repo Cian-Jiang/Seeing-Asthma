@@ -125,6 +125,7 @@ const ArticleList = () => {
             fontSize="lg">
             When you cough, your airways constrict, and more mucus forms. Asthma-induced wheezing may be the cause of a persistent cough or coughing fits.
           </Text>
+          <br/>
           <Text
             as="p"
             marginTop="2"
@@ -290,6 +291,7 @@ const ArticleList = () => {
 
 
           </Text>
+          <br/>
           <Text
             as="p"
             marginTop="2"

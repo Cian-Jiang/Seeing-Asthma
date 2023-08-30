@@ -40,7 +40,7 @@ interface LinkItemProps {
 
 const LinkItems: Array<LinkItemProps> = [
   { name: 'About Asthma', icon: FiArchive, content: <div><HomeContent/></div> },
-  { name: 'asthma symptoms', icon: FiEye, content: <div><TrendingContent/></div> },
+  { name: 'Asthma Symptoms', icon: FiEye, content: <div><TrendingContent/></div> },
   { name: 'Asthma in Children', icon: FiUser, content: <div><ExploreContent/></div> },
   { name: 'Favourites', icon: FiStar, content: <div>Favourites Content</div> },
   { name: 'Settings', icon: FiSettings, content: <div>Settings Content</div> },
