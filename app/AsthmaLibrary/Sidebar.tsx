@@ -28,7 +28,6 @@ import {
 import { IconType } from 'react-icons';
 import { ReactText } from 'react';
 import HomeContent from './homecontent';
-import ArticleList from './content';
 import TrendingContent from './trendingcontent'
 import ExploreContent from './exploreContent'
 
