@@ -96,7 +96,7 @@ const ArticleList = () => {
       textDecoration="underline"
       target="_blank">
         <Text as="p" fontSize="xl">
-        Australia's children, Asthma prevalence among children - Australian Institute of Health and Welfare (aihw.gov.au)
+        Australia&apos;s children, Asthma prevalence among children - Australian Institute of Health and Welfare (aihw.gov.au)
           </Text>
       </Link>
       <Link href="https://pubmed.ncbi.nlm.nih.gov/15012564/" 
@@ -125,7 +125,7 @@ const ArticleList = () => {
       textDecoration="underline"
       target="_blank">
         <Text as="p" fontSize="xl">
-        Asthma: what causes it? Here's what we now know - ABC News
+        Asthma: what causes it? Here&apos;s what we now know - ABC News
           </Text>
       </Link>
       <Link href="https://www.abc.net.au/news/health/2020-04-07/asthma-and-risk-of-severe-coronavirus-infection/12117680" 
