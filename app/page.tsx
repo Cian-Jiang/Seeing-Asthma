@@ -5,6 +5,7 @@ import Introduction from '@/components/Introduction'
 import Footer from '@/components/Footer'
 import Statistics from '@/components/Statistic'
 
+
 export default function Home() {
   return (
     <>
@@ -13,6 +14,7 @@ export default function Home() {
     <Features/>
     <Introduction/>
     <Footer/>
+
     </>
   )
 }

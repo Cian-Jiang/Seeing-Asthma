@@ -65,7 +65,7 @@ export default function Features() {
             </Link>
           <Heading>Understanding symptoms</Heading>
           <Text color={'gray.500'} fontSize={'lg'}>
-            XXXXXXX
+            We provide authoritative artivles for you to learn about Asthma and expecially Asthma on children so that you can protect you kids.
           </Text>
           <Stack
             spacing={4}
@@ -75,17 +75,17 @@ export default function Features() {
             <Feature
               icon={<Icon as={IoAnalyticsSharp} color={'yellow.500'} w={5} h={5} />}
               iconBg={useColorModeValue('yellow.100', 'yellow.900')}
-              text={'XXX'}
+              text={'Information About Asthma'}
             />
             <Feature
               icon={<Icon as={IoLogoBitcoin} color={'green.500'} w={5} h={5} />}
               iconBg={useColorModeValue('green.100', 'green.900')}
-              text={'XXX'}
+              text={'Asthma symptoms'}
             />
             <Feature
               icon={<Icon as={IoSearchSharp} color={'purple.500'} w={5} h={5} />}
               iconBg={useColorModeValue('purple.100', 'purple.900')}
-              text={'XXX'}
+              text={'Asthma in Children'}
             />
           </Stack>
         </Stack>
@@ -130,7 +130,7 @@ export default function Features() {
             thunderstorm asthma
           </Text>
             </Link>
-          <Heading>learning in play</Heading>
+          <Heading>Learning in game</Heading>
           <Text color={'gray.500'} fontSize={'lg'}>
             Epidemic thunderstorm asthma is thought to be triggered by an uncommon combination of high pollen levels
             and a certain type of thunderstorm, causing a large number of people to develop asthma symptoms over a

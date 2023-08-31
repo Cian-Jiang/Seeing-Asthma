@@ -22,10 +22,10 @@ import {
   ChevronDownIcon,
   ChevronRightIcon,
 } from '@chakra-ui/icons'
+import { useState } from 'react'
 
 export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure()
-
   return (
       <Box className="sticky-navbar">
         <Flex
@@ -51,12 +51,7 @@ export default function Navbar() {
             />
           </Flex>
           <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
-            <Text
-                textAlign={useBreakpointValue({ base: 'center', md: 'left' })}
-                fontFamily={'heading'}
-                color={useColorModeValue('gray.800', 'white')}>
-              <Button as={"a"} href="/">Home</Button>
-            </Text>
+            
 
             <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
               <DesktopNav />
@@ -74,6 +69,7 @@ export default function Navbar() {
 }
 
 const DesktopNav = () => {
+  const [selectedNavItem, setSelectedNavItem] = useState('Home');
   const linkColor = useColorModeValue('gray.600', 'gray.200')
   const linkHoverColor = useColorModeValue('gray.800', 'white')
   const popoverContentBgColor = useColorModeValue('white', 'gray.800')
@@ -90,11 +86,12 @@ const DesktopNav = () => {
                       href={navItem.href ?? '#'}
                       fontSize={'sm'}
                       fontWeight={500}
-                      color={linkColor}
+                      color={selectedNavItem === navItem.label ? 'blue.500' : linkColor}
                       _hover={{
                         textDecoration: 'none',
                         color: linkHoverColor,
-                      }}>
+                      }}
+                      onClick={() => setSelectedNavItem(navItem.label)}>
                     {navItem.label}
                   </Box>
                 </PopoverTrigger>
@@ -157,6 +154,7 @@ const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
 }
 
 const MobileNav = () => {
+  const [selectedNavItem, setSelectedNavItem] = useState('Home');
   return (
       <Stack bg={useColorModeValue('white', 'gray.800')} p={4} display={{ md: 'none' }}>
         {NAV_ITEMS.map((navItem) => (
@@ -222,6 +220,10 @@ interface NavItem {
 }
 
 const NAV_ITEMS: Array<NavItem> = [
+  {
+    label: 'Home',
+    href: '/',
+  },
   {
     label: 'Library',
     href: '/AsthmaLibrary',

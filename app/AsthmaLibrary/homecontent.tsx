@@ -114,8 +114,8 @@ const ArticleList = () => {
           marginTop={{ base: '3', sm: '0' }}>
           
           <Heading marginTop="1">
-            <Text textDecoration="none" _hover={{ textDecoration: 'none' }}>
-            What is Asthma? 
+            <Text textDecoration="none" _hover={{ textDecoration: 'none' }} color={'cyan.800'}>
+            -What is Asthma? 
             </Text>
           </Heading>
           <Text
@@ -128,15 +128,21 @@ const ArticleList = () => {
             inhaling because the airways in their lungs become constricted, but at other times, 
             their breathing is normal.
             Asthma is incurable, but it can typically be well managed. Most individuals with
-            asthma can maintain an active lifestyle and live a healthy existence (National Asthma 
-            Council Australia, 2019)
+            asthma can maintain an active lifestyle and live a healthy existence 
+          </Text>
+          <Text
+            as="a"
+            href="https://www.nationalasthma.org.au/understanding-asthma/what-is-asthma"
+            marginTop="2"
+            fontSize="lg">
+            (National Asthma Council Australia, 2019)
           </Text>
           
         </Box>
       </Box>
       
       <VStack paddingTop="40px" spacing="2" alignItems="flex-start">
-        <Heading as="h2">Impact of Asthma</Heading>
+        <Heading as="h2" color={'cyan.800'}>-Impact of Asthma</Heading>
         <Text as="p" fontSize="lg">
         All age groups are affected by the chronic respiratory disease asthma. 
         It is caused by inflammation and tightening of the muscles around the airways, 
@@ -160,14 +166,14 @@ const ArticleList = () => {
       </VStack>
 
       <VStack paddingTop="40px" spacing="2" alignItems="flex-start">
-        <Heading as="h2">Impact of Asthma on children</Heading>
+        <Heading as="h2" color={'cyan.800'}>-Impact of Asthma on children</Heading>
         <Text as="p" fontSize="lg">
         Asthma is typically one of the most prevalent reasons why children visit the doctor, miss school, 
         or have to go to the hospital. About one in ten Australian adolescents have asthma. If your child&apos;s
         asthma is under control, they should be able to live a healthy and active existence (better health channel, 2012).
 
         </Text>
-        <Heading as="h2">What are the symptoms of Asthma?</Heading>
+        <Heading as="h2" color={'cyan.800'}>-What are the symptoms of Asthma?</Heading>
         <Text as="p" fontSize="lg">
         Asthma symptoms are signs, effects, or feelings that occur as a result of asthma. Asthma symptoms are 
         caused by changes in the airways (breathing passages) of the lungs. These changes can lead to difficulty 

@@ -114,8 +114,8 @@ const ArticleList = () => {
           marginTop={{ base: '3', sm: '0' }}>
           
           <Heading marginTop="1">
-            <Text textDecoration="none" _hover={{ textDecoration: 'none' }}>
-            Coughing 
+            <Text textDecoration="none" _hover={{ textDecoration: 'none' }} color={'cyan.800'}>
+            -Coughing 
             </Text>
           </Heading>
           <Text
@@ -125,6 +125,7 @@ const ArticleList = () => {
             fontSize="lg">
             When you cough, your airways constrict, and more mucus forms. Asthma-induced wheezing may be the cause of a persistent cough or coughing fits.
           </Text>
+          <br/>
           <Text
             as="p"
             marginTop="2"
@@ -150,8 +151,8 @@ const ArticleList = () => {
           marginTop={{ base: '3', sm: '0' }}>
         
           <Heading marginTop="1">
-            <Text textDecoration="none" _hover={{ textDecoration: 'none' }}>
-            wheezing  
+            <Text textDecoration="none" _hover={{ textDecoration: 'none' }} color={'cyan.800'}>
+            -wheezing  
             </Text>
           </Heading>
           <Text
@@ -249,8 +250,8 @@ const ArticleList = () => {
           marginTop={{ base: '3', sm: '0' }}>
           
           <Heading marginTop="1">
-            <Text textDecoration="none" _hover={{ textDecoration: 'none' }}>
-            Difficulty breathing  
+            <Text textDecoration="none" _hover={{ textDecoration: 'none' }} color={'cyan.800'}>
+            -Difficulty breathing  
             </Text>
           </Heading>
           <Text
@@ -277,8 +278,8 @@ const ArticleList = () => {
           marginTop={{ base: '3', sm: '0' }}>
         
           <Heading marginTop="1">
-            <Text textDecoration="none" _hover={{ textDecoration: 'none' }}>
-            Chest discomfort 
+            <Text textDecoration="none" _hover={{ textDecoration: 'none' }} color={'cyan.800'}>
+            -Chest discomfort 
             </Text>
           </Heading>
           <Text
@@ -290,6 +291,7 @@ const ArticleList = () => {
 
 
           </Text>
+          <br/>
           <Text
             as="p"
             marginTop="2"
