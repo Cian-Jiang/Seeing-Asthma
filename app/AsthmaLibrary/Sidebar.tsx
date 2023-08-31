@@ -30,28 +30,29 @@ import { ReactText } from 'react';
 import HomeContent from './homecontent';
 import TrendingContent from './trendingcontent'
 import ExploreContent from './exploreContent'
+import Content from './content'
 
 interface LinkItemProps {
   name: string;
   icon: IconType;
-  content: ReactNode; // 添加content属性以存储每个标签的内容
+  content: ReactNode; 
 }
 
 const LinkItems: Array<LinkItemProps> = [
   { name: 'About Asthma', icon: FiArchive, content: <div><HomeContent/></div> },
   { name: 'Asthma Symptoms', icon: FiEye, content: <div><TrendingContent/></div> },
   { name: 'Asthma in Children', icon: FiUser, content: <div><ExploreContent/></div> },
-  { name: 'Favourites', icon: FiStar, content: <div>Favourites Content</div> },
-  { name: 'Settings', icon: FiSettings, content: <div>Settings Content</div> },
+  { name: 'Authoritative articles and news', icon: FiStar, content: <div><Content/></div> },
+  
 ];
 
 export default function Sidebar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [selectedTab, setSelectedTab] = useState('About Asthma'); // 初始化选中的标签为Home
+  const [selectedTab, setSelectedTab] = useState('About Asthma'); 
 
   const handleTabClick = (name: string) => {
     setSelectedTab(name);
-    onClose(); // 关闭移动设备上的侧边栏
+    onClose(); 
   };
 
   return (
@@ -80,7 +81,7 @@ export default function Sidebar() {
       {/* mobilenav */}
       <MobileNav display={{ base: 'flex', md: 'none' }} onOpen={onOpen} />
       <Box ml={{ base: 0, md: 60 }} p="4">
-        {/* 根据选中的标签显示内容 */}
+        
         {LinkItems.map((link) =>
           link.name === selectedTab ? (
             <div key={link.name}>{link.content}</div>
