@@ -115,7 +115,7 @@ const ArticleList = () => {
           
           <Heading marginTop="1">
             <Text textDecoration="none" _hover={{ textDecoration: 'none' }} color={'cyan.800'}>
-            -Coughing 
+            -Persistent Cough
             </Text>
           </Heading>
           <Text
@@ -123,16 +123,7 @@ const ArticleList = () => {
             marginTop="2"
             color={useColorModeValue('gray.700', 'gray.200')}
             fontSize="lg">
-            When you cough, your airways constrict, and more mucus forms. Asthma-induced wheezing may be the cause of a persistent cough or coughing fits.
-          </Text>
-          <br/>
-          <Text
-            as="p"
-            marginTop="2"
-            color={useColorModeValue('gray.700', 'gray.200')}
-            fontSize="lg">
-           ——This condition usually occurs at night or early in the morning, during exercise or physical activity, and when you cough with excitement or laughter.
-
+            A cough that&apos;s worse at night, during exercise, or when excited might indicate asthma.
           </Text>
           
         </Box>
@@ -160,7 +151,7 @@ const ArticleList = () => {
             marginTop="2"
             color={useColorModeValue('gray.700', 'gray.200')}
             fontSize="lg">
-             Constriction of the airways leads to a whistling or grinding sound when breathing.
+             Listen for high-pitched whistling sounds while breathing, especially at night or early morning.
 
           </Text>
           
@@ -251,7 +242,7 @@ const ArticleList = () => {
           
           <Heading marginTop="1">
             <Text textDecoration="none" _hover={{ textDecoration: 'none' }} color={'cyan.800'}>
-            -Difficulty breathing  
+            -Shortness of Breath 
             </Text>
           </Heading>
           <Text
@@ -259,7 +250,7 @@ const ArticleList = () => {
             marginTop="2"
             color={useColorModeValue('gray.700', 'gray.200')}
             fontSize="lg">
-            Feeling short of breath or out of breath because the airway is too narrow to allow adequate inhalation and exhalation.
+            Watch for faster breathing, using shoulders, and avoiding physical activities.
           </Text>
           
         </Box>
@@ -279,7 +270,7 @@ const ArticleList = () => {
         
           <Heading marginTop="1">
             <Text textDecoration="none" _hover={{ textDecoration: 'none' }} color={'cyan.800'}>
-            -Chest discomfort 
+            -Chest Tightness
             </Text>
           </Heading>
           <Text
@@ -287,21 +278,9 @@ const ArticleList = () => {
             marginTop="2"
             color={useColorModeValue('gray.700', 'gray.200')}
             fontSize="lg">
-             It may feel like something is pressing on or compressing the chest. This is caused by the contraction of the muscles around the airway. Symptoms range from moderate to severe.
-
-
+             Children might complain of chest discomfort or feeling a weight on their chest.
           </Text>
           <br/>
-          <Text
-            as="p"
-            marginTop="2"
-            color={useColorModeValue('gray.700', 'gray.200')}
-            fontSize="lg">
-             ——This symptom is usually worse at night or early in the morning, making it difficult to sleep. It may be accompanied by symptoms such as fatigue, rapid pulse, and sweating, which may be caused by the need to breathe harder. It takes more energy to use all the pectoral muscles to assist in breathing, which can lead to a faster heart rate. 
-
-
-
-          </Text>
           
         </Box>
         <Box
@@ -340,6 +319,27 @@ const ArticleList = () => {
         </Box>
         
       </Box>
+      <Heading marginTop="1">
+            <Text textDecoration="none" _hover={{ textDecoration: 'none' }} color={'cyan.800'}>
+            -MORE SYMPTOMS TO WATCH OUT FOR: 
+            </Text>
+          </Heading>
+          <Text
+            as="p"
+            marginTop="2"
+            color={useColorModeValue('gray.700', 'gray.200')}
+            fontSize="lg">
+             · Breathing in and out of the soft area at the bottom of the throat (where it meets the chest)<br/>
+
+· Drawing in or jerking up and down the abdomen<br/>
+
+· Muscles between the ribs are sucked in when breathing.<br/>
+
+· Blue lips<br/>
+
+· Inability to finish a sentence or eat because of difficulty breathing.<br/>
+
+          </Text>
 
       
     </Container>

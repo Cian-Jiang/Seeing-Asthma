@@ -39,16 +39,16 @@ interface LinkItemProps {
 }
 
 const LinkItems: Array<LinkItemProps> = [
-  { name: 'About Asthma', icon: FiArchive, content: <div><HomeContent/></div> },
+  { name: 'Asthma in Children', icon: FiUser, content: <div><HomeContent/></div> },
   { name: 'Asthma Symptoms', icon: FiEye, content: <div><TrendingContent/></div> },
-  { name: 'Asthma in Children', icon: FiUser, content: <div><ExploreContent/></div> },
+  { name: 'Live a Healthy Life', icon: FiArchive, content: <div><ExploreContent/></div> },
   { name: 'Authoritative articles and news', icon: FiStar, content: <div><Content/></div> },
   
 ];
 
 export default function Sidebar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [selectedTab, setSelectedTab] = useState('About Asthma'); 
+  const [selectedTab, setSelectedTab] = useState('Asthma in Children'); 
 
   const handleTabClick = (name: string) => {
     setSelectedTab(name);

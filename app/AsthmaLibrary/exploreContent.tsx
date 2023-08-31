@@ -73,7 +73,7 @@ const BlogAuthor = (props: BlogAuthorProps) => {
 const ArticleList = () => {
   return (
     <Container maxW={'7xl'} p="12">
-      <Heading as="h1">What are the symptoms of Asthma in Children?</Heading>
+      
       <Box
         marginTop={{ base: '1', sm: '5' }}
         display="flex"
@@ -122,7 +122,7 @@ const ArticleList = () => {
           
           <Heading marginTop="1">
             <Text textDecoration="none" _hover={{ textDecoration: 'none' }} color={'cyan.800'}>
-            -Overview
+            -CAN MY CHILD LIVE A HEALTHY LIFE WITH ASTHMA?
 
             </Text>
           </Heading>
@@ -131,147 +131,12 @@ const ArticleList = () => {
             marginTop="2"
             color={useColorModeValue('gray.700', 'gray.200')}
             fontSize="lg">
-            Asthma symptoms in children may be more difficult to detect. Children have much smaller breathing tubes than adults. This means that even small changes in the way their airways work can have a big impact on their breathing, so this requires more attention from guardians and parents, as children are unable to tell us exactly what&apos;s going on with them, so it&apos;s more important for us to learn more about the subject and keep an eye on them when we&apos;re with them, and consult with authority on the subject to be prepared for the best possible scenario and to be aware of the signs and symptoms (Asthma Australia, 2021).
+            Yes! Early detection and proper management are vital in ensuring a child can have a healthy and active life. If your child has any of the symptoms above meet with your GP today and ensure you and your child have all the tools in your arsenal to combat Asthma!
           </Text>
           
         </Box>
       </Box>
-
-
       
-      <VStack paddingTop="40px" spacing="2" alignItems="flex-start">
-        <Heading as="h2" color={'cyan.800'}>-Symptoms of asthma vary from child to child and include:</Heading>
-        <Accordion>
-          <AccordionItem>
-            <h2>
-              <AccordionButton>
-                <Heading as="h3" size="lg" color={'cyan.600'}>Shortness of breath or difficulty breathing</Heading>
-                <AccordionIcon />
-              </AccordionButton>
-            </h2>
-            <AccordionPanel>
-                <Text as="p" fontSize="lg">
-                  Think about how your child breathes when they are healthy. This makes it easier to spot symptoms when they are unwell. For all children, especially younger ones, look out for signs and symptoms of difficulty breathing or breath-holding:  
-
-                </Text>
-            <Heading as="h3" size="md">Is your child breathing through their mouth or nose?</Heading>
-            <Text as="p" fontSize="lg">
-              If they have a virus or a blocked nose due to allergies, breathing through their nose can be more difficult. Breathing air through their mouth may irritate their small breathing tubes when their nose can&apos;t filter, warm, or moisten the air they breathe.
-            </Text>
-            <Heading as="h3" size="md">Changes in the way your child breathes: </Heading>
-            <Text as="p" fontSize="lg">
-                Observe their body as they breathe. Are they breathing faster than usual, or do they make a sound when they breathe? 
-                Are they using their body to help them breathe? For example, lifting their shoulders while breathing.
-
-            </Text>
-            <Heading as="h3" size="md">Please observe the following symptoms in depth: </Heading>
-            <Text as="p" fontSize="lg">
-              Does your child get out of breath while playing, or does it take longer than usual to catch their breath?<br />
-              Is your child avoiding activities because they are having trouble breathing?<br />
-              Are they quieter or more irritable than usual?<br />
-              Have they said they have a tummy ache?<br />
-
-              High priority: More serious signs that your child is having trouble breathing and needs emergency help include:<br />
-
-              Breathing in and out of the soft area at the bottom of the throat (where it meets the chest) <br />
-              Drawing in or jerking up and down the abdomen <br />
-              Muscles between the ribs are sucked in when breathing <br />
-              Blue lips <br />
-              Inability to finish a sentence or eat because of difficulty breathing <br />
-              <Text as="p" fontSize="lg">Any sign of difficulty breathing should be seen by a doctor. These symptoms help the doctor understand your child&apos;s condition and decide what treatment is best for them. It is important to tell the doctor about all of your child&apos;s symptoms, even if you think they are normal. </Text>
-            </Text>
-            </AccordionPanel>
-          </AccordionItem>
-
-          <AccordionItem>
-            <h2>
-              <AccordionButton>
-              <Heading as="h3" size="lg" color={'cyan.600'}>Wheezing </Heading>
-                <AccordionIcon />
-              </AccordionButton>
-            </h2>
-            <AccordionPanel>
-              <Text as="p" fontSize="lg">
-                Wheezing is a high-pitched whistling sound made when the airway is narrowed. It is sometimes easy to hear, or the doctor may hear it when listening to your child&apos;s breathing with a stethoscope. Wheezing can be caused by many things, including asthma. However, not all children with asthma will wheeze.
-
-              </Text>
-              <Text as="p" fontSize="lg">
-                Asthma is more likely if it occurs <br />
-                <br />
-                Is very frequent <br />
-                Is worse at night or early in the morning <br />
-                Occurs when your child doesn&apos;t have a cold <br />
-                Responds to a certain trigger.<br />
-                Consult your doctor if your child is wheezing.<br />
-
-
-              </Text>
-            </AccordionPanel>
-          </AccordionItem>
-
-          <AccordionItem>
-            <h2>
-              <AccordionButton>
-              <Heading as="h3" size="lg" color={'cyan.600'}>Coughing </Heading>
-                <AccordionIcon />
-              </AccordionButton>
-            </h2>
-            <AccordionPanel>
-            <Text as="p" fontSize="lg">
-              There are many causes and different types of coughs in children. Sometimes coughing up mucus or phlegm. Regardless of the sound of the cough, consult your doctor if your child has any of the following conditions <br />
-
-              Has a persistent or long-lasting cough <br />
-              Coughing only at night or early in the morning <br />
-              Coughs during sports or activities <br />
-              Coughs when excited or laughing.<br />
-
-            </Text>
-            </AccordionPanel>
-          </AccordionItem>
-
-          <AccordionItem>
-            <h2>
-              <AccordionButton>
-              <Heading as="h3" size="lg" color={'cyan.600'}>Chest tightness </Heading>
-                <AccordionIcon />
-              </AccordionButton>
-            </h2>
-            <AccordionPanel >
-            <Text as="p" fontSize="lg">
-              When the airways are very narrow and it is difficult for air to move in and out, children may feel tightness in their chest. This may make them feel like there is a weight on their chest. Your child may say &quot;I don&apos;t feel good&quot; or &quot;I have a tummy ache&quot;.
-              </Text>
-              <Text as="p" fontSize="lg">
-              High priority: If your child or a child in your care is experiencing this symptom, it&apos;s important to see a doctor to check their symptoms or seek a diagnosis.
-
-              </Text>
-              <Text as="p" fontSize="lg">
-              What causes asthma?<br />
-
-              Experts aren&apos;t sure why some people get asthma and others don&apos;t. You are more likely to develop asthma if someone in your immediate family has asthma, hay fever, allergies, or eczema (Healthdirect, 2019).
-
-              </Text>
-              <Text as="p" fontSize="lg">
-              Children are at a higher risk of developing asthma if they are<br />
-              They are born prematurely or with a low birth weight<br />
-              The mother smoked during the pregnancy<br />
-              lived with a smoker<br />
-              Have been exposed to air pollution or mold<br />
-
-            </Text>
-            </AccordionPanel>
-          </AccordionItem>
-        </Accordion>
-        
-
-        
-       
-        
-        
-        
-        
-        
-        
-      </VStack>
     </Container>
   )
 }
