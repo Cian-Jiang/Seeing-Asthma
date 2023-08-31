@@ -14,7 +14,7 @@ import {
   useColorModeValue,
   Container,
   VStack,
-} from '@chakra-ui/react'
+} from '@chakra-ui/react';
 
 interface IBlogTags {
   tags: Array<string>
