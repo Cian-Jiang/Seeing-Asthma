@@ -115,7 +115,7 @@ const ArticleList = () => {
           
           <Heading marginTop="1">
             <Text textDecoration="none" _hover={{ textDecoration: 'none' }} color={'cyan.800'}>
-            -What is Asthma? 
+            -Impact of Asthma on children
             </Text>
           </Heading>
           <Text
@@ -123,20 +123,11 @@ const ArticleList = () => {
             marginTop="2"
             color={useColorModeValue('gray.700', 'gray.200')}
             fontSize="lg">
-            Asthma is a medical condition that effects the airways (the tubes that transport
-            oxygen to and from the lungs). At times, individuals with asthma have difficulty
-            inhaling because the airways in their lungs become constricted, but at other times, 
-            their breathing is normal.
-            Asthma is incurable, but it can typically be well managed. Most individuals with
-            asthma can maintain an active lifestyle and live a healthy existence 
+            Asthma is typically one of the most prevalent reasons why children visit the doctor, miss school, 
+        or have to go to the hospital. About one in ten Australian adolescents have asthma. If your child&apos;s
+        asthma is under control, they should be able to live a healthy and active existence (better health channel, 2012). 
           </Text>
-          <Text
-            as="a"
-            href="https://www.nationalasthma.org.au/understanding-asthma/what-is-asthma"
-            marginTop="2"
-            fontSize="lg">
-            (National Asthma Council Australia, 2019)
-          </Text>
+          
           
         </Box>
       </Box>
@@ -166,13 +157,7 @@ const ArticleList = () => {
       </VStack>
 
       <VStack paddingTop="40px" spacing="2" alignItems="flex-start">
-        <Heading as="h2" color={'cyan.800'}>-Impact of Asthma on children</Heading>
-        <Text as="p" fontSize="lg">
-        Asthma is typically one of the most prevalent reasons why children visit the doctor, miss school, 
-        or have to go to the hospital. About one in ten Australian adolescents have asthma. If your child&apos;s
-        asthma is under control, they should be able to live a healthy and active existence (better health channel, 2012).
-
-        </Text>
+        
         <Heading as="h2" color={'cyan.800'}>-What are the symptoms of Asthma?</Heading>
         <Text as="p" fontSize="lg">
         Asthma symptoms are signs, effects, or feelings that occur as a result of asthma. Asthma symptoms are 
