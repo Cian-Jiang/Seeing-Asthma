@@ -229,7 +229,7 @@ const NAV_ITEMS: Array<NavItem> = [
     href: '/AsthmaLibrary',
   },
   {
-    label: 'thunderstorm asthma',
+    label: 'Thunderstorm asthma',
     href: '/AsthmaGame',
   },
   {

@@ -46,14 +46,14 @@ export default function CallToActionWithVideo() {
             </Text>
             <br />
             <Text as={'span'} color={'cyan.400'}>
-                thunderstorm asthma
+                Thunderstorm asthma
             </Text>
           </Heading>
           <Text color={'gray.500'}>
               Epidemic thunderstorm asthma is thought to be triggered by an uncommon combination of high pollen levels and a certain type of thunderstorm, causing a large number of people to develop asthma symptoms over a short period of time.
           </Text>
             <Text color={'gray.500'}>
-                it says: Australia is highly vulnerable to any adverse impact of climate change on allergens and allergic diseases,A combination of high pollen levels, strong winds, hot temperatures, air moisture and a cold front triggered severe asthma attacks.
+                It says: Australia is highly vulnerable to any adverse impact of climate change on allergens and allergic diseases,A combination of high pollen levels, strong winds, hot temperatures, air moisture and a cold front triggered severe asthma attacks.
 
             </Text>
             <Text color={'gray.500'}>
