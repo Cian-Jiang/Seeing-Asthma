@@ -23,7 +23,7 @@ export default function HeroSection() {
           spacing={{ base: 8, md: 14 }}
           py={{ base: 20, md: 36 }}>
           <Box
-            bgImage="/doctors-using-transparent-tablet-with-hologram-medical-technology.jpg"
+            bgImage="https://i.imgur.com/BBJ7ib3.jpg"
             bgPosition="center top"
             bgSize="cover"
             pos="absolute"
@@ -31,7 +31,7 @@ export default function HeroSection() {
             left={0}
             right={0}
             bottom={0}
-            opacity={0.6}
+            opacity={0.9}
             zIndex={-1}
             h="30%"
           />
@@ -39,14 +39,14 @@ export default function HeroSection() {
             fontWeight={600}
             fontSize={{ base: '2xl', sm: '4xl', md: '6xl' }}
             lineHeight={{ base: '350%', sm: '1670%', md: '350%' }}
-            style={{ WebkitTextStroke: '2px white' }}
+            
           >
-            Seeing <br />
-            <Text as={'span'} color={'cyan.400'}>
-              Asthma
+            <br />
+            <Text as={'span'} color={'white'}>
+              Seeing Asthma
             </Text>
           </Heading>
-          <Text color={'cyan.900'} fontWeight={600} fontSize={'2xl'}>
+          <Text color={'white'} fontWeight={600} fontSize={'2xl'}>
             Presenting invisible asthma to help you gain insight into it!
           </Text>
           <Stack
@@ -72,7 +72,7 @@ export default function HeroSection() {
             <Box>
               <Icon
                 as={Arrow}
-                color={useColorModeValue('gray.800', 'gray.300')}
+                color={useColorModeValue('white', 'white')}
                 w={71}
                 position={'absolute'}
                 right={-71}
@@ -84,6 +84,7 @@ export default function HeroSection() {
                 position={'absolute'}
                 right={'-125px'}
                 top={'-15px'}
+                color={'white'}
                 transform={'rotate(10deg)'}>
                 Together with your kids!
               </Text>

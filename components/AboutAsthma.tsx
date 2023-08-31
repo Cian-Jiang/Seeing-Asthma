@@ -6,13 +6,13 @@ export default function AboutAsthma() {
   return (
 
     <Stack
-      bg={useColorModeValue('pink.50', 'gray.800')}
+      bg={useColorModeValue('gray.50', 'gray.800')}
       py={16}
       px={8}
       spacing={{ base: 8, md: 10 }}
       align={'center'}
       direction={'column'}>
-        <Text fontSize={{ base: '3xl', md: '3xl' }} textAlign={'center'} maxW={'5xl'} as='b' color='pink'>
+        <Text fontSize={{ base: '3xl', md: '3xl' }} textAlign={'center'} maxW={'5xl'} as='b' color='skyblue'>
             What is Asthma?
         </Text>
       <Text fontSize={{ base: 'xl', md: '2xl' }} textAlign={'center'} maxW={'3xl'}>
