@@ -89,7 +89,7 @@ const ArticleList = () => {
       textDecoration="underline"
       target="_blank">
         <Text as="p" fontSize="xl">
-        Improving childhood asthma management in Melbourne's inner west | health.vic.gov.au
+        Improving childhood asthma management in Melbourne&apos;s inner west | health.vic.gov.au
           </Text>
       </Link>
       <Link href="https://www.aihw.gov.au/reports/children-youth/australias-children/contents/health/asthma-prevalence-children" 
