@@ -58,7 +58,7 @@ export default function Video() {
             <AccordionItem>
                 <h2>
                     <AccordionButton>
-                        <Box as="span" flex='1' textAlign='center'>
+                        <Box as="span" flex='1' textAlign='center' fontSize='lg'>
                             🎬Let&apos;s watch an animation on the prevention of thunderstorm asthma!🥳
                         </Box>
                         <AccordionIcon />
@@ -74,7 +74,7 @@ export default function Video() {
             <AccordionItem>
                 <h2>
                     <AccordionButton>
-                        <Box as="span" flex='1' textAlign='center'>
+                        <Box as="span" flex='1' textAlign='center' fontSize='lg'>
                             🎮Have fun with the game!🥳
                         </Box>
                         <AccordionIcon />
@@ -97,7 +97,7 @@ export default function Video() {
             <AccordionItem>
                 <h2>
                     <AccordionButton>
-                        <Box as="span" flex='1' textAlign='center'>
+                        <Box as="span" flex='1' textAlign='center' fontSize='lg'>
                             🎈Further information🥳
                         </Box>
                         <AccordionIcon />
