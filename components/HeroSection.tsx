@@ -47,7 +47,10 @@ export default function HeroSection() {
             </Text>
           </Heading>
           <Text color={'white'} fontWeight={600} fontSize={'2xl'}>
-            Presenting invisible asthma to help you gain insight into it!
+          You can&apos;t see Asthma but you can see the symptoms!
+          </Text>
+          <Text color={'white'} fontWeight={600} fontSize={'2xl'}>
+          Let&apos;s understand Asthma
           </Text>
           <Stack
             direction={'column'}
