@@ -212,7 +212,7 @@ const ArticleList = () => {
           <AccordionItem>
             <h2>
               <AccordionButton>
-              <Heading as="h3" size="lg" color={'cyan.600'}>Cough </Heading>
+              <Heading as="h3" size="lg" color={'cyan.600'}>Coughing </Heading>
                 <AccordionIcon />
               </AccordionButton>
             </h2>
