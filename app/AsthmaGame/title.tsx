@@ -46,7 +46,7 @@ export default function CallToActionWithVideo() {
             </Text>
             <br />
             <Text as={'span'} color={'cyan.400'}>
-                Thunderstorm asthma
+                Thunderstorm Asthma
             </Text>
           </Heading>
           <Text color={'gray.500'}>
