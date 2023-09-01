@@ -16,7 +16,7 @@ import {
 } from '@chakra-ui/react'
 import { IoAnalyticsSharp, IoLogoBitcoin, IoSearchSharp } from 'react-icons/io5'
 import { ReactElement } from 'react'
-import {QuestionIcon, StarIcon, ViewIcon } from '@chakra-ui/icons'
+import {InfoIcon, QuestionIcon, StarIcon, ViewIcon, WarningIcon } from '@chakra-ui/icons'
 import App from 'next/app'
 
 interface FeatureProps {
@@ -37,6 +37,7 @@ const Feature = ({ text, icon, iconBg }: FeatureProps) => {
 }
 
 export default function Features() {
+  // @ts-ignore
   return (
     <Container maxW={'5xl'} py={12}>
       <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10} spacingY='90px'>
@@ -73,12 +74,12 @@ export default function Features() {
               <StackDivider borderColor={useColorModeValue('gray.100', 'gray.700')} />
             }>
             <Feature
-              icon={<Icon as={IoAnalyticsSharp} color={'yellow.500'} w={5} h={5} />}
+              icon={<Icon as={InfoIcon} color={'yellow.500'} w={5} h={5} />}
               iconBg={useColorModeValue('yellow.100', 'yellow.900')}
               text={'Information About Asthma'}
             />
             <Feature
-              icon={<Icon as={IoLogoBitcoin} color={'green.500'} w={5} h={5} />}
+              icon={<Icon as={WarningIcon} color={'green.500'} w={5} h={5} />}
               iconBg={useColorModeValue('green.100', 'green.900')}
               text={'Asthma symptoms'}
             />
