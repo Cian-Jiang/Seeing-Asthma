@@ -11,7 +11,8 @@ export default function AboutAsthma() {
       px={8}
       spacing={{ base: 8, md: 10 }}
       align={'center'}
-      direction={'column'}>
+      direction={'column'}
+      id="middle-section">
         <Text fontSize={{ base: '3xl', md: '3xl' }} textAlign={'center'} maxW={'5xl'} as='b' color='skyblue'>
             What is Asthma?
         </Text>

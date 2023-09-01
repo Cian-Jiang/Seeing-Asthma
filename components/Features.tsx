@@ -41,7 +41,7 @@ export default function Features() {
     <Container maxW={'5xl'} py={12}>
       <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10} spacingY='90px'>
 
-        <Stack spacing={4}  id="middle-section" >
+        <Stack spacing={4}   >
           <Link href="/AsthmaLibrary"
                 fontWeight={600}
                 fontSize={'sm'}
