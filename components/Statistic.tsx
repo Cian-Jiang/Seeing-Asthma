@@ -63,11 +63,11 @@ export default function Statistics() {
     const chartRef = useRef(null);
     const [chartInstance, setChartInstance] = useState(null);
     const [chartData, setChartData] = useState({}); // Data for the Chart.js chart
-    const [year, setYear] = useState('2020');  // Add this line
+    const [year, setYear] = useState('2010');  // Add this line
 
     // Fetch data
     useEffect(() => {
-        fetch(`/api/getHospitalData?year=${year}&sex=All`)  // Modify this line
+        fetch(`/api/getHospitalData?year=${year}`)  // Modify this line
             .then((res) => res.json())
             .then((data) => {
                 setChartData(processData(data));
