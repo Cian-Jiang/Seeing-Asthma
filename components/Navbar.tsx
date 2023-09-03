@@ -225,7 +225,7 @@ const NAV_ITEMS: Array<NavItem> = [
     href: '/',
   },
   {
-    label: 'Library',
+    label: 'About Asthma',
     href: '/AsthmaLibrary',
   },
   {
