@@ -1,6 +1,8 @@
 'use client'
 
 import Head from 'next/head'
+import Image from 'next/image';
+
 import {
   Box,
   Heading,
@@ -22,6 +24,7 @@ export default function HeroSection() {
           textAlign={'center'}
           spacing={{ base: 8, md: 14 }}
           py={{ base: 20, md: 36 }}>
+          
           <Box
             bgImage="https://i.imgur.com/BBJ7ib3.jpg"
             bgPosition="center top"
@@ -31,7 +34,7 @@ export default function HeroSection() {
             left={0}
             right={0}
             bottom={0}
-            opacity={0.9}
+            
             zIndex={-1}
             h="30%"
           />
@@ -46,12 +49,25 @@ export default function HeroSection() {
               Seeing Asthma
             </Text>
           </Heading>
-          <Text color={'white'} fontWeight={600} fontSize={'2xl'}>
+          <Text color={'white'} fontWeight={600} fontSize={'3xl'}>
           You can&apos;t see Asthma but you can see the symptoms!
           </Text>
-          <Text color={'white'} fontWeight={600} fontSize={'2xl'}>
-          Let&apos;s understand Asthma
+          <Text color={'white'} fontWeight={600} fontSize={'3xl'}>
+          We help you protect your kids from asthma!
+          
           </Text>
+          <Text color={'white'} fontWeight={600} fontSize={'3xl'}>
+          In recent years, the number of children suffering from asthma is three times that of adults.
+          <Image
+            src="/undefined - Imgur.jpg" 
+            alt="Asthma image"
+            width={500} 
+            height={300} 
+            style={{ margin: '0 auto' }}
+          />
+          </Text>
+          
+          
           <Stack
             direction={'column'}
             spacing={3}
@@ -69,29 +85,10 @@ export default function HeroSection() {
               as="a"
               href="#middle-section"
               >
-              Get Started
+              Find it more about Asthma
             </Button>
             
-            <Box>
-              <Icon
-                as={Arrow}
-                color={useColorModeValue('white', 'white')}
-                w={71}
-                position={'absolute'}
-                right={-71}
-                top={'10px'}
-              />
-              <Text
-                fontSize={'lg'}
-                fontFamily={'Caveat'}
-                position={'absolute'}
-                right={'-125px'}
-                top={'-15px'}
-                color={'white'}
-                transform={'rotate(10deg)'}>
-                Together with your kids!
-              </Text>
-            </Box>
+            
           </Stack>
         </Stack>
       </Container>

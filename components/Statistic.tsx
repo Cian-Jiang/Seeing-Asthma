@@ -175,7 +175,7 @@ export default function Statistics() {
                 Statistic about Asthma in Australia
             </chakra.h1>
             <SimpleGrid columns={{base: 1, md: 3}} spacing={{base: 5, lg: 8}}>
-                <StatsCard title={'long-term asthmatics'} stat={'11% of Australians'}/>
+                <StatsCard title={'Childhood asthmatics'} stat={'10% of Australian children'}/>
                 <StatsCard title={'Annual health expenditure on asthma'} stat={'$900 million'}/>
                 <StatsCard title={'Serious psychological distress caused by asthma'} stat={'11% of people with asthma'}/>
             </SimpleGrid>
