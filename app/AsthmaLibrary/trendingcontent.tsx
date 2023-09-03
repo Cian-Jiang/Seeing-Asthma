@@ -319,6 +319,7 @@ const ArticleList = () => {
         </Box>
         
       </Box>
+      <br/>
       <Heading marginTop="1">
             <Text textDecoration="none" _hover={{ textDecoration: 'none' }} color={'cyan.800'}>
             -MORE SYMPTOMS TO WATCH OUT FOR: 

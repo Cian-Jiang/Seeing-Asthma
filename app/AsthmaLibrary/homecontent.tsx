@@ -132,7 +132,7 @@ const ArticleList = () => {
       
       <VStack paddingTop="40px" spacing="2" alignItems="flex-start">
         <Heading as="h2" color={'cyan.800'}>-Does Your Child Have Asthma?</Heading>
-        <Text as="h1" fontSize="xl" color="red.400">
+        <Text as="h1" fontSize="3xl" color="red.400">
           If your child experiences any of the symptoms in Asthma Symptoms page,
           consult a doctor. Early detection and management are crucial for their well-being.
         </Text>
