@@ -43,27 +43,7 @@ export default function Features() {
       <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10} spacingY='90px'>
 
         <Stack spacing={4}   >
-          <Link href="/AsthmaLibrary"
-                fontWeight={600}
-                fontSize={'sm'}
-                bg={useColorModeValue('blue.50', 'blue.900')}
-                p={2}
-                alignSelf={'flex-start'}
-                rounded={'md'}>
-          <Text
-            textTransform={'uppercase'}
-            color={'blue.400'}
-            fontWeight={600}
-            fontSize={'sm'}
-            bg={useColorModeValue('blue.50', 'blue.900')}
-            p={2}
-            alignSelf={'flex-start'}
-            rounded={'md'}>
-            Library
-
-
-          </Text>
-            </Link>
+          
           <Heading>Understanding symptoms</Heading>
           <Text color={'gray.500'} fontSize={'lg'}>
             We provide authoritative artivles for you to learn about Asthma and expecially Asthma on children so that you can protect you kids.
@@ -89,7 +69,30 @@ export default function Features() {
               text={'Asthma in Children'}
             />
           </Stack>
+          <br/>
+          <Link href="/AsthmaLibrary"
+                fontWeight={600}
+                fontSize={'sm'}
+                bg={useColorModeValue('blue.50', 'blue.900')}
+                p={2}
+                alignSelf={'center'}
+                rounded={'md'}>
+          <Text
+            textTransform={'uppercase'}
+            color={'blue.400'}
+            fontWeight={600}
+            fontSize={'sm'}
+            bg={useColorModeValue('blue.50', 'blue.900')}
+            p={2}
+            alignSelf={'flex-start'}
+            rounded={'md'}>
+            Click to learn about Asthma
+
+
+          </Text>
+          </Link>
         </Stack>
+        
 
         <Flex>
           <Image
@@ -111,26 +114,9 @@ export default function Features() {
             objectFit={'cover'}
         />
       </Flex>
+
         <Stack spacing={4}>
-          <Link href="/AsthmaGame"
-                fontWeight={600}
-                fontSize={'sm'}
-                bg={useColorModeValue('blue.50', 'blue.900')}
-                p={2}
-                alignSelf={'flex-start'}
-                rounded={'md'}>
-          <Text
-              textTransform={'uppercase'}
-              color={'blue.400'}
-              fontWeight={600}
-              fontSize={'sm'}
-              bg={useColorModeValue('blue.50', 'blue.900')}
-              p={2}
-              alignSelf={'flex-start'}
-              rounded={'md'}>
-            thunderstorm asthma
-          </Text>
-            </Link>
+          
           <Heading>Learning in game</Heading>
           <Text color={'gray.500'} fontSize={'lg'}>
             Epidemic thunderstorm asthma is thought to be triggered by an uncommon combination of high pollen levels
@@ -158,6 +144,26 @@ export default function Features() {
                 text={'Expand brain in thinking questions'}
             />
           </Stack>
+          <br/>
+          <Link href="/AsthmaGame"
+                fontWeight={600}
+                fontSize={'sm'}
+                bg={useColorModeValue('blue.50', 'blue.900')}
+                p={2}
+                alignSelf={'center'}
+                rounded={'md'}>
+          <Text
+              textTransform={'uppercase'}
+              color={'blue.400'}
+              fontWeight={600}
+              fontSize={'sm'}
+              bg={useColorModeValue('blue.50', 'blue.900')}
+              p={2}
+              alignSelf={'flex-start'}
+              rounded={'md'}>
+            Click to start Thunderstorm Asthma gaming
+          </Text>
+            </Link>
         </Stack>
 
       </SimpleGrid>
