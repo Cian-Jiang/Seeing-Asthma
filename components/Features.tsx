@@ -161,7 +161,7 @@ export default function Features() {
               p={2}
               alignSelf={'flex-start'}
               rounded={'md'}>
-            Click to start Thunderstorm Asthma gaming
+           Click to start journey to prevention it
           </Text>
             </Link>
         </Stack>
