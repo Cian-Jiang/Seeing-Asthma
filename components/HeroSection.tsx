@@ -57,7 +57,7 @@ export default function HeroSection() {
           
           </Text>
           <Text color={'white'} fontWeight={600} fontSize={'3xl'}>
-          In recent years, the number of children suffering from asthma is three times that of adults.
+          In recent years, the number of children with asthma has exceeded three times that of adults.
           <Image
             src="/undefined - Imgur.jpg" 
             alt="Asthma image"
