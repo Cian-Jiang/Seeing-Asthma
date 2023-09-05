@@ -85,7 +85,7 @@ export default function HeroSection() {
               as="a"
               href="#middle-section"
               >
-              Find it more about Asthma
+              Find out more about Asthma
             </Button>
             
             
