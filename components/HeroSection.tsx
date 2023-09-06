@@ -1,7 +1,7 @@
 'use client'
 
 import Head from 'next/head'
-import Image from 'next/image';
+//import Image from 'next/image';
 
 import {
   Box,
@@ -10,6 +10,7 @@ import {
   Text,
   Button,
   Stack,
+  Image,
   Icon,
   useColorModeValue,
   createIcon,
@@ -44,7 +45,6 @@ export default function HeroSection() {
             lineHeight={{ base: '350%', sm: '1670%', md: '350%' }}
             
           >
-            <br />
             <Text as={'span'} color={'white'}>
               Seeing Asthma
             </Text>
@@ -56,16 +56,14 @@ export default function HeroSection() {
           We help you protect your kids from asthma!
           
           </Text>
-          <Text color={'white'} fontWeight={600} fontSize={'3xl'}>
-          In recent years, the number of children with asthma has exceeded three times that of adults.
           <Image
-            src="/undefined - Imgur.jpg" 
+            src="/aa.png"
             alt="Asthma image"
-            width={500} 
-            height={300} 
-            style={{ margin: '0 auto' }}
+            w={['130%', '120%']}  // Responsive width
+            h="auto"  // Auto height to maintain aspect ratio
+            mx="auto"  // Center the image horizontally
           />
-          </Text>
+
           
           
           <Stack
