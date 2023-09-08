@@ -232,6 +232,14 @@ const NAV_ITEMS: Array<NavItem> = [
     label: 'Thunderstorm Asthma',
     href: '/AsthmaGame',
   },
+  {
+    label: 'Weather',
+    href: '/Weather',
+  },
+  {
+    label: 'Asthma Trigger',
+    href: '/Trigger',
+  },
   
 
 ]
