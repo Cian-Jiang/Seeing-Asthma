@@ -4,5 +4,6 @@ import TriggerHeroSection from './hero'
 export default function Trigger() {
   return (
     <TriggerHeroSection/>
+
   )
 }
