@@ -1,10 +1,12 @@
 import { useState } from 'react';
+import axios from 'axios';
 
 export default function Upload() {
     const [image, setImage] = useState(null);
     const [type, setType] = useState('Plant');
     const [result, setResult] = useState(null);
-    const api_key = 'i23a3ushd123egiqwuoasqw2378qer12132';
+
+
     const handleImageChange = (e) => {
         const file = e.target.files[0];
         setImage(file);
@@ -12,30 +14,34 @@ export default function Upload() {
 
     const handleTypeChange = (e) => {
         setType(e.target.value);
+
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+        const api_key = process.env.API_KEY;
         const formData = new FormData();
         formData.append('image', image);
         formData.append('type', type);
-        formData.append('api_key', api_key);
+        formData.append('key', api_key);
 
         console.log(formData);
-        const response = await fetch('http://localhost:5000/image_recognition', {
-            method: 'POST',
-            headers: {
-                'api_key': api_key, // Replace with your actual API key
-            },
-            body: formData,
-        });
 
-        if (response.ok) {
-            const data = await response.json();
-            setResult(data);
-        } else {
-            setResult(`Error: ${response.status}`);
+        try {
+            const response = await axios.post('https://api.healthcoder.live/image_recognition', formData, {
+                headers: {
+                    'api_key': api_key, // 使用你的实际 API 密钥
+                },
+            });
+
+            if (response.status === 200) {
+                setResult(response.data);
+            } else {
+                setResult(`Error: ${response.status}`);
+            }
+        } catch (error) {
+            console.error('There was an error uploading the data', error);
+            setResult(`Error: ${error}`);
         }
     };
 
