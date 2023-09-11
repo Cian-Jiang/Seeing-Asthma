@@ -10,7 +10,7 @@ from PIL import Image
 from io import BytesIO
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, expose_headers=["api_key"])
 app.config.from_object(Config)
 api = Api(app, version='1.0', title='Image Recognition API', description='An API for image recognition')
 # ns = api.namespace('recognition', description='Recognition operations')
@@ -68,10 +68,14 @@ class ImageRecognition(Resource):
     @api.doc(params={'api_key': 'Your API key', 'type': 'Type of object to recognize (Plant, Cat, Dog)', 'image': 'The image file'})
 
     def post(self):
-
-        api_key = request.form.get('api_key')
+        print(request.headers)
+        print(request.form)
+        api_key = request.headers.get('api_key')
+        print(f"API Key: {api_key}")
         if api_key is None:
-            api_key = request.headers.get('api_key')
+            api_key = request.form.get('key')
+        if api_key is None:
+            api_key = request.headers.get('API-Key')
         object_type = request.form.get('type')
         print(f"API Key: {api_key}, Object Type: {object_type}")
 
@@ -118,7 +122,12 @@ class ImageRecognition(Resource):
                 return plant_info, 200  # Directly return the dictionary
 
             else:
-                return {"error": "Object not found in database"}, 404
+                if object_type == 'Plant':
+                    return {"error": "No high-risk plants were found."}, 404
+                elif object_type == 'Cat':
+                    return {"error": "No asthma-safe cats have been found."}, 404
+                else:
+                    return {"error": "No asthma-safe dogs have been found."}, 404
         else:
             return {"error": "No image provided"}, 400
 
