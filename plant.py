@@ -8,6 +8,8 @@ import base64
 from config import Config
 from PIL import Image
 from io import BytesIO
+import requests
+
 
 app = Flask(__name__)
 CORS(app, expose_headers=["api_key"])
@@ -17,8 +19,8 @@ api = Api(app, version='1.0', title='Image Recognition API', description='An API
 
 # 验证API密钥
 def validate_api_key(api_key):
-    if api_key != Config.API_KEY :
-        return False
+    # if api_key != Config.API_KEY :
+    #    return False
     return True
 
 # 调用百度API进行图片识别
@@ -38,7 +40,48 @@ def baidu_image_recognition(image_data, object_type):
     if response.status_code == 200:
         response_json = response.json()
         highest_score_result = max(response_json['result'], key=lambda x: float(x['score']))
-        return highest_score_result['name']
+        name = highest_score_result['name']
+        if object_type == 'Plant':
+            tree_dict = {
+                "柏": "柏树",
+                "松": "松树",
+                "黄杨": "黄杨",
+                "桤": "桤木",
+                "桦": "桦",
+                "梣": "梣",
+                "白蜡": "梣",
+                "柳": "柳树",
+                "榆": "榆树",
+                "榄": "橄榄",
+                "桑": "桑树",
+                "楝": "楝",
+                "小麦": "小麦",
+                "玉米": "玉米",
+                "稻": "稻",
+                "黑麦 ": "黑麦",
+                "大麦": "大麦",
+                "燕麦": "燕麦",
+                "云杉": "云杉",
+                "冷杉": "冷杉",
+                "杨": "杨树",
+                "核桃": "山核桃",
+                "毛茛": "毛茛",
+                "菊": "菊",
+                "荨麻": "荨麻",
+                "墙草": "荨麻",
+                "车前": "车前",
+                "二球悬铃木": "二球悬铃木"
+
+            }
+
+            for key, value in tree_dict.items():
+                if key in name:
+                    print(value)
+                    return value
+            print(name)
+            return name
+
+        return name
     else:
         print(f"Failed to get response from Baidu API. Status code: {response.status_code}")
         return None
@@ -53,7 +96,6 @@ def get_plant_info_from_db(plant_chinese_name, object_type):
         database=Config.DB_NAME
     )
     cursor = mydb.cursor()
-    # cursor.execute(f"SELECT name, objdes, imageurl FROM {object_type} WHERE Chinesename='{plant_chinese_name}'")
     query = "SELECT name, objdes, imageurl FROM {} WHERE chinese_name=%s".format(object_type)
     cursor.execute(query, (plant_chinese_name,))
     result = cursor.fetchone()
@@ -68,16 +110,16 @@ class ImageRecognition(Resource):
     @api.doc(params={'api_key': 'Your API key', 'type': 'Type of object to recognize (Plant, Cat, Dog)', 'image': 'The image file'})
 
     def post(self):
-        print(request.headers)
-        print(request.form)
+        # print(request.headers)
+        # print(request.form)
         api_key = request.headers.get('api_key')
-        print(f"API Key: {api_key}")
+        # print(f"API Key: {api_key}")
         if api_key is None:
             api_key = request.form.get('key')
         if api_key is None:
             api_key = request.headers.get('API-Key')
         object_type = request.form.get('type')
-        print(f"API Key: {api_key}, Object Type: {object_type}")
+        # print(f"API Key: {api_key}, Object Type: {object_type}")
 
         if not validate_api_key(api_key):
             return {"error": "Invalid API Key"}, 401
@@ -114,6 +156,10 @@ class ImageRecognition(Resource):
 
             recognized_name = baidu_image_recognition(image_data, object_type)
             # print(f"Recognized Name: {recognized_name}")
+            if recognized_name == "非动物":
+                return {"error": "No animal found in the picture. Please check your images and try again."}, 404
+            elif recognized_name == "非植物":
+                return {"error": "No plant found in the picture. Please check your images and try again."}, 404
 
             plant_info = get_plant_info_from_db(recognized_name, object_type)
             # print(f"Plant Info: {plant_info}")
@@ -130,6 +176,43 @@ class ImageRecognition(Resource):
                     return {"error": "No asthma-safe dogs have been found."}, 404
         else:
             return {"error": "No image provided"}, 400
+
+
+# def translate_chinese_to_english(chinese_name):
+#
+#     appid = '20210327000746929'
+#     secretKey = 'vW4FB634sDRtIoDw9e28'
+#
+#
+#     salt = random.randint(1, 10)
+#     code = appid + chinese_name + str(salt) + secretKey
+#     sign = hashlib.md5(code.encode()).hexdigest()
+#
+#     api = "http://api.fanyi.baidu.com/api/trans/vip/translate"
+#
+#     data = {
+#         "q": chinese_name,
+#         "from": "zh",
+#         "to": "en",
+#         "appid": appid,
+#         "salt": salt,
+#         "sign": sign
+#     }
+#
+#     response = requests.post(api, data)
+#
+#     try:
+#         result = response.json()
+#         dst = result.get("trans_result")[0].get("dst")
+#
+#     except Exception as e:
+#         dst = chinese_name
+#
+#     finally:
+#         return dst
+
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
