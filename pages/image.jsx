@@ -22,7 +22,7 @@ export default function Upload() {
         formData.append('image', image);
         formData.append('type', type);
 
-        const response = await fetch('http://localhost:5000/image_recognition', {
+        const response = await fetch('https://api.healthcoder.live/image_recognition', {
             method: 'POST',
             headers: {
                 'api_key': process.env.API_KEY, // Replace with your actual API key
