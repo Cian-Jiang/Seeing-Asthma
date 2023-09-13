@@ -35,3 +35,4 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 ## install
 
 npm i @chakra-ui/react @emotion/react @emotion/styled framer-motion react-icons @chakra-ui/icons react-player chart.js mysql
+npm i @chakra-ui/react @emotion/react @emotion/styled framer-motion react-icons @chakra-ui/icons react-player chart.js mysql axios

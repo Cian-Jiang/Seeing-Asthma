@@ -16,7 +16,7 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react'
 
-export default function TriggerHeroSection() {
+export default function PlantHeroSection() {
   return (
     <Container maxW={'7xl'}>
       <Stack
@@ -46,13 +46,11 @@ export default function TriggerHeroSection() {
             </Text>
             <br />
             <Text as={'span'} color={'blue.400'}>
-              Your Surrounding Triggers
+              Plants and Pets around you!
             </Text>
           </Heading>
           <Text color={'gray.500'}>
-            Snippy is a rich coding snippets app that lets you create your own code
-            snippets, categorize them, and even sync them in the cloud so you can use them
-            anywhere. All that is free!
+          Although a plant or pet may be considered hypoallergenic, this also doesn`t mean they are safe for you personally. Before taking home a pet or plant, consider seeing an allergist to rule out all breeds you may be more sensitive to.
           </Text>
           
         </Stack>
