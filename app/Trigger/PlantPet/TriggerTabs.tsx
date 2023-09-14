@@ -15,18 +15,18 @@ import DogImage from './DogImage'
 export default function TriggerTabs() {
   return (
     <>
-    <Tabs variant='soft-rounded' colorScheme='green'>
+    <Tabs variant='soft-rounded' colorScheme='blue' align="center">
   <TabList>
-    <Tab>Tab 1</Tab>
-    <Tab>Tab 2</Tab>
-    <Tab>Tab 3</Tab>
+    <Tab>Plant Trigger</Tab>
+    <Tab>Cat Trigger</Tab>
+    <Tab>Dog Trigger</Tab>
   </TabList>
   <TabPanels>
     <TabPanel>
-      <CatImage/>
+      <PlantImage/>
     </TabPanel>
     <TabPanel>
-      <PlantImage/>
+    <CatImage/>
     </TabPanel>
     <TabPanel>
       <DogImage/>

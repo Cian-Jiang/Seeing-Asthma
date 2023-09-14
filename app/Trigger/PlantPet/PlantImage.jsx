@@ -94,7 +94,7 @@ export default function Upload() {
     return (
         <>
         <Flex justify="center" minHeight="100vh">
-        <div style={{ flex: 1, transform: 'translateX(35px)'}}>
+        <div style={{ flex: 1}}>
             <Heading marginTop="1">
                 <Text textDecoration="none" _hover={{ textDecoration: 'none' }} color={'blue.400'}>
                 Plant Image Recognition
