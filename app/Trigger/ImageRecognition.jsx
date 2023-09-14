@@ -49,15 +49,15 @@ export default function Home() {
     const [loading, setLoading] = useState(false);
     const [hasUploadedImage, setHasUploadedImage] = useState(false);
 
-    useEffect(() => {
-        toast({
-            title: "Test",
-            description: "This is a test toast",
-            status: "info",
-            duration: 3000,
-            isClosable: true,
-        });
-    }, []);
+    // useEffect(() => {
+    //     toast({
+    //         title: "Test",
+    //         description: "This is a test toast",
+    //         status: "info",
+    //         duration: 3000,
+    //         isClosable: true,
+    //     });
+    // }, []);
 
 
 
@@ -214,10 +214,18 @@ export default function Home() {
                 <Box position="relative" p={12}>
                 {loading ? ( // Conditionally render loading image
                 <CircularProgress isIndeterminate color='green.300' />
-                ) : result.length > 0 ? (
-                <MyAccordion result={result} />
                 ) : (
-                <p>Result will be shown after the image has been uploaded.</p>
+                    <>
+                        {hasUploadedImage ? (
+                            result.length > 0 ? (
+                                <MyAccordion result={result} />
+                            ) : (
+                                <Text>No results found.</Text> // Display this when result is empty
+                            )
+                        ) : (
+                            <Text>Upload an image to begin analysis.</Text> // Display this when no image is uploaded
+                        )}
+                    </>
                 )}
                 </Box>
             </div>
