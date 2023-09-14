@@ -4,6 +4,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import Navbar from '@/components/Navbar'
 import './global.css';
+import ScrollToTopButton from '@/components/ScrollToTopButton';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -22,7 +23,11 @@ export default function RootLayout({
           <Navbar/>
           
           {children}
-          </ChakraProvider></body>
+          <ScrollToTopButton />
+          </ChakraProvider>
+
+
+      </body>
     </html>
   )
 }

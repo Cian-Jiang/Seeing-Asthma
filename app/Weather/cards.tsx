@@ -111,11 +111,7 @@ export default function Cards() {
                         {renderCards(data.plants)}</TabPanel>
 
                     <TabPanel>
-                        <ChakraText>
-                            Bringing a cat into your home can be impossible to resist, even when you are allergic to them.
-                            <ChakraText as='b'>A common misunderstanding is that there are cats that are truly
-                                hypoallergenic.</ChakraText></ChakraText>
-                        <br/> <ChakraText>
+                         <ChakraText>
                         The major allergen responsible for cat allergy symptoms is Fel d 1. Fel d 1 is a protein
                         produced by the skin or saliva. Due to this, <ChakraText as='b'>no cat is truly considered
                         hypoallergenic</ChakraText>, since all cats have skin and saliva. The cats considered safer to
@@ -124,7 +120,7 @@ export default function Cards() {
 
                         </ChakraText><br/>
                         <ChakraText>
-                            Although a cat may be considered hypoallergenic, this also does not mean they are safe for
+                            Although these cats may be considered hypoallergenic, this also does not mean they are safe for
                             you personally. Before taking home a cat, consider seeing an allergist to rule out all
                             breeds you may be more sensitive to.
                         </ChakraText>
