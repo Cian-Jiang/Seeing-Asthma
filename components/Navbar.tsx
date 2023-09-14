@@ -241,9 +241,9 @@ const NAV_ITEMS: Array<NavItem> = [
     label: 'Asthma Trigger',
     children: [
       {
-        label: 'Tiggers Library',
+        label: 'What Triggers Asthma?',
         subLabel: 'Find out triggers that may cause asthma',
-        href: '/Library',
+        href: '/Trigger/Library',
       },
       {
         label: 'General Triggers',

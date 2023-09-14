@@ -172,13 +172,18 @@ export default function Home() {
 
     return (
         <>
-        
+        <Heading marginTop="1" textAlign="center">
+                <Text textDecoration="none" _hover={{ textDecoration: 'none' }} color={'blue.400'}>
+                Upload a picture...Find the Triggers
+
+                </Text>
+                </Heading>
          <Flex justify="center" minHeight="100vh">
             <div style={{ flex: 1, transform: 'translateX(35px)'}}>
                
                 <Heading marginTop="1">
                 <Text textDecoration="none" _hover={{ textDecoration: 'none' }} color={'blue.400'}>
-                Please take a photo in your home and upload
+                Upload a Picture Here:
 
                 </Text>
                 </Heading>

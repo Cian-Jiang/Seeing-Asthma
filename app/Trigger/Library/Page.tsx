@@ -1,7 +1,8 @@
 import React from 'react'
+import Cards from './cards'
 
 export default function Page() {
   return (
-    <div>Page</div>
+    <Cards/>
   )
 }
