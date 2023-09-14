@@ -26,7 +26,7 @@ function MyAccordion({ result }) {
                 <AccordionItem key={index}>
                     <h2>
                         <AccordionButton>
-                            <Box as="span" flex="1" textAlign="left">
+                            <Box as="span" flex="1" textAlign="left" color={'blue.400'} fontSize="16px" fontWeight="bold">
                                 {item.name}
                                 {/*({item.score})*/}
                             </Box>
@@ -172,12 +172,7 @@ export default function Home() {
 
     return (
         <>
-        <Heading marginTop="1" textAlign="center">
-                <Text textDecoration="none" _hover={{ textDecoration: 'none' }} color={'blue.400'}>
-                Upload a picture...Find the Triggers
-
-                </Text>
-                </Heading>
+       
          <Flex justify="center" minHeight="100vh">
             <div style={{ flex: 1, transform: 'translateX(35px)'}}>
                
@@ -186,9 +181,11 @@ export default function Home() {
                 Upload a Picture Here:
 
                 </Text>
+                
                 </Heading>
+                <br/>
                     <input id="image_input" type="file" onChange={handleImageChangeAndUpload} />
-                    
+                    <br/>
                     <Box
                         id="image_display"
                         width="512px"
@@ -202,6 +199,7 @@ export default function Home() {
 
                         >
                         {/* 内容 */}
+                        <br/>
                     </Box>
                     <br/>
                     <Button onClick={analyzeImage}>Analyze</Button>
