@@ -1,6 +1,6 @@
 'use client'
 import { useEffect, useState } from 'react';
-import { useDisclosure, Box, Tabs,  Text as ChakraText , TabList, Tab, TabPanels, TabPanel, Button, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, Flex, useColorModeValue, Divider, Center } from "@chakra-ui/react";
+import { Heading,Text, useDisclosure, Box, Tabs,  Text as ChakraText , TabList, Tab, TabPanels, TabPanel, Button, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, Flex, useColorModeValue, Divider, Center } from "@chakra-ui/react";
 
 export default function Cards() {
     const [data, setData] = useState({ cats: [], dogs: [], objects: [], plants: [] });
@@ -87,7 +87,12 @@ export default function Cards() {
             <br/>
             <br/>
             <br/>
-            <h1>Asthma Trigger</h1>
+            <Heading marginTop="1">
+            <Text textDecoration="none" _hover={{ textDecoration: 'none' }}>
+            Find out asthma triggers around you
+
+            </Text>
+          </Heading>
             <Tabs variant='soft-rounded' colorScheme='blue' onChange={(index) => setTabIndex(index)} >
                 <br/>
                 <Divider />
