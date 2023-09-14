@@ -34,7 +34,8 @@ export default function Upload() {
             const data = await response.json();
             setResult(data);
         } else {
-            setResult(`Error: ${response.status}`);
+            const errorBody = await response.text();
+            setResult(`Error: ${response.status} ${errorBody}`);
         }
     };
 
