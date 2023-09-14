@@ -107,9 +107,33 @@ export default function Upload() {
                 <div>
                     <form onSubmit={handleSubmit}>
                         <div>
-                            <label htmlFor="type">Type: Dog</label>
+                        <>
+                        <br/>
+                        <Button onClick={onOpen}>Click to view user guide</Button>
+                
+                        <Modal isOpen={isOpen} onClose={onClose}>
+                        <ModalOverlay />
+                        <ModalContent>
+                            <ModalHeader>User guide for uploading the picture</ModalHeader>
+                            <ModalCloseButton />
+                            <ModalBody>
+                            <p>PLease make sure no much clutter in the background.</p>
+                            <p>Better to place the subject in the center.</p>
+                            </ModalBody>
+                
+                            <ModalFooter>
+                            <Button colorScheme='blue' mr={3} onClick={onClose}>
+                                Close
+                            </Button>
+                            
+                            </ModalFooter>
+                        </ModalContent>
+                        </Modal>
+                        <br/>
+                    </>
                         </div>
                         <div>
+                            <br/>
                             <label htmlFor="image">Image:</label>
                             <input type="file" id="image" accept="image/*" onChange={handleImageChangeAndUpload} />
                             <Box
