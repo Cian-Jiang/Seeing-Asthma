@@ -5,6 +5,7 @@ import Introduction from '@/components/Introduction'
 import Footer from '@/components/Footer'
 import Statistics from '@/components/Statistic'
 import AboutAsthma from '@/components/AboutAsthma'
+import ScrollToTopButton from '@/components/ScrollToTopButton'
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
     <Features/>
     <Introduction/>
     <Footer/>
+      <ScrollToTopButton />
     </>
   )
 }
