@@ -16,6 +16,7 @@ import {
     useToast,
 
 } from "@chakra-ui/react";
+import { useDisclosure,  Text as ChakraText ,  Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, useColorModeValue, Divider, Center } from "@chakra-ui/react";
 import { useEffect } from 'react';
 
 export default function Upload() {
@@ -25,6 +26,8 @@ export default function Upload() {
     const [loading, setLoading] = useState(false);
     const [hasUploadedImage, setHasUploadedImage] = useState(false);
     const toast = useToast();
+    const { isOpen, onOpen, onClose } = useDisclosure();
+    const [openModalId, setOpenModalId] = useState("");
 
     const handleImageChange = (e) => {
         const file = e.target.files[0];
@@ -139,19 +142,51 @@ export default function Upload() {
             <Box position="relative" p={12}>
             {loading ? (
             <CircularProgress isIndeterminate color='green.300' />
-            ) : result?(
-            result && (
-                <div>
-                <h2>Result:</h2>
-                <p>
-                <strong>Name:</strong> {result.name}
-                </p>
-                <p>
-                <strong>Description:</strong> {result.description}
-                </p>
-                <img src={result.imageurl} alt="Cat" />
-                </div>
-            )
+            ) : result?.name ?(
+                result && (
+                    <Box
+                            key={result.name}
+                            flex="0 0 calc(33% - 1rem)"
+                            height="400px"
+                            borderWidth="1px"
+                            borderRadius="md"
+                            overflow="hidden"
+                            mb="2rem"
+                        >
+                            <Box height="300px" overflow="hidden">
+                                <img
+                                    src={result.imageurl}
+                                    alt={result.name}
+                                    style={{
+                                        width: '100%',
+                                        height: '100%',
+                                        objectFit: 'cover'
+                                    }}
+                                />
+                            </Box>
+                            <Box p="4" flexDirection="column" alignItems="center">
+                                <ChakraText fontWeight="bold" textAlign="center" mb="2">
+                                    {result.name}
+                                </ChakraText>
+                                <Button onClick={() => { setOpenModalId(result.name); onOpen(); }}>More info</Button>
+                                <Modal isOpen={isOpen && openModalId === result.name} onClose={() => { setOpenModalId(null); onClose(); }}>
+    
+                                    <ModalOverlay />
+                                    <ModalContent>
+                                        <ModalHeader>{result.name}</ModalHeader>
+                                        <ModalCloseButton />
+                                        <ModalBody>{result.description}</ModalBody>
+                                        <ModalFooter>
+                                            <Button colorScheme="blue" mr={3} onClick={onClose}>
+                                                Close
+                                            </Button>
+                                        </ModalFooter>
+                                    </ModalContent>
+                                </Modal>
+                            </Box>
+                        </Box>
+                )
+            
             ): (
                 <p>Result will be shown after the image has been uploaded.</p>
                 )}
