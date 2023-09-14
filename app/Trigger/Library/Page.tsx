@@ -1,7 +1,7 @@
 import React from 'react'
 import Cards from './cards'
 
-export default function page() {
+export default function Page() {
   return (
     <Cards/>
   )

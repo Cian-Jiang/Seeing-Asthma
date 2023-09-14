@@ -23,11 +23,8 @@ export default function RootLayout({
           <Navbar/>
           
           {children}
-          <ScrollToTopButton />
-          </ChakraProvider>
-
-
-      </body>
+          <ScrollToTopButton/>
+          </ChakraProvider></body>
     </html>
   )
 }

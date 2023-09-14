@@ -236,9 +236,27 @@ const NAV_ITEMS: Array<NavItem> = [
     label: 'Weather',
     href: '/Weather',
   },
+  
   {
     label: 'Asthma Trigger',
-    href: '/Trigger',
+    children: [
+      {
+        label: 'What Triggers Asthma?',
+        subLabel: 'Find out triggers that may cause asthma',
+        href: '/Trigger/Library',
+      },
+      {
+        label: 'General Triggers',
+        subLabel: 'Find possible triggers in your home',
+        href: '/Trigger',
+      },
+      {
+        label: 'Plants and Pets Trigger',
+        subLabel: 'Check out if the plants and pets around you may cause asthma',
+        href: '/Trigger/PlantPet',
+      },
+     
+    ],
   },
   
 

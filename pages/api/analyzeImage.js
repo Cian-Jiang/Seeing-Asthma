@@ -28,16 +28,24 @@ export default async (req, res) => {
 
         // 筛选出与数据库中名称匹配的标签
         const matchedLabels = labelInfo.filter((label) =>
-            dbNames.some((dbObj) => dbObj.name === label.description)
+            dbNames.some((dbObj) => dbObj.name.toLowerCase() === label.description.toLowerCase())
         );
 
         // 添加数据库中对应的 objdes
         const enrichedLabels = matchedLabels.map((label) => {
+
             const dbObj = dbNames.find((dbObj) => dbObj.name === label.description);
+            if (label.description === 'Wood') {
+                label.description = 'Wood - Mould';
+            } else if (label.description === 'Shower') {
+                label.description = 'Shower - Mould';
+            } else if (label.description === 'Sinks') {
+                label.description = 'Sinks - Mould';
+            }
             return {
                 name: label.description,
                 score: label.score,
-                objdes: dbObj.objdes,
+                objdes: dbObj ? dbObj.objdes : '',
             };
         });
 

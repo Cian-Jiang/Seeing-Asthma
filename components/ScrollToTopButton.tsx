@@ -25,7 +25,7 @@ const ScrollToTopButton = () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
     };
 
-    const bgColor = useColorModeValue("gray.100", "gray.700");
+    const bgColor = useColorModeValue("blue.100", "blue.700");
 
     return (
         <Box

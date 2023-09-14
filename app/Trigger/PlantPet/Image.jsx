@@ -1,5 +1,13 @@
 "use client";
 import { useState } from 'react';
+import {
+    Tabs,
+    TabList,
+    Tab,
+    TabPanels,
+    TabPanel,
+    Stack,
+} from "@chakra-ui/react";
 
 export default function Upload() {
     const [image, setImage] = useState(null);
@@ -20,7 +28,7 @@ export default function Upload() {
 
         const formData = new FormData();
         formData.append('image', image);
-        formData.append('type', type);
+        formData.append('type', 'Cat');
 
         const response = await fetch('https://api.healthcoder.live/image_recognition', {
             method: 'POST',
@@ -40,17 +48,24 @@ export default function Upload() {
     };
 
     return (
-        <div>
-            <h1>Image Recognition</h1>
-            <form onSubmit={handleSubmit}>
+        <>
+        <Stack>
+        align={'center'}
+        <h1>Image Recognition</h1>
+        <Tabs variant='soft-rounded' colorScheme='green'>
+        <TabList>
+            <Tab>Tab 1</Tab>
+            <Tab>Tab 2</Tab>
+            <Tab>Tab 3</Tab>
+        </TabList>
+        <TabPanels>
+            <TabPanel>
+            <div>
+                <h1>Image Recognition</h1>
+                <form onSubmit={handleSubmit}>
                 <div>
-                    <label htmlFor="type">Type:</label>
-                    <select id="type" value={type} onChange={handleTypeChange}>
-                        <option value="Plant">Plant</option>
-                        <option value="Cat">Cat</option>
-                        <option value="Dog">Dog</option>
-                    </select>
-                </div>
+                                        <label htmlFor="type">Type: Cat</label>
+                                    </div>
                 <div>
                     <label htmlFor="image">Image:</label>
                     <input type="file" id="image" accept="image/*" onChange={handleImageChange} />
@@ -65,6 +80,24 @@ export default function Upload() {
                     <pre>{JSON.stringify(result, null, 2)}</pre>
                 </div>
             )}
-        </div>
+
+            </div>
+            </TabPanel>
+            <TabPanel>
+            <div>
+                <h1>Image Recognition</h1>
+                
+               
+            </div>
+            </TabPanel>
+            <TabPanel>
+            <p>Three!</p>
+            </TabPanel>
+        </TabPanels>
+        </Tabs>
+        </Stack>
+         
+        </>
+       
     );
 }
