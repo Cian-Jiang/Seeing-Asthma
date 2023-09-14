@@ -105,44 +105,29 @@ export default function Home() {
 
     const analyzeImage = async () => {
         setLoading(true); // Set loading state to true
-        //const apiKey = process.env.GOOGLE_CLOUD_VISION_API_KEY;
-        const apiKey = 'AIzaSyDSixvrSvxTKMKdd0rYO3ogivqSGdlqoRI';
-
-        const url = `https://vision.googleapis.com/v1/images:annotate?key=${apiKey}`;
-        //console.log(apiKey)
-        const requestPayload = {
-            requests: [
-                {
-                    image: {
-                        content: image.split('base64,')[1],
-                    },
-                    features: [{ type: 'LABEL_DETECTION', maxResults: 50 }],
-                },
-            ],
-        };
 
         try {
-            
-            const { data } = await axios.post(url, requestPayload);
-            // 解析返回的 JSON 数据
-            const labels = data.responses[0].labelAnnotations;
-            // 筛选出概率大于 0.6 的标签
-            const filteredLabels = labels.filter((label) => label.score > 0.6);
+            const imageData = image.split('base64,')[1];
+            const res = await axios.post('/api/proxyGoogleVision', { image: imageData });
+            const googleApiResponse = res.data;
 
-            // 提取标签的描述和概率，并存储在一个对象数组中
+            const labels = googleApiResponse.responses[0].labelAnnotations;
+            const filteredLabels = labels.filter((label) => label.score > 0.6);
             const labelInfo = filteredLabels.map((label) => ({ description: label.description, score: label.score }));
 
+
             // 调用自定义的 Next.js API 路由
-            const res = await axios.post('/api/analyzeImage', { labelInfo });
-            const enrichedLabels = res.data;
+            const res2 = await axios.post('/api/analyzeImage', { labelInfo });
+            const enrichedLabels = res2.data;
             //if data is empty, show a sentence
             setResult(enrichedLabels);
         } catch (error) {
-
             console.error('Error analyzing image:', error.response ? error.response.data : error);
         }
-        setLoading(false); // Set loading state to false
+
+        setLoading(false);
     };
+
 
     const [uploadedImage, setUploadedImage] = useState(null);
     const handleImageUpload = (file) => {
