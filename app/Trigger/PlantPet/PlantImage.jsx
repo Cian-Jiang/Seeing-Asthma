@@ -209,8 +209,12 @@ export default function Upload() {
                         </Box>
                 )
                 ): (
-                    <p>Result will be shown after the image has been uploaded.</p>
-                    )}
+                    result ? (
+                        <p>{result.split('"')[3]}</p>
+                    ) : (
+                        <p>Result will be shown after the image has been uploaded.</p>
+                    )
+                )}
            
             </Box>
         </div>
