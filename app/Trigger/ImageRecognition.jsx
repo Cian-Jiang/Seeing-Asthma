@@ -174,7 +174,7 @@ export default function Home() {
         <>
        
          <Flex justify="center" minHeight="100vh">
-            <div style={{ flex: 1, transform: 'translateX(35px)'}}>
+            <div style={{ flex: 1, transform: 'translateX(100px)'}}>
                
                 <Heading marginTop="1">
                 <Text textDecoration="none" _hover={{ textDecoration: 'none' }} color={'blue.400'}>
