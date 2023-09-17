@@ -25,8 +25,8 @@ export default async function handler(req, res) {
         };
 
         Promise.all([
-            query('SELECT * FROM Cat'),
-            query('SELECT * FROM Dog'),
+            query('SELECT * FROM Cat_new WHERE safe = "yes" ORDER BY Count DESC'),
+            query('SELECT * FROM Dog_new WHERE safe = "yes" ORDER BY Count DESC'),
             query('SELECT * FROM Object'),
             query('SELECT * FROM Plant')
         ])
