@@ -170,7 +170,7 @@ export default function Statistics() {
     const firstDisclosure = useDisclosure();
 
     return (
-        <Box maxW="7xl" mx={'auto'} pt={5} px={{base: 2, sm: 12, md: 17}}>
+        <Box maxW="7xl" mx={'auto'} pt={5} px={{base: 2, sm: 12, md: 17}} id="middle-section">
             <chakra.h1 textAlign={'center'} fontSize={'4xl'} py={10} fontWeight={'bold'}>
                 Statistic about Asthma in Australia
             </chakra.h1>
