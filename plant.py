@@ -96,14 +96,34 @@ def get_plant_info_from_db(plant_chinese_name, object_type):
         database=Config.DB_NAME
     )
     cursor = mydb.cursor()
-    query = "SELECT name, objdes, imageurl FROM {} WHERE chinese_name=%s".format(object_type)
-    cursor.execute(query, (plant_chinese_name,))
-    result = cursor.fetchone()
-    if result:
-        name, des, imageurl = result  # Unpacked tuple
-        return {"name": name, "description": des, "imageurl": imageurl}
+    if object_type == 'Cat':
+        query = "SELECT name, objdes, imageurl, safe FROM Cat_new WHERE chinese_name=%s"
+        cursor.execute(query, (plant_chinese_name,))
+        result = cursor.fetchone()
+        if result:
+            name, des, imageurl, safe = result
+            return {"name": name, "description": des, "imageurl": imageurl, "safe": safe}
+        else:
+            return None
+    elif object_type == 'Dog':
+        query = "SELECT name, objdes, imageurl, safe FROM Dog_new WHERE chinese_name=%s"
+        cursor.execute(query, (plant_chinese_name,))
+        result = cursor.fetchone()
+        if result:
+            name, des, imageurl, safe = result
+
+            return {"name": name, "description": des, "imageurl": imageurl, "safe": safe}
+        else:
+            return None
     else:
-        return None
+        query = "SELECT name, objdes, imageurl FROM {} WHERE chinese_name=%s".format(object_type)
+        cursor.execute(query, (plant_chinese_name,))
+        result = cursor.fetchone()
+        if result:
+            name, des, imageurl = result  # Unpacked tuple
+            return {"name": name, "description": des, "imageurl": imageurl}
+        else:
+            return None
 
 @api.route('/image_recognition')
 class ImageRecognition(Resource):
@@ -155,7 +175,8 @@ class ImageRecognition(Resource):
                 return jsonify({"error": "Aspect ratio should be within 3:1"}), 400
 
             recognized_name = baidu_image_recognition(image_data, object_type)
-            # print(f"Recognized Name: {recognized_name}")
+            print(f"Recognized Name: {recognized_name}")
+
             if recognized_name == "非动物":
                 return {"error": "No animal found in the picture. Please check your images and try again."}, 404
             elif recognized_name == "非植物":
@@ -171,11 +192,14 @@ class ImageRecognition(Resource):
                 if object_type == 'Plant':
                     return {"error": "No high-risk plants were found."}, 404
                 elif object_type == 'Cat':
-                    return {"error": "No asthma-safe cats have been found."}, 404
+                    return {"error": "Sorry, our model has not yet collected data for this breed."}, 404
                 else:
-                    return {"error": "No asthma-safe dogs have been found."}, 404
+                    return {"error": "Sorry, our model has not yet collected data for this breed."}, 404
         else:
             return {"error": "No image provided"}, 400
+
+
+
 
 
 # def translate_chinese_to_english(chinese_name):
