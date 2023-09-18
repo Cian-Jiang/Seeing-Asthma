@@ -1,5 +1,5 @@
 'use client'
-
+//navigation bar
 import {
   Box,
   Flex,
@@ -220,7 +220,7 @@ interface NavItem {
   children?: Array<NavItem>
   href?: string
 }
-
+//names for each tab in navbar
 const NAV_ITEMS: Array<NavItem> = [
   {
     label: 'Home',

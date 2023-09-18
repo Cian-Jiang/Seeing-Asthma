@@ -136,16 +136,16 @@ export default function Statistics() {
     }, [chartData]);
 
     const processData = (data: any[]) => {
-        // 过滤掉 age_group 为 'All ages' 的数据
+        // filter data whose age_group is 'All ages'
         const filteredData = data.filter((item: { age_group: string; }) => item.age_group !== 'All ages');
 
-        // 提取所有唯一的年龄组
+        // Extract all unique ages 
         const ageGroups = Array.from(new Set(filteredData.map((item: { age_group: any; }) => item.age_group)));
 
-        // 提取所有唯一的性别
+        // Extract all unique genders
         const sexes = Array.from(new Set(filteredData.map((item: { sex: any; }) => item.sex)));
 
-        // 为每个性别和年龄组准备数据
+        // Prepare data for each gender and age group
         const datasets = sexes.map(sex => {
             const sexData = ageGroups.map(age => {
                 const entry = filteredData.find((item: { age_group: unknown; sex: unknown; }) => item.age_group === age && item.sex === sex);
