@@ -40,7 +40,7 @@ export default function Navbar() {
             borderColor={useColorModeValue('gray.200', 'gray.900')}
             align={'center'}
             zIndex={10}>
-            <Image src="/2.png" alt="Logo" h={8} w={8} mr={2} />
+            <Image src="/MicrosoftTeams-image (2).png" alt="Logo" h={8} w={8} mr={2} />
           <Flex
               flex={{ base: 1, md: 'auto' }}
               ml={{ base: -2 }}
@@ -148,7 +148,7 @@ const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
               justify={'flex-end'}
               align={'center'}
               flex={1}>
-            <Icon color={'pink.400'} w={5} h={5} as={ChevronRightIcon} />
+            <Icon color={'blue.400'} w={5} h={5} as={ChevronRightIcon} />
           </Flex>
         </Stack>
       </Box>

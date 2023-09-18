@@ -124,7 +124,7 @@ const SidebarContent = ({
       h="full"
       {...rest}>
       <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
-        <Image src="/2.png" alt="Logo" w="50px" h="auto" />
+        <Image src="/MicrosoftTeams-image (2).png" alt="Logo" w="90px" h="auto" />
         <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
       </Flex>
       {LinkItems.map((link) => (

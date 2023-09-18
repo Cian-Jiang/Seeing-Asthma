@@ -14,6 +14,7 @@ import {
     CircularProgress,
     Flex,
     useToast,
+    SimpleGrid,
 } from "@chakra-ui/react";
 import { useDisclosure,  Text as ChakraText ,  Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, useColorModeValue, Divider, Center } from "@chakra-ui/react";
 import { useEffect } from 'react';
@@ -27,6 +28,8 @@ export default function Upload() {
     const toast = useToast();
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [openModalId, setOpenModalId] = useState("");
+    const [txt, setTxt] = useState("");
+    const [bgColor, setBgColor] = useState("");
 
     const handleImageChange = (e) => {
         const file = e.target.files[0];
@@ -56,6 +59,13 @@ export default function Upload() {
         if (response.ok) {
             const data = await response.json();
             setResult(data);
+            if (data.safe === "yes") {
+                setTxt("Congratulations, that’s a hypoallergenic dog!");
+                setBgColor("#A0DAA9");
+            } else {
+                setTxt("Sorry, this is not a hypoallergenic dog!");
+                setBgColor("tomato");
+            }
         } else {
             const errorBody = await response.text();
             setResult(`Error: ${response.status} ${errorBody}`);
@@ -96,135 +106,188 @@ export default function Upload() {
 
     return (
         <>
-        <Flex justify="center" minHeight="100vh">
-            <div style={{ flex: 1}}>
-                <Heading marginTop="1">
-                    <Text textDecoration="none" _hover={{ textDecoration: 'none' }} color={'blue.400'}>
+
+
+        <SimpleGrid minChildWidth='320px' spacing='40px'>
+
+            <Box position="relative"
+                 p={3}
+                 height='550px'
+                 borderWidth='1px' borderRadius='lg' overflow='hidden'
+            >
+
+                <ChakraText fontSize='3xl' color={'blue.400'}  as='b'>
                     Dog Image Recognition
+                    <br/>
+                </ChakraText>
+                <br/>
+                <label htmlFor="image">Image:</label>
+                <input type="file" id="image" accept="image/*" onChange={handleImageChangeAndUpload} />
 
-                    </Text>
-                </Heading>
-                <div>
-                    <form onSubmit={handleSubmit}>
-                        <div>
-                        <>
-                        <br/>
-                        <Button onClick={onOpen}>Click to view user guide</Button>
-                
-                        <Modal isOpen={isOpen} onClose={onClose}>
-                        <ModalOverlay />
-                        <ModalContent>
-                            <ModalHeader>User guide for uploading the picture</ModalHeader>
-                            <ModalCloseButton />
-                            <ModalBody>
-                            <p>PLease make sure no much clutter in the background.</p>
-                            <p>Better to place the subject in the center.</p>
-                            </ModalBody>
-                
-                            <ModalFooter>
-                            <Button colorScheme='blue' mr={3} onClick={onClose}>
-                                Close
-                            </Button>
-                            
-                            </ModalFooter>
-                        </ModalContent>
-                        </Modal>
-                        <br/>
-                    </>
-                        </div>
-                        <div>
-                            <br/>
-                            <label htmlFor="image">Image:</label>
-                            <input type="file" id="image" accept="image/*" onChange={handleImageChangeAndUpload} />
-                            <Box
-                                    id="dog_image_display"
-                                    width="512px"
-                                    height="288px"
-                                    borderWidth="1px"
-                                    borderColor="black"
-                                    backgroundPosition="center"
-                                    backgroundSize="cover"
-                                    backgroundRepeat="no-repeat"
-                                    backgroundImage={hasUploadedImage ? `url(${image})` : 'url(/2.png)'}
-
-                                    >
-                                    {/* 内容 */}
-                                </Box>
-                                <br/>
-                        </div>
-                        <div>
-                            <Button type="submit">Submit</Button>
-                        </div>
-                    </form>
-
-
-                </div>
-
-
-            </div>
-            <div style={{ flex: 1}}>
-        
-            <Box position="relative" p={12}>
-            {loading ? (
-            <CircularProgress isIndeterminate color='green.300' />
-            ) : result?.name ?(
-            result && (
                 <Box
-                        key={result.name}
-                        flex="0 0 calc(33% - 1rem)"
-                        height="400px"
-                        borderWidth="1px"
-                        borderRadius="md"
-                        overflow="hidden"
-                        mb="2rem"
-                    >
-                        <Box height="300px" overflow="hidden">
-                            <img
-                                src={result.imageurl}
-                                alt={result.name}
-                                style={{
-                                    width: '100%',
-                                    height: '100%',
-                                    objectFit: 'cover'
-                                }}
-                            />
-                        </Box>
-                        <Box p="4" flexDirection="column" alignItems="center">
-                            <ChakraText fontWeight="bold" textAlign="center" mb="2">
-                                {result.name}
-                            </ChakraText>
-                            <Button onClick={() => { setOpenModalId(result.name); onOpen(); }}>More info</Button>
-                            <Modal isOpen={isOpen && openModalId === result.name} onClose={() => { setOpenModalId(null); onClose(); }}>
+                    id="dog_image_display"
+                    w='100%'
+                    h='300px'
+                    borderWidth="1px"
+                    borderColor="black"
+                    backgroundPosition="center"
+                    backgroundSize="cover"
+                    backgroundRepeat="no-repeat"
+                    backgroundImage={hasUploadedImage ? `url(${image})` : 'url(/2.png)'}
 
-                                <ModalOverlay />
-                                <ModalContent>
-                                    <ModalHeader>{result.name}</ModalHeader>
-                                    <ModalCloseButton />
-                                    <ModalBody>{result.description}</ModalBody>
-                                    <ModalFooter>
-                                        <Button colorScheme="blue" mr={3} onClick={onClose}>
-                                            Close
-                                        </Button>
-                                    </ModalFooter>
-                                </ModalContent>
-                            </Modal>
-                        </Box>
-                    </Box>
-            )
-            ): (
-                result ? (
-                    <p>{result.split('"')[3]}</p>
-                ) : (
-                    <p>Result will be shown after the image has been uploaded.</p>
-                )
-            )}
-           
+                >
+
+                </Box>
+                <br/>
+                <form onSubmit={handleSubmit}>
+
+                    <Button type="submit">Submit</Button>
+                </form>
+
+
+
             </Box>
-            
-        </div>
-        </Flex>
-         
-        </>
-       
+
+            <Box position="relative"
+                 p={3}
+                  height='550px'
+                  borderWidth='1px' borderRadius='lg'
+                 overflow='hidden'
+                 // display='flex'
+                 alignItems='center'
+                 justifyContent='center'
+            >
+                    {loading ? (
+                        <CircularProgress isIndeterminate color='green.300' />
+                    ) : result?.name ?(
+                        result && (
+
+                            <Box
+                                key={result.name}
+                                flex="0 0 calc(33% - 1rem)"
+                                // height="500px"
+                                w='100%'
+                                // borderWidth="1px"
+                                borderRadius="md"
+                                overflow="hidden"
+                                mb="2rem"
+                            >
+                                <ChakraText fontSize='3xl' color={'blue.400'}  as='b'>
+                                        Check the breed result
+                                        <br/>
+                                    </ChakraText>
+                                    <br/>
+                                <ChakraText fontWeight="bold" textAlign="center" fontSize='3xl' backgroundColor={bgColor}>
+                                    {txt}
+                                </ChakraText>
+
+                                <Box height="300px" overflow="hidden">
+                                    <img
+                                        src={result.imageurl}
+                                        alt={result.name}
+                                        style={{
+                                            width: '100%',
+                                            height: '100%',
+                                            objectFit: 'cover'
+                                        }}
+                                    />
+                                </Box>
+                                <Box p="4" flexDirection="column" alignItems="center">
+                                    <ChakraText fontWeight="bold" textAlign="center" mb="2">
+                                        {result.name}
+                                    </ChakraText>
+                                    <Button onClick={() => { setOpenModalId(result.name); onOpen(); }}>More info</Button>
+                                    <Modal isOpen={isOpen && openModalId === result.name} onClose={() => { setOpenModalId(null); onClose(); }}>
+
+                                        <ModalOverlay />
+                                        <ModalContent>
+                                            <ModalHeader>{result.name}</ModalHeader>
+                                            <ModalCloseButton />
+                                            <ModalBody>{result.description}</ModalBody>
+                                            <ModalFooter>
+                                                <Button colorScheme="blue" mr={3} onClick={onClose}>
+                                                    Close
+                                                </Button>
+                                            </ModalFooter>
+                                        </ModalContent>
+                                    </Modal>
+                                </Box>
+                            </Box>
+                        )
+
+                    ): (
+                        result ? (
+                            <Box position="relative"
+                                 flex="0 0 calc(33% - 1rem)"
+                                 w='100%'
+                                 h='100%'
+                                 borderRadius="md"
+                                 overflow="hidden"
+                                 mb="2rem"
+                                 display='flex'
+                                 alignItems='center'
+                                 flexDirection='column'
+                                 justifyContent='center'
+                            >
+                                <ChakraText fontSize='2xl' color={'red.400'}  as='b' textAlign='center'>
+                                    {result.split('"')[3]}
+                                    <br/>
+                                    <br/>
+                                    Please try again with a different photo.
+                                    <br/>
+                                </ChakraText>
+                                <ChakraText fontSize='lg' color={'#939597'}   textAlign='center'>
+                                    <br/>
+                                    <br/>
+                                    Tips:
+                                    <br/>
+                                    PLease make sure no much clutter in the background.
+                                    Better to place the subject in the center.
+
+                                </ChakraText>
+
+
+
+                            </Box>
+
+
+                        ) : (
+                            <Box position="relative"
+                                 flex="0 0 calc(33% - 1rem)"
+                                 w='100%'
+                                 h='100%'
+                                 borderRadius="md"
+                                 overflow="hidden"
+                                 mb="2rem"
+                                 display='flex'
+                                 flexDirection='column'
+                                 alignItems='center'
+                                 justifyContent='center'
+                            >
+                                <ChakraText fontSize='2xl' color={'blue.400'}  as='b' textAlign='center'>
+                                    Result will be shown after the image has been uploaded.
+
+                                </ChakraText>
+                                <ChakraText fontSize='lg' color={'#939597'}   textAlign='center'>
+                                    <br/>
+                                    <br/>
+                                    Tips:
+                                    <br/>
+                                    PLease make sure no much clutter in the background.
+                                    Better to place the subject in the center.
+
+                                </ChakraText>
+
+                            </Box>
+
+                        )
+                    )}
+
+                </Box>
+
+        </SimpleGrid>
+        {/*</Flex>*/}
+
+    </>
     );
 }

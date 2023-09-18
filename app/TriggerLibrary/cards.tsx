@@ -41,13 +41,11 @@ export default function Cards() {
                             <img
                                 src={item.imageurl}
                                 alt={item.name}
-                                onClick={() => { setOpenModalId(item.id); onOpen(); }}
                                 style={{
                                     width: '100%',
                                     height: '100%',
                                     objectFit: 'cover'
-                                }
-                            }
+                                }}
                             />
                         </Box>
                         <Box p="4" flexDirection="column" alignItems="center">

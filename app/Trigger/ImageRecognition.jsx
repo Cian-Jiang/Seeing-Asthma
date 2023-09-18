@@ -15,6 +15,7 @@ import {
     Flex,
     CircularProgress,
 } from "@chakra-ui/react";
+import { useDisclosure,  Text as ChakraText ,  Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, useColorModeValue, Divider, Center } from "@chakra-ui/react";
 import { useEffect } from 'react';
 
 function MyAccordion({ result }) {
@@ -44,7 +45,7 @@ function MyAccordion({ result }) {
 
 export default function Home() {
     const [image, setImage] = useState([]);
-    const [result, setResult] = useState([]);
+    const [result, setResult] = useState(null);
     const toast = useToast();
     const [loading, setLoading] = useState(false);
     const [hasUploadedImage, setHasUploadedImage] = useState(false);
@@ -105,44 +106,29 @@ export default function Home() {
 
     const analyzeImage = async () => {
         setLoading(true); // Set loading state to true
-        //const apiKey = process.env.GOOGLE_CLOUD_VISION_API_KEY;
-        const apiKey = 'AIzaSyDSixvrSvxTKMKdd0rYO3ogivqSGdlqoRI';
-
-        const url = `https://vision.googleapis.com/v1/images:annotate?key=${apiKey}`;
-        //console.log(apiKey)
-        const requestPayload = {
-            requests: [
-                {
-                    image: {
-                        content: image.split('base64,')[1],
-                    },
-                    features: [{ type: 'LABEL_DETECTION', maxResults: 50 }],
-                },
-            ],
-        };
 
         try {
-            
-            const { data } = await axios.post(url, requestPayload);
-            // 解析返回的 JSON 数据
-            const labels = data.responses[0].labelAnnotations;
-            // 筛选出概率大于 0.6 的标签
-            const filteredLabels = labels.filter((label) => label.score > 0.6);
+            const imageData = image.split('base64,')[1];
+            const res = await axios.post('/api/proxyGoogleVision', { image: imageData });
+            const googleApiResponse = res.data;
 
-            // 提取标签的描述和概率，并存储在一个对象数组中
+            const labels = googleApiResponse.responses[0].labelAnnotations;
+            const filteredLabels = labels.filter((label) => label.score > 0.6);
             const labelInfo = filteredLabels.map((label) => ({ description: label.description, score: label.score }));
 
+
             // 调用自定义的 Next.js API 路由
-            const res = await axios.post('/api/analyzeImage', { labelInfo });
-            const enrichedLabels = res.data;
+            const res2 = await axios.post('/api/analyzeImage', { labelInfo });
+            const enrichedLabels = res2.data;
             //if data is empty, show a sentence
             setResult(enrichedLabels);
         } catch (error) {
-
             console.error('Error analyzing image:', error.response ? error.response.data : error);
         }
-        setLoading(false); // Set loading state to false
+
+        setLoading(false);
     };
+
 
     const [uploadedImage, setUploadedImage] = useState(null);
     const handleImageUpload = (file) => {
@@ -172,18 +158,14 @@ export default function Home() {
 
     return (
         <>
-       
-         <Flex justify="center" minHeight="100vh">
-            <div style={{ flex: 1, transform: 'translateX(100px)'}}>
-               
-                <Heading marginTop="1">
-                <Text textDecoration="none" _hover={{ textDecoration: 'none' }} color={'blue.400'}>
-                Upload a Picture Here:
-
-                </Text>
-                
-                </Heading>
-                <br/>
+            <Flex justify="center" minHeight="100vh">
+                <div style={{ flex: 1, transform: 'translateX(100px)'}}>
+                    <Heading marginTop="1">
+                        <Text textDecoration="none" _hover={{ textDecoration: 'none' }} color={'blue.400'}>
+                            Upload a Picture Here:
+                        </Text>
+                    </Heading>
+                    <br/>
                     <input id="image_input" type="file" onChange={handleImageChangeAndUpload} />
                     <br/>
                     <Box
@@ -196,41 +178,117 @@ export default function Home() {
                         backgroundSize="cover"
                         backgroundRepeat="no-repeat"
                         backgroundImage={hasUploadedImage ? `url(${image})` : 'url(/2.png)'}
-
-                        >
+                    >
                         {/* 内容 */}
                         <br/>
                     </Box>
                     <br/>
                     <Button onClick={analyzeImage}>Analyze</Button>
-
-           
-                
-            </div>
-            <div style={{ flex: 1}}>
-            
-                <Box position="relative" p={12}>
-                {loading ? ( // Conditionally render loading image
-                <CircularProgress isIndeterminate color='green.300' />
-                ) : (
-                    <>
-                        {hasUploadedImage ? (
-                            result.length > 0 ? (
-                                <MyAccordion result={result} />
-                            ) : (
-                                <Text>No results found.</Text> // Display this when result is empty
-                            )
+                </div>
+                <div style={{ flex: 1}}>
+                    <Box position="relative" p={12}>
+                        {loading ? (
+                            <CircularProgress isIndeterminate color='green.300' />
                         ) : (
-                            <Text>Upload an image to begin analysis.</Text> // Display this when no image is uploaded
-                        )}
-                    </>
+                            <>
+                                {hasUploadedImage ? (
+                    result !== null ? (
+                        result.length > 0 ? (
+                            <MyAccordion result={result} />
+                        ) : (
+                            
+                            <Box position="relative"
+                                 flex="0 0 calc(33% - 1rem)"
+                                 w='100%'
+                                 h='100%'
+                                 borderRadius="md"
+                                 overflow="hidden"
+                                 mb="2rem"
+                                 display='flex'
+                                 flexDirection='column'
+                                 alignItems='center'
+                                 justifyContent='center'
+                            >
+                                <ChakraText fontSize='2xl' color={'blue.400'}  as='b' textAlign='center'>
+                                    No result found.
+
+                                </ChakraText>
+                                <ChakraText fontSize='lg' color={'#939597'}   textAlign='center'>
+                                    <br/>
+                                    <br/>
+                                    Tips:
+                                    <br/>
+                                    PLease make sure no much clutter in the background.
+                                    Better to place the subject in the center.
+
+                                </ChakraText>
+
+                            </Box>
+                        )
+                    ) : (
+                        <Box position="relative"
+                                 flex="0 0 calc(33% - 1rem)"
+                                 w='100%'
+                                 h='100%'
+                                 borderRadius="md"
+                                 overflow="hidden"
+                                 mb="2rem"
+                                 display='flex'
+                                 flexDirection='column'
+                                 alignItems='center'
+                                 justifyContent='center'
+                            >
+                                <ChakraText fontSize='2xl' color={'blue.400'}  as='b' textAlign='center'>
+                                    Result will be shown after the image has been uploaded.
+
+                                </ChakraText>
+                                <ChakraText fontSize='lg' color={'#939597'}   textAlign='center'>
+                                    <br/>
+                                    <br/>
+                                    Tips:
+                                    <br/>
+                                    PLease make sure no much clutter in the background.
+                                    Better to place the subject in the center.
+
+                                </ChakraText>
+
+                            </Box>
+                    )
+                ) : (
+                    <Box position="relative"
+                                 flex="0 0 calc(33% - 1rem)"
+                                 w='100%'
+                                 h='100%'
+                                 borderRadius="md"
+                                 overflow="hidden"
+                                 mb="2rem"
+                                 display='flex'
+                                 flexDirection='column'
+                                 alignItems='center'
+                                 justifyContent='center'
+                            >
+                                <ChakraText fontSize='2xl' color={'blue.400'}  as='b' textAlign='center'>
+                                    Result will be shown after the image has been uploaded.
+
+                                </ChakraText>
+                                <ChakraText fontSize='lg' color={'#939597'}   textAlign='center'>
+                                    <br/>
+                                    <br/>
+                                    Tips:
+                                    <br/>
+                                    PLease make sure no much clutter in the background.
+                                    Better to place the subject in the center.
+
+                                </ChakraText>
+
+                            </Box>
                 )}
-                </Box>
-            </div>
-            
-        </Flex>
-       
+                            </>
+                        )}
+                    </Box>
+                </div>
+            </Flex>
         </>
-       
     );
+    
 }
