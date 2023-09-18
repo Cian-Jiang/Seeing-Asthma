@@ -144,10 +144,11 @@ export default function Upload() {
                     </Box>
                     <br/>
                     <form onSubmit={handleSubmit}>
-                        <div>
-                            <Button type="submit">Submit</Button>
-                        </div>
+
+                        <Button type="submit">Submit</Button>
                     </form>
+
+
 
                 </Box>
 
@@ -224,17 +225,29 @@ export default function Upload() {
                                      mb="2rem"
                                      display='flex'
                                      alignItems='center'
+                                     flexDirection='column'
                                      justifyContent='center'
                                 >
                                     <ChakraText fontSize='2xl' color={'red.400'}  as='b' textAlign='center'>
                                         {result.split('"')[3]}
+                                        <br/>
+                                        <br/>
+                                        Please try again with a different photo.
+                                        <br/>
+                                    </ChakraText>
+                                    <ChakraText fontSize='lg' color={'#939597'}   textAlign='center'>
+                                        <br/>
+                                        <br/>
+                                        Tips:
+                                        <br/>
+                                        PLease make sure no much clutter in the background.
+                                        Better to place the subject in the center.
 
                                     </ChakraText>
+
+
+
                                 </Box>
-
-
-
-
 
 
                             ) : (
@@ -246,6 +259,7 @@ export default function Upload() {
                                      overflow="hidden"
                                      mb="2rem"
                                      display='flex'
+                                     flexDirection='column'
                                      alignItems='center'
                                      justifyContent='center'
                                 >
@@ -253,6 +267,16 @@ export default function Upload() {
                                         Result will be shown after the image has been uploaded.
 
                                     </ChakraText>
+                                    <ChakraText fontSize='lg' color={'#939597'}   textAlign='center'>
+                                        <br/>
+                                        <br/>
+                                        Tips:
+                                        <br/>
+                                        PLease make sure no much clutter in the background.
+                                        Better to place the subject in the center.
+
+                                    </ChakraText>
+
                                 </Box>
 
                             )

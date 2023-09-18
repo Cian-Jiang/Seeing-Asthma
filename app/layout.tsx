@@ -7,7 +7,7 @@ import './global.css';
 import ScrollToTopButton from '@/components/ScrollToTopButton';
 
 const inter = Inter({ subsets: ['latin'] })
-
+import Head from 'next/head'
 
 
 export default function RootLayout({
@@ -16,10 +16,19 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
+
     <html lang="en">
+    <head>
+
+      <link rel="shortcut icon" href="https://i.imgur.com/fW42vAv.png" />
+      <title>Seeing Asthma</title>
+    </head>
+
       <body>
+
         <ChakraProvider>
-          
+
+
           <Navbar/>
           
           {children}
