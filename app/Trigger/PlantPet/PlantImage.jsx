@@ -15,9 +15,11 @@ import {
     Flex,
     useToast,
     SimpleGrid,
+
 } from "@chakra-ui/react";
 import { useDisclosure,  Text as ChakraText ,  Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, useColorModeValue, Divider, Center } from "@chakra-ui/react";
 import { useEffect } from 'react';
+
 
 export default function Upload() {
     const [image, setImage] = useState(null);
@@ -59,11 +61,12 @@ export default function Upload() {
         if (response.ok) {
             const data = await response.json();
             setResult(data);
+
             if (data.safe === "yes") {
-                setTxt("Congratulations, this is a hypoallergenic plant!");
+                setTxt("Congratulations, that’s a hypoallergenic plant!");
                 setBgColor("#A0DAA9");
             } else {
-                setTxt("Sorry, that’s  not a hypoallergenic plant!");
+                setTxt("Sorry, this is not a hypoallergenic plant!");
                 setBgColor("tomato");
             }
 
@@ -76,29 +79,29 @@ export default function Upload() {
                 status: "error",
                 duration: 5000,
                 isClosable: true,
-              });
+            });
         }
         setLoading(false);
     };
     const [uploadedImage, setUploadedImage] = useState(null);
     const handleImageUpload = (file) => {
         if (file) {
-          const reader = new FileReader();
-          reader.onload = (event) => {
-            setUploadedImage(event.target.result);
-            setHasUploadedImage(true);
-          };
-          reader.readAsDataURL(file);
-          //console.log(uploadedImage);
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                setUploadedImage(event.target.result);
+                setHasUploadedImage(true);
+            };
+            reader.readAsDataURL(file);
+            //console.log(uploadedImage);
         }
-      };
-      const handlePlantImageChangeAndUpload = (e) => {
+    };
+    const handlePlantImageChangeAndUpload = (e) => {
         handleImageChange(e); // 调用 handleImageChange 函数
         const file = e.target.files[0];
         handleImageUpload(file); // 调用 handleImageUpload 函数
-      };
+    };
 
-      useEffect(() => {
+    useEffect(() => {
         if (uploadedImage) {
             // uploadedImage已更新，设置背景图像
             document.getElementById("plant_image_display").style.backgroundImage = `url(${uploadedImage})`;
@@ -287,6 +290,5 @@ export default function Upload() {
 
         </>
 
-       
     );
 }
