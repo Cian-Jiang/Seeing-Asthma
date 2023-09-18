@@ -14,6 +14,7 @@ import {
     Text,
     Flex,
     CircularProgress,
+    SimpleGrid,
 } from "@chakra-ui/react";
 import { useDisclosure,  Text as ChakraText ,  Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, useColorModeValue, Divider, Center } from "@chakra-ui/react";
 import { useEffect } from 'react';
@@ -142,7 +143,7 @@ export default function Home() {
           //console.log(uploadedImage);
         }
       };
-      const handleImageChangeAndUpload = (e) => {
+      const handleGeneralImageChangeAndUpload = (e) => {
         handleImageChange(e); // 调用 handleImageChange 函数
         const file = e.target.files[0];
         handleImageUpload(file); // 调用 handleImageUpload 函数
@@ -151,43 +152,72 @@ export default function Home() {
       useEffect(() => {
         if (uploadedImage) {
             // uploadedImage已更新，设置背景图像
-            document.getElementById("image_display").style.backgroundImage = `url(${uploadedImage})`;
+            document.getElementById("general_image_display").style.backgroundImage = `url(${uploadedImage})`;
         }
     }, [uploadedImage]);
 
 
     return (
         <>
-            <Flex justify="center" minHeight="100vh">
-                <div style={{ flex: 1, transform: 'translateX(100px)'}}>
-                    <Heading marginTop="1">
-                        <Text textDecoration="none" _hover={{ textDecoration: 'none' }} color={'blue.400'}>
-                            Upload a Picture Here:
-                        </Text>
-                    </Heading>
+
+
+            <SimpleGrid minChildWidth='320px' spacing='40px'>
+
+                <Box position="relative"
+                     p={3}
+                     height='550px'
+                     borderWidth='1px' borderRadius='lg' overflow='hidden'
+                     display="flex"
+                     flexDirection="column"
+                     alignItems="center" 
+                     justifyContent="center"
+                >
+
+                    <ChakraText fontSize='3xl' color={'blue.400'}  as='b'>
+                        Upload an indoor or outdoor image
+                        <br/>
+                    </ChakraText>
                     <br/>
-                    <input id="image_input" type="file" onChange={handleImageChangeAndUpload} />
-                    <br/>
+                    <form style={{ display: 'flex', alignItems: 'center' }}>
+                        <label htmlFor="image">Image:</label>
+                        <input type="file" id="image" accept="image/*" onChange={handleGeneralImageChangeAndUpload} />
+                    </form>
+
                     <Box
-                        id="image_display"
-                        width="512px"
-                        height="288px"
+                        id="general_image_display"
+                        w='100%'
+                        h='300px'
                         borderWidth="1px"
                         borderColor="black"
                         backgroundPosition="center"
                         backgroundSize="cover"
                         backgroundRepeat="no-repeat"
                         backgroundImage={hasUploadedImage ? `url(${image})` : 'url(/2.png)'}
+
                     >
-                        {/* 内容 */}
-                        <br/>
+
                     </Box>
                     <br/>
+                    <form>
                     <Button onClick={analyzeImage}>Analyze</Button>
-                </div>
-                <div style={{ flex: 1}}>
-                    <Box position="relative" p={12}>
-                        {loading ? (
+                    </form>
+                    
+
+
+
+
+                </Box>
+
+                <Box position="relative"
+                     p={3}
+                      height='550px'
+                      borderWidth='1px' borderRadius='lg'
+                     overflow='hidden'
+                     // display='flex'
+                     alignItems='center'
+                     justifyContent='center'
+                >
+                         {loading ? (
                             <CircularProgress isIndeterminate color='green.300' />
                         ) : (
                             <>
@@ -285,10 +315,14 @@ export default function Home() {
                 )}
                             </>
                         )}
+
                     </Box>
-                </div>
-            </Flex>
+
+            </SimpleGrid>
+            {/*</Flex>*/}
+
         </>
+       
     );
     
 }
