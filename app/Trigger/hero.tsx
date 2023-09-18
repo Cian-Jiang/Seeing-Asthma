@@ -46,12 +46,12 @@ export default function PlantHeroSection() {
             </Text>
             <br />
             <Text as={'span'} color={'blue.400'}>
-              Plants and Pets around you!
+              General Asthma Triggers around you!
             </Text>
           </Heading>
           <br/>
           <Text color={'gray.500'}>
-          Although a plant or pet may be considered hypoallergenic, this also doesn`t mean they are safe for you personally. Before taking home a pet or plant, consider seeing an allergist to rule out all breeds you may be more sensitive to.
+          There may be asthma triggers everywhere in your living place. We are here to help you find out asthma triggers around you to help protect your kids.
           </Text>
           <br/>
           <br/>

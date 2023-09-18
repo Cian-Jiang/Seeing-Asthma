@@ -18,13 +18,13 @@ import {
 
 export default function PlantHeroSection() {
   return (
-    <Container maxW={'7xl'}>
-      <Stack
-        align={'center'}
-        spacing={{ base: 8, md: 10 }}
-        py={{ base: 20, md: 28 }}
-        direction={{ base: 'column', md: 'row' }}>
-        <Stack flex={1} spacing={{ base: 5, md: 10 }}>
+      <Box textAlign="center"
+           alignItems='center'
+           justifyContent='center'>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
           <Heading
             lineHeight={1.1}
             fontWeight={600}
@@ -49,48 +49,14 @@ export default function PlantHeroSection() {
               Plants and Pets around you!
             </Text>
           </Heading>
+          <br/>
           <Text color={'gray.500'}>
           Although a plant or pet may be considered hypoallergenic, this also doesn`t mean they are safe for you personally. Before taking home a pet or plant, consider seeing an allergist to rule out all breeds you may be more sensitive to.
           </Text>
-          
-        </Stack>
-        <Flex
-          flex={1}
-          justify={'center'}
-          align={'center'}
-          position={'relative'}
-          w={'full'}>
-          <Blob
-            w={'150%'}
-            h={'150%'}
-            position={'absolute'}
-            top={'-20%'}
-            left={0}
-            zIndex={-1}
-            color={useColorModeValue('blue.50', 'blue.400')}
-          />
-          <Box
-            position={'relative'}
-            height={'300px'}
-            rounded={'2xl'}
-            boxShadow={'2xl'}
-            width={'full'}
-            overflow={'hidden'}>
-            
-            <Image
-              alt={'Hero Image'}
-              fit={'cover'}
-              align={'center'}
-              w={'100%'}
-              h={'100%'}
-              src={
-                'https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=800&q=80'
-              }
-            />
-          </Box>
-        </Flex>
-      </Stack>
-    </Container>
+          <br/>
+          <br/>
+      </Box>
+
   )
 }
 
