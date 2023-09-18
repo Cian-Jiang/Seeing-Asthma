@@ -59,9 +59,9 @@ export default function Footer() {
         align={{ base: 'center', md: 'center' }}>
           <br/>
           <Avatar
-              size="xl"
+              size="3xl"
               src={
-                  'https://i.imgur.com/nqyVNFR.png'
+                  '/MicrosoftTeams-image (2).png'
               }
               mb={4}
           />
