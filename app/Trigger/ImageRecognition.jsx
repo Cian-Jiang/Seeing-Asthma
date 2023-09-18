@@ -27,6 +27,8 @@ function MyAccordion({ result }) {
         const shouldShowButton = result.some(item => ['Dog', 'Flower', 'Cat', 'Plant', 'Tree'].includes(item.name));
         setShowButton(shouldShowButton);
     }, [result]);
+    const bgColor = useColorModeValue('blue.50', 'blue.900');
+
     // console.log(result)
     // console.log()
     return (
@@ -52,7 +54,6 @@ function MyAccordion({ result }) {
         </Accordion>
             <br/>
             {showButton && (
-
                 <Center mt={4}>
                     <Link href="/Trigger/PlantPet">
                         <Text
@@ -60,7 +61,7 @@ function MyAccordion({ result }) {
                             color={'blue.400'}
                             fontWeight={600}
                             fontSize={'sm'}
-                            bg={useColorModeValue('blue.50', 'blue.900')}
+                            bg={bgColor}
                             p={2}
                             rounded={'md'}>
                             Click to identify whether plants and pets
