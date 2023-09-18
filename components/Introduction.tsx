@@ -1,5 +1,5 @@
 'use client'
-
+//Asthma introduction section in the homepage
 import { Avatar, Box, Flex, Stack, Text, useColorModeValue } from '@chakra-ui/react'
 
 export default function Introduction() {

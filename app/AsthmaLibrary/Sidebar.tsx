@@ -13,6 +13,7 @@ import {
   useDisclosure,
   BoxProps,
   FlexProps,
+  Button,
 } from '@chakra-ui/react';
 import {
   FiHome,
@@ -25,12 +26,15 @@ import {
   FiUser,
   FiEye,
 } from 'react-icons/fi';
+import { Image } from '@chakra-ui/react';
+
 import { IconType } from 'react-icons';
 import { ReactText } from 'react';
 import HomeContent from './homecontent';
 import TrendingContent from './trendingcontent'
 import ExploreContent from './exploreContent'
 import Content from './content'
+import { HamburgerIcon } from '@chakra-ui/icons';
 
 interface LinkItemProps {
   name: string;
@@ -56,6 +60,9 @@ export default function Sidebar() {
   };
 
   return (
+    <>
+    <br/>
+    <br/>
     <Box minH="100vh" bg={useColorModeValue('gray.100', 'gray.900')}>
       <SidebarContent
         onClose={() => onClose}
@@ -76,6 +83,7 @@ export default function Sidebar() {
             selectedTab={selectedTab}
             onTabClick={handleTabClick}
           />
+          
         </DrawerContent>
       </Drawer>
       {/* mobilenav */}
@@ -89,6 +97,8 @@ export default function Sidebar() {
         )}
       </Box>
     </Box>
+    </>
+    
   );
 }
 
@@ -114,9 +124,7 @@ const SidebarContent = ({
       h="full"
       {...rest}>
       <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
-        <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold">
-          Logo
-        </Text>
+        <Image src="/MicrosoftTeams-image (2).png" alt="Logo" w="90px" h="auto" />
         <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
       </Flex>
       {LinkItems.map((link) => (
@@ -200,10 +208,6 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
         aria-label="open menu"
         icon={<FiMenu />}
       />
-
-      <Text fontSize="2xl" ml="8" fontFamily="monospace" fontWeight="bold">
-        Logo
-      </Text>
     </Flex>
   );
 };

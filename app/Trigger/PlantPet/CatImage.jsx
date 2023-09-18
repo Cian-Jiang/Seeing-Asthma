@@ -176,6 +176,7 @@ export default function Upload() {
                                     overflow="hidden"
                                     mb="2rem"
                                 >
+                                    
                                     <ChakraText fontWeight="bold" textAlign="center" fontSize='3xl' backgroundColor={bgColor}>
                                         {txt}
                                     </ChakraText>

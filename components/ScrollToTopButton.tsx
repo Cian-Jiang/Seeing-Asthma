@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { Box, IconButton, useColorModeValue } from "@chakra-ui/react";
 import { ArrowUpIcon } from "@chakra-ui/icons";
-
+//add scroll to top button to each page
 const ScrollToTopButton = () => {
     const [visible, setVisible] = useState(false);
 

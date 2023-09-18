@@ -56,16 +56,6 @@ export default function HeroSection() {
           We help you protect your kids from asthma!
           
           </Text>
-          <Image
-            src="/aa.png"
-            alt="Asthma image"
-            w={['130%', '120%']}  // Responsive width
-            h="auto"  // Auto height to maintain aspect ratio
-            mx="auto"  // Center the image horizontally
-          />
-
-          
-          
           <Stack
             direction={'column'}
             spacing={3}
@@ -76,7 +66,7 @@ export default function HeroSection() {
               colorScheme={'green'}
               bg={'cyan.400'}
               rounded={'full'}
-              px={6}
+              px={8}
               _hover={{
                 bg: 'cyan.500',
               }}
@@ -88,6 +78,17 @@ export default function HeroSection() {
             
             
           </Stack>
+          <Image
+            src="/aa.png"
+            alt="Asthma image"
+            w={['130%', '120%']}  // Responsive width
+            h="auto"  // Auto height to maintain aspect ratio
+            mx="auto"  // Center the image horizontally
+          />
+
+          
+          
+          
         </Stack>
       </Container>
     </>

@@ -1,5 +1,5 @@
 'use client'
-
+//navigation bar
 import {
   Box,
   Flex,
@@ -15,6 +15,7 @@ import {
   useColorModeValue,
   useBreakpointValue,
   useDisclosure,
+  Image,
 } from '@chakra-ui/react'
 import {
   HamburgerIcon,
@@ -29,7 +30,7 @@ export default function Navbar() {
   return (
       <Box className="sticky-navbar">
         <Flex
-            bg={useColorModeValue('white', 'gray.800')}
+            bg={useColorModeValue('blue.100', 'gray.800')}
             color={useColorModeValue('gray.600', 'white')}
             minH={'60px'}
             py={{ base: 2 }}
@@ -39,6 +40,7 @@ export default function Navbar() {
             borderColor={useColorModeValue('gray.200', 'gray.900')}
             align={'center'}
             zIndex={10}>
+            <Image src="/MicrosoftTeams-image (2).png" alt="Logo" h={8} w={8} mr={2} />
           <Flex
               flex={{ base: 1, md: 'auto' }}
               ml={{ base: -2 }}
@@ -146,7 +148,7 @@ const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
               justify={'flex-end'}
               align={'center'}
               flex={1}>
-            <Icon color={'pink.400'} w={5} h={5} as={ChevronRightIcon} />
+            <Icon color={'blue.400'} w={5} h={5} as={ChevronRightIcon} />
           </Flex>
         </Stack>
       </Box>
@@ -218,7 +220,7 @@ interface NavItem {
   children?: Array<NavItem>
   href?: string
 }
-
+//names for each tab in navbar
 const NAV_ITEMS: Array<NavItem> = [
   {
     label: 'Home',
@@ -233,18 +235,14 @@ const NAV_ITEMS: Array<NavItem> = [
     href: '/AsthmaGame',
   },
   {
-    label: 'Weather',
-    href: '/Weather',
+    label: 'What Triggers Asthma?',
+    href: '/TriggerLibrary',
   },
   
   {
     label: 'Asthma Trigger',
     children: [
-      {
-        label: 'What Triggers Asthma?',
-        subLabel: 'Find out triggers that may cause asthma',
-        href: '/Trigger/Library',
-      },
+      
       {
         label: 'General Triggers',
         subLabel: 'Find possible triggers in your home',

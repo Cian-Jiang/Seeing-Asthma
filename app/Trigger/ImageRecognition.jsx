@@ -14,14 +14,25 @@ import {
     Text,
     Flex,
     CircularProgress,
+    SimpleGrid,
+    Link,
 } from "@chakra-ui/react";
+import { useDisclosure,  Text as ChakraText ,  Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, useColorModeValue, Divider, Center } from "@chakra-ui/react";
 import { useEffect } from 'react';
 
 function MyAccordion({ result }) {
+    const [showButton, setShowButton] = useState(false);
+
+    useEffect(() => {
+        const shouldShowButton = result.some(item => ['Dog', 'Flower', 'Cat', 'Plant', 'Tree'].includes(item.name));
+        setShowButton(shouldShowButton);
+    }, [result]);
     // console.log(result)
     // console.log()
     return (
-        <Accordion defaultIndex={[0]} allowMultiple>
+        <div>
+
+            <Accordion defaultIndex={[0]} allowMultiple>
             {result.map((item, index) => (
                 <AccordionItem key={index}>
                     <h2>
@@ -39,12 +50,31 @@ function MyAccordion({ result }) {
                 </AccordionItem>
             ))}
         </Accordion>
+            <br/>
+            {showButton && (
+
+                <Center mt={4}>
+                    <Link href="/Trigger/PlantPet">
+                        <Text
+                            textTransform={'uppercase'}
+                            color={'blue.400'}
+                            fontWeight={600}
+                            fontSize={'sm'}
+                            bg={useColorModeValue('blue.50', 'blue.900')}
+                            p={2}
+                            rounded={'md'}>
+                            Click to identify whether plants and pets
+                        </Text>
+                    </Link>
+                </Center>
+            )}
+        </div>
     );
 }
 
 export default function Home() {
     const [image, setImage] = useState([]);
-    const [result, setResult] = useState([]);
+    const [result, setResult] = useState(null);
     const toast = useToast();
     const [loading, setLoading] = useState(false);
     const [hasUploadedImage, setHasUploadedImage] = useState(false);
@@ -141,7 +171,7 @@ export default function Home() {
           //console.log(uploadedImage);
         }
       };
-      const handleImageChangeAndUpload = (e) => {
+      const handleGeneralImageChangeAndUpload = (e) => {
         handleImageChange(e); // 调用 handleImageChange 函数
         const file = e.target.files[0];
         handleImageUpload(file); // 调用 handleImageUpload 函数
@@ -150,31 +180,41 @@ export default function Home() {
       useEffect(() => {
         if (uploadedImage) {
             // uploadedImage已更新，设置背景图像
-            document.getElementById("image_display").style.backgroundImage = `url(${uploadedImage})`;
+            document.getElementById("general_image_display").style.backgroundImage = `url(${uploadedImage})`;
         }
     }, [uploadedImage]);
 
 
     return (
         <>
-       
-         <Flex justify="center" minHeight="100vh">
-            <div style={{ flex: 1, transform: 'translateX(35px)'}}>
-               
-                <Heading marginTop="1">
-                <Text textDecoration="none" _hover={{ textDecoration: 'none' }} color={'blue.400'}>
-                Upload a Picture Here:
 
-                </Text>
-                
-                </Heading>
-                <br/>
-                    <input id="image_input" type="file" onChange={handleImageChangeAndUpload} />
+
+            <SimpleGrid minChildWidth='320px' spacing='40px' m={5}>
+
+                <Box position="relative"
+                     p={3}
+                     height='550px'
+                     borderWidth='1px' borderRadius='lg' overflow='hidden'
+                     display="flex"
+                     flexDirection="column"
+                     alignItems="center" 
+                     justifyContent="center"
+                >
+
+                    <ChakraText fontSize='3xl' color={'blue.400'}  as='b'>
+                        Upload an indoor or outdoor image
+                        <br/>
+                    </ChakraText>
                     <br/>
+                    <form style={{ display: 'flex', alignItems: 'center' }}>
+                        <label htmlFor="image">Image:</label>
+                        <input type="file" id="image" accept="image/*" onChange={handleGeneralImageChangeAndUpload} />
+                    </form>
+
                     <Box
-                        id="image_display"
-                        width="512px"
-                        height="288px"
+                        id="general_image_display"
+                        w='100%'
+                        h='300px'
                         borderWidth="1px"
                         borderColor="black"
                         backgroundPosition="center"
@@ -182,40 +222,135 @@ export default function Home() {
                         backgroundRepeat="no-repeat"
                         backgroundImage={hasUploadedImage ? `url(${image})` : 'url(/2.png)'}
 
-                        >
-                        {/* 内容 */}
-                        <br/>
+                    >
+
                     </Box>
                     <br/>
+                    <form>
                     <Button onClick={analyzeImage}>Analyze</Button>
+                    </form>
+                    
 
-           
-                
-            </div>
-            <div style={{ flex: 1}}>
-            
-                <Box position="relative" p={12}>
-                {loading ? ( // Conditionally render loading image
-                <CircularProgress isIndeterminate color='green.300' />
-                ) : (
-                    <>
-                        {hasUploadedImage ? (
-                            result.length > 0 ? (
-                                <MyAccordion result={result} />
-                            ) : (
-                                <Text>No results found.</Text> // Display this when result is empty
-                            )
-                        ) : (
-                            <Text>Upload an image to begin analysis.</Text> // Display this when no image is uploaded
-                        )}
-                    </>
-                )}
+
+
+
                 </Box>
-            </div>
-            
-        </Flex>
-       
+
+                <Box position="relative"
+                     p={3}
+                      height='550px'
+                      borderWidth='1px' borderRadius='lg'
+                     overflow='hidden'
+                     // display='flex'
+                     alignItems='center'
+                     justifyContent='center'
+                >
+                         {loading ? (
+                            <CircularProgress isIndeterminate color='green.300' />
+                        ) : (
+                            <>
+                                {hasUploadedImage ? (
+                    result !== null ? (
+                        result.length > 0 ? (
+                            <MyAccordion result={result} />
+                        ) : (
+                            
+                            <Box position="relative"
+                                 flex="0 0 calc(33% - 1rem)"
+                                 w='100%'
+                                 h='100%'
+                                 borderRadius="md"
+                                 overflow="hidden"
+                                 mb="2rem"
+                                 display='flex'
+                                 flexDirection='column'
+                                 alignItems='center'
+                                 justifyContent='center'
+                            >
+                                <ChakraText fontSize='2xl' color={'blue.400'}  as='b' textAlign='center'>
+                                    No result found.
+
+                                </ChakraText>
+                                <ChakraText fontSize='lg' color={'#939597'}   textAlign='center'>
+                                    <br/>
+                                    <br/>
+                                    Tips:
+                                    <br/>
+                                    PLease make sure no much clutter in the background.
+                                    Better to place the subject in the center.
+
+                                </ChakraText>
+
+                            </Box>
+                        )
+                    ) : (
+                        <Box position="relative"
+                                 flex="0 0 calc(33% - 1rem)"
+                                 w='100%'
+                                 h='100%'
+                                 borderRadius="md"
+                                 overflow="hidden"
+                                 mb="2rem"
+                                 display='flex'
+                                 flexDirection='column'
+                                 alignItems='center'
+                                 justifyContent='center'
+                            >
+                                <ChakraText fontSize='2xl' color={'blue.400'}  as='b' textAlign='center'>
+                                    Result will be shown after the image has been uploaded.
+
+                                </ChakraText>
+                                <ChakraText fontSize='lg' color={'#939597'}   textAlign='center'>
+                                    <br/>
+                                    <br/>
+                                    Tips:
+                                    <br/>
+                                    PLease make sure no much clutter in the background.
+                                    Better to place the subject in the center.
+
+                                </ChakraText>
+
+                            </Box>
+                    )
+                ) : (
+                    <Box position="relative"
+                                 flex="0 0 calc(33% - 1rem)"
+                                 w='100%'
+                                 h='100%'
+                                 borderRadius="md"
+                                 overflow="hidden"
+                                 mb="2rem"
+                                 display='flex'
+                                 flexDirection='column'
+                                 alignItems='center'
+                                 justifyContent='center'
+                            >
+                                <ChakraText fontSize='2xl' color={'blue.400'}  as='b' textAlign='center'>
+                                    Result will be shown after the image has been uploaded.
+
+                                </ChakraText>
+                                <ChakraText fontSize='lg' color={'#939597'}   textAlign='center'>
+                                    <br/>
+                                    <br/>
+                                    Tips:
+                                    <br/>
+                                    PLease make sure no much clutter in the background.
+                                    Better to place the subject in the center.
+
+                                </ChakraText>
+
+                            </Box>
+                )}
+                            </>
+                        )}
+
+                    </Box>
+
+            </SimpleGrid>
+
+
         </>
        
     );
+    
 }
