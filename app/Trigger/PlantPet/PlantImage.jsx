@@ -173,11 +173,7 @@ export default function Upload() {
                                     overflow="hidden"
                                     mb="2rem"
                                 >
-                                    <ChakraText fontSize='3xl' color={'blue.400'}  as='b'>
-                                        Check the breed result
-                                        <br/>
-                                    </ChakraText>
-                                    <br/>
+                                    
                                     <ChakraText fontWeight="bold" textAlign="center" fontSize='3xl' backgroundColor={bgColor}>
                                         {txt}
                                     </ChakraText>

@@ -5,10 +5,9 @@ import { Inter } from 'next/font/google'
 import Navbar from '@/components/Navbar'
 import './global.css';
 import ScrollToTopButton from '@/components/ScrollToTopButton';
-import Head from 'next/head';
 
 const inter = Inter({ subsets: ['latin'] })
-
+import Head from 'next/head'
 
 
 export default function RootLayout({
@@ -17,14 +16,19 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
+
     <html lang="en">
-      <Head>
-        <title>Seeing Asthma</title>
-        <link rel="icon" href="/2.png" />
-      </Head>
+    <head>
+
+      <link rel="shortcut icon" href="https://i.imgur.com/fW42vAv.png" />
+      <title>Seeing Asthma</title>
+    </head>
+
       <body>
+
         <ChakraProvider>
-          
+
+
           <Navbar/>
           
           {children}
