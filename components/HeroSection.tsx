@@ -41,10 +41,10 @@ export default function HeroSection() {
           />
           
           <Text color={'white'} fontWeight={600} fontSize={'3xl'}>
-          You can&apos;t see Asthma but you can see the symptoms!
+          You can&apos;t see Asthma but you can see the symptoms
           </Text>
           <Text color={'white'} fontWeight={600} fontSize={'2xl'}>
-          We help you protect your kids from asthma!
+          We help you protect your kids from asthma
           
           </Text>
           
