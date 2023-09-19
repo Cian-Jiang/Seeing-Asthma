@@ -87,6 +87,47 @@ def baidu_image_recognition(image_data, object_type):
         return None
 
 
+# 调用谷歌API进行图片识别
+def analyze_image(image_data):
+    try:
+        # img = base64.b64encode(image_data)
+        img = base64.b64encode(image_data).decode("utf-8")  # Decode bytes to UTF-8 string
+
+        # Google Cloud Vision API
+        GOOGLE_CLOUD_VISION_API_KEY = Config.GOOGLE_CLOUD_VISION_API_KEY
+        google_vision_url = f"https://vision.googleapis.com/v1/images:annotate?key={GOOGLE_CLOUD_VISION_API_KEY}"
+
+        # Prepare the request payload
+        google_vision_payload = {
+            "requests": [
+                {
+                    "image": {"content": img},
+                    "features": [{"type": "LABEL_DETECTION", "maxResults": 50}],
+                }
+            ]
+        }
+
+        # Perform Google Vision API call
+        google_vision_response = requests.post(google_vision_url, json=google_vision_payload)
+        google_api_response = json.loads(google_vision_response.text)
+
+        labels = google_api_response['responses'][0]['labelAnnotations']
+        filtered_labels = [label for label in labels if label['score'] > 0.6]
+        label_info = [{"description": label["description"], "score": label["score"]} for label in filtered_labels]
+
+        print(label_info)
+        return label_info
+
+    except Exception as e:
+        print(f"Error analyzing image: {e}")
+        return None
+
+
+
+
+
+
+
 # 从MySQL数据库获取植物信息
 def get_plant_info_from_db(plant_chinese_name, object_type):
     mydb = mysql.connector.connect(
@@ -199,7 +240,75 @@ class ImageRecognition(Resource):
             return {"error": "No image provided"}, 400
 
 
+@api.route('/image_general')
+class GeneralImageRecognition(Resource):
 
+    def post(self):
+        # print(request.headers)
+        # print(request.form)
+        api_key = request.headers.get('api_key')
+        # print(f"API Key: {api_key}")
+        if api_key is None:
+            api_key = request.form.get('key')
+        if api_key is None:
+            api_key = request.headers.get('API-Key')
+        object_type = request.form.get('type')
+        # print(f"API Key: {api_key}, Object Type: {object_type}")
+
+        if not validate_api_key(api_key):
+            return {"error": "Invalid API Key"}, 401
+
+
+        image_file = request.files.get('image')
+        if image_file:
+            # 检查文件类型
+            if not image_file.content_type.startswith('image/'):
+                return jsonify({"error": "File is not an image"}), 400
+
+            # 检查文件大小 (4MB = 4 * 1024 * 1024 Bytes)
+            image_size = len(image_file.read())
+            if image_size > 4 * 1024 * 1024:
+                return jsonify({"error": "Image size exceeds 4MB"}), 400
+
+            # 重新定位文件指针，以便再次读取文件内容
+            image_file.seek(0)
+            image_data = image_file.read()
+
+            # 检查图片尺寸和长宽比
+            image = Image.open(BytesIO(image_data))
+            width, height = image.size
+            aspect_ratio = width / height
+
+            if min(width, height) < 30:
+                return jsonify({"error": "Minimum dimension should be at least 30px"}), 400
+            if max(width, height) > 4096:
+                return jsonify({"error": "Maximum dimension should not exceed 4096px"}), 400
+            if aspect_ratio > 3 or aspect_ratio < 1 / 3:
+                return jsonify({"error": "Aspect ratio should be within 3:1"}), 400
+
+            recognized_labal = analyze_image(image_data)
+
+
+            # if recognized_name == "非动物":
+            #     return {"error": "No animal found in the picture. Please check your images and try again."}, 404
+            # elif recognized_name == "非植物":
+            #     return {"error": "No plant found in the picture. Please check your images and try again."}, 404
+            #
+            # plant_info = get_plant_info_from_db(recognized_name, object_type)
+            # # print(f"Plant Info: {plant_info}")
+
+            if recognized_labal:
+                return recognized_labal, 200  # Directly return the dictionary
+
+            else:
+                if object_type == 'Plant':
+                    return {"error": "No high-risk plants were found."}, 404
+                elif object_type == 'Cat':
+                    return {"error": "Sorry, our model has not yet collected data for this breed."}, 404
+                else:
+                    return {"error": "Sorry, our model has not yet collected data for this breed."}, 404
+        else:
+            return {"error": "No image provided"}, 400
 
 
 

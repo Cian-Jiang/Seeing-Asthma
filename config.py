@@ -13,4 +13,5 @@ class Config(Config):
     DB_NAME = 'MAINDB'
     API_KEY = 'i23a3ushd123egiqwuoasqw2378qer12132'
     Access_token = '24.33182af21a7c4c00a218ddad1bf0597e.2592000.1697022514.282335-39169061'
+    GOOGLE_CLOUD_VISION_API_KEY = 'AIzaSyDSixvrSvxTKMKdd0rYO3ogivqSGdlqoRI'
 
