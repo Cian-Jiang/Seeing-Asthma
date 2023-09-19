@@ -41,6 +41,7 @@ export default function Navbar() {
             align={'center'}
             zIndex={10}>
             <Image src="/MicrosoftTeams-image (2).png" alt="Logo" h={8} w={8} mr={2} />
+            <Text fontWeight={600}>Seeing Asthma</Text>
           <Flex
               flex={{ base: 1, md: 'auto' }}
               ml={{ base: -2 }}

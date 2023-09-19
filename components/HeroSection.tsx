@@ -23,8 +23,8 @@ export default function HeroSection() {
         <Stack
           as={Box}
           textAlign={'center'}
-          spacing={{ base: 8, md: 14 }}
-          py={{ base: 20, md: 36 }}>
+          spacing={{ base: 1, md: 2 }}
+          py={{ base: 32, md: 36 }}>
           
           <Box
             bgImage="https://i.imgur.com/BBJ7ib3.jpg"
@@ -37,25 +37,28 @@ export default function HeroSection() {
             bottom={0}
             
             zIndex={-1}
-            h="30%"
+            h="25%"
           />
-          <Heading
-            fontWeight={600}
-            fontSize={{ base: '2xl', sm: '4xl', md: '6xl' }}
-            lineHeight={{ base: '350%', sm: '1670%', md: '350%' }}
-            
-          >
-            <Text as={'span'} color={'white'}>
-              Seeing Asthma
-            </Text>
-          </Heading>
+          
           <Text color={'white'} fontWeight={600} fontSize={'3xl'}>
           You can&apos;t see Asthma but you can see the symptoms!
           </Text>
-          <Text color={'white'} fontWeight={600} fontSize={'3xl'}>
+          <Text color={'white'} fontWeight={600} fontSize={'2xl'}>
           We help you protect your kids from asthma!
           
           </Text>
+          
+          
+          <Image
+            src="/aa.png"
+            alt="Asthma image"
+            w={['90%', '80%']}  // Responsive width
+            h="auto"  // Auto height to maintain aspect ratio
+            mx="auto"  // Center the image horizontally
+          />
+
+          
+
           <Stack
             direction={'column'}
             spacing={3}
@@ -71,20 +74,13 @@ export default function HeroSection() {
                 bg: 'cyan.500',
               }}
               as="a"
-              href="#middle-section"
+              href="/Trigger"
               >
-              Find out more about Asthma
+              Recognize Asthma Triggers around you!
             </Button>
-            
+
             
           </Stack>
-          <Image
-            src="/aa.png"
-            alt="Asthma image"
-            w={['130%', '120%']}  // Responsive width
-            h="auto"  // Auto height to maintain aspect ratio
-            mx="auto"  // Center the image horizontally
-          />
 
           
           
