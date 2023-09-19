@@ -9,7 +9,7 @@ from config import Config
 from PIL import Image
 from io import BytesIO
 import requests
-
+from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 CORS(app, expose_headers=["api_key"])
@@ -125,8 +125,42 @@ def analyze_image(image_data):
 
 
 
+def get_info_from_db(recognized_labels):
+    mydb = mysql.connector.connect(
+        host=Config.DB_HOST,
+        user=Config.DB_USER,
+        passwd=Config.DB_PASSWORD,
+        database=Config.DB_NAME
+    )
+    cursor = mydb.cursor()
+    cursor.execute("SELECT name, objdes FROM Object")
+    db_data = cursor.fetchall()
 
+    db_names = [{"name": name, "objdes": objdes} for name, objdes in db_data]
 
+    # Filter recognized labels
+    matched_labels = [label for label in recognized_labels if
+                      any(db_obj['name'].lower() == label['description'].lower() for db_obj in db_names)]
+
+    # Enrich the labels
+    enriched_labels = []
+    for label in matched_labels:
+        db_obj = next((db for db in db_names if db['name'].lower() == label['description'].lower()), None)
+
+        # Step 5: Additional transformations
+        if label['description'] == 'Shower':
+            label['description'] = 'Shower - Mould'
+        elif label['description'] == 'Sinks':
+            label['description'] = 'Sinks - Mould'
+
+        enriched_label = {
+            'name': label['description'],
+            'score': label['score'],
+            'objdes': db_obj['objdes'] if db_obj else ''
+        }
+        enriched_labels.append(enriched_label)
+
+    return enriched_labels
 
 # 从MySQL数据库获取植物信息
 def get_plant_info_from_db(plant_chinese_name, object_type):
@@ -166,6 +200,49 @@ def get_plant_info_from_db(plant_chinese_name, object_type):
         else:
             return None
 
+
+def valid_image(image_file):
+    is_image = True
+    print(image_file)
+    try:
+        # 检查文件类型
+        filename = secure_filename(image_file.filename)
+
+        if not filename.lower().endswith(('.png', '.jpg', '.jpeg')):
+            print(99)
+            return False
+
+        if not image_file.content_type.startswith('image/'):
+            print(2)
+            return False
+
+        # 检查文件大小 (4MB = 4 * 1024 * 1024 Bytes)
+        image_size = len(image_file.read())
+        if image_size > 4 * 1024 * 1024:
+            print(3)
+            return False
+
+        # 检查图片尺寸和长宽比
+        image_file.seek(0)
+        image_data = image_file.read()
+        image = Image.open(BytesIO(image_data))
+        width, height = image.size
+        aspect_ratio = width / height
+
+        if min(width, height) < 30:
+            return False
+        if max(width, height) > 4096:
+            return False
+        if aspect_ratio > 3 or aspect_ratio < 1 / 3:
+            return False
+
+        return is_image
+
+    except Exception as e:
+
+        return False
+
+
 @api.route('/image_recognition')
 class ImageRecognition(Resource):
     @api.doc(params={'api_key': 'Your API key', 'type': 'Type of object to recognize (Plant, Cat, Dog)', 'image': 'The image file'})
@@ -187,33 +264,19 @@ class ImageRecognition(Resource):
 
         if object_type not in ['Plant', 'Cat', 'Dog']:
             return {"error": "Invalid type provided", "status": "failure"}, 400
+
         # print(object_type)
         image_file = request.files.get('image')
-        if image_file:
-            # 检查文件类型
-            if not image_file.content_type.startswith('image/'):
-                return jsonify({"error": "File is not an image"}), 400
 
-            # 检查文件大小 (4MB = 4 * 1024 * 1024 Bytes)
-            image_size = len(image_file.read())
-            if image_size > 4 * 1024 * 1024:
-                return jsonify({"error": "Image size exceeds 4MB"}), 400
+        if image_file:
+
+            if not valid_image(image_file):
+                return {"error": "File verification failed. Supported formats: PNG, JPG, JPEG. "
+                                         "Please make sure the file size does not exceed 3.5M."}, 400
 
             # 重新定位文件指针，以便再次读取文件内容
             image_file.seek(0)
             image_data = image_file.read()
-
-            # 检查图片尺寸和长宽比
-            image = Image.open(BytesIO(image_data))
-            width, height = image.size
-            aspect_ratio = width / height
-
-            if min(width, height) < 30:
-                return jsonify({"error": "Minimum dimension should be at least 30px"}), 400
-            if max(width, height) > 4096:
-                return jsonify({"error": "Maximum dimension should not exceed 4096px"}), 400
-            if aspect_ratio > 3 or aspect_ratio < 1 / 3:
-                return jsonify({"error": "Aspect ratio should be within 3:1"}), 400
 
             recognized_name = baidu_image_recognition(image_data, object_type)
             print(f"Recognized Name: {recognized_name}")
@@ -244,16 +307,13 @@ class ImageRecognition(Resource):
 class GeneralImageRecognition(Resource):
 
     def post(self):
-        # print(request.headers)
-        # print(request.form)
+
         api_key = request.headers.get('api_key')
-        # print(f"API Key: {api_key}")
         if api_key is None:
             api_key = request.form.get('key')
         if api_key is None:
             api_key = request.headers.get('API-Key')
         object_type = request.form.get('type')
-        # print(f"API Key: {api_key}, Object Type: {object_type}")
 
         if not validate_api_key(api_key):
             return {"error": "Invalid API Key"}, 401
@@ -262,51 +322,22 @@ class GeneralImageRecognition(Resource):
         image_file = request.files.get('image')
         if image_file:
             # 检查文件类型
-            if not image_file.content_type.startswith('image/'):
-                return jsonify({"error": "File is not an image"}), 400
-
-            # 检查文件大小 (4MB = 4 * 1024 * 1024 Bytes)
-            image_size = len(image_file.read())
-            if image_size > 4 * 1024 * 1024:
-                return jsonify({"error": "Image size exceeds 4MB"}), 400
-
+            if not valid_image(image_file):
+                return {"error": "File verification failed. Supported formats: PNG, JPG, JPEG. "
+                                 "Please make sure the file size does not exceed 3.5M."}, 400
             # 重新定位文件指针，以便再次读取文件内容
             image_file.seek(0)
             image_data = image_file.read()
-
-            # 检查图片尺寸和长宽比
-            image = Image.open(BytesIO(image_data))
-            width, height = image.size
-            aspect_ratio = width / height
-
-            if min(width, height) < 30:
-                return jsonify({"error": "Minimum dimension should be at least 30px"}), 400
-            if max(width, height) > 4096:
-                return jsonify({"error": "Maximum dimension should not exceed 4096px"}), 400
-            if aspect_ratio > 3 or aspect_ratio < 1 / 3:
-                return jsonify({"error": "Aspect ratio should be within 3:1"}), 400
-
-            recognized_labal = analyze_image(image_data)
+            recognized_labals = analyze_image(image_data)
+            iteminfo = get_info_from_db(recognized_labals)
 
 
-            # if recognized_name == "非动物":
-            #     return {"error": "No animal found in the picture. Please check your images and try again."}, 404
-            # elif recognized_name == "非植物":
-            #     return {"error": "No plant found in the picture. Please check your images and try again."}, 404
-            #
-            # plant_info = get_plant_info_from_db(recognized_name, object_type)
-            # # print(f"Plant Info: {plant_info}")
 
-            if recognized_labal:
-                return recognized_labal, 200  # Directly return the dictionary
+            if iteminfo:
+                return iteminfo, 200  # Directly return the dictionary
 
             else:
-                if object_type == 'Plant':
-                    return {"error": "No high-risk plants were found."}, 404
-                elif object_type == 'Cat':
-                    return {"error": "Sorry, our model has not yet collected data for this breed."}, 404
-                else:
-                    return {"error": "Sorry, our model has not yet collected data for this breed."}, 404
+                return {"error": "Sorry, no asthma trigger found in the picture."}, 404
         else:
             return {"error": "No image provided"}, 400
 
