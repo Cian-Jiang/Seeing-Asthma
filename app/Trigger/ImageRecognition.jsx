@@ -15,15 +15,26 @@ import {
     Flex,
     CircularProgress,
     SimpleGrid,
+    Link,
 } from "@chakra-ui/react";
 import { useDisclosure,  Text as ChakraText ,  Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, useColorModeValue, Divider, Center } from "@chakra-ui/react";
 import { useEffect } from 'react';
 
 function MyAccordion({ result }) {
+    const [showButton, setShowButton] = useState(false);
+
+    useEffect(() => {
+        const shouldShowButton = result.some(item => ['Dog', 'Flower', 'Cat', 'Plant', 'Tree'].includes(item.name));
+        setShowButton(shouldShowButton);
+    }, [result]);
+    const bgColor = useColorModeValue('blue.50', 'blue.900');
+
     // console.log(result)
     // console.log()
     return (
-        <Accordion defaultIndex={[0]} allowMultiple>
+        <div>
+
+            <Accordion defaultIndex={[0]} allowMultiple>
             {result.map((item, index) => (
                 <AccordionItem key={index}>
                     <h2>
@@ -41,6 +52,24 @@ function MyAccordion({ result }) {
                 </AccordionItem>
             ))}
         </Accordion>
+            <br/>
+            {showButton && (
+                <Center mt={4}>
+                    <Link href="/Trigger/PlantPet">
+                        <Text
+                            textTransform={'uppercase'}
+                            color={'blue.400'}
+                            fontWeight={600}
+                            fontSize={'sm'}
+                            bg={bgColor}
+                            p={2}
+                            rounded={'md'}>
+                            Click to identify whether plants and pets
+                        </Text>
+                    </Link>
+                </Center>
+            )}
+        </div>
     );
 }
 
@@ -161,7 +190,7 @@ export default function Home() {
         <>
 
 
-            <SimpleGrid minChildWidth='320px' spacing='40px'>
+            <SimpleGrid minChildWidth='320px' spacing='40px' m={5} id="middle-section">
 
                 <Box position="relative"
                      p={3}
@@ -228,20 +257,20 @@ export default function Home() {
                                         ) : (
                                             
                                             <Box position="relative"
-                                                flex="0 0 calc(33% - 1rem)"
-                                                w='100%'
-                                                h='100%'
-                                                borderRadius="md"
-                                                overflow="hidden"
-                                                mb="2rem"
-                                                display='flex'
-                                                flexDirection='column'
-                                                alignItems='center'
-                                                justifyContent='center'
+                                                 flex="0 0 calc(33% - 1rem)"
+                                                 w='100%'
+                                                 h='100%'
+                                                 borderRadius="md"
+                                                 overflow="hidden"
+                                                 mb="2rem"
+                                                 display='flex'
+                                                 flexDirection='column'
+                                                 alignItems='center'
+                                                 justifyContent='center'
                                             >
                                                 <ChakraText fontSize='2xl' color={'blue.400'}  as='b' textAlign='center'>
                                                     No result found.
-
+                
                                                 </ChakraText>
                                                 <ChakraText fontSize='lg' color={'#939597'}   textAlign='center'>
                                                     <br/>
@@ -250,27 +279,27 @@ export default function Home() {
                                                     <br/>
                                                     PLease make sure no much clutter in the background.
                                                     Better to place the subject in the center.
-
+                
                                                 </ChakraText>
-
+                
                                             </Box>
                                         )
                                     ) : (
                                         <Box position="relative"
-                                                flex="0 0 calc(33% - 1rem)"
-                                                w='100%'
-                                                h='100%'
-                                                borderRadius="md"
-                                                overflow="hidden"
-                                                mb="2rem"
-                                                display='flex'
-                                                flexDirection='column'
-                                                alignItems='center'
-                                                justifyContent='center'
+                                                 flex="0 0 calc(33% - 1rem)"
+                                                 w='100%'
+                                                 h='100%'
+                                                 borderRadius="md"
+                                                 overflow="hidden"
+                                                 mb="2rem"
+                                                 display='flex'
+                                                 flexDirection='column'
+                                                 alignItems='center'
+                                                 justifyContent='center'
                                             >
                                                 <ChakraText fontSize='2xl' color={'blue.400'}  as='b' textAlign='center'>
                                                     Result will be shown after the image has been uploaded.
-
+                
                                                 </ChakraText>
                                                 <ChakraText fontSize='lg' color={'#939597'}   textAlign='center'>
                                                     <br/>
@@ -279,27 +308,27 @@ export default function Home() {
                                                     <br/>
                                                     PLease make sure no much clutter in the background.
                                                     Better to place the subject in the center.
-
+                
                                                 </ChakraText>
-
+                
                                             </Box>
                                     )
                                 ) : (
                                     <Box position="relative"
-                                                flex="0 0 calc(33% - 1rem)"
-                                                w='100%'
-                                                h='100%'
-                                                borderRadius="md"
-                                                overflow="hidden"
-                                                mb="2rem"
-                                                display='flex'
-                                                flexDirection='column'
-                                                alignItems='center'
-                                                justifyContent='center'
+                                                 flex="0 0 calc(33% - 1rem)"
+                                                 w='100%'
+                                                 h='100%'
+                                                 borderRadius="md"
+                                                 overflow="hidden"
+                                                 mb="2rem"
+                                                 display='flex'
+                                                 flexDirection='column'
+                                                 alignItems='center'
+                                                 justifyContent='center'
                                             >
                                                 <ChakraText fontSize='2xl' color={'blue.400'}  as='b' textAlign='center'>
                                                     Result will be shown after the image has been uploaded.
-
+                
                                                 </ChakraText>
                                                 <ChakraText fontSize='lg' color={'#939597'}   textAlign='center'>
                                                     <br/>
@@ -308,18 +337,18 @@ export default function Home() {
                                                     <br/>
                                                     PLease make sure no much clutter in the background.
                                                     Better to place the subject in the center.
-
+                
                                                 </ChakraText>
-
+                
                                             </Box>
                                 )}
                             </>
                         )}
 
-                </Box>
+                    </Box>
 
             </SimpleGrid>
-            {/*</Flex>*/}
+
 
         </>
        

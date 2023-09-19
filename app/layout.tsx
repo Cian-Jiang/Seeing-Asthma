@@ -11,29 +11,31 @@ import Head from 'next/head'
 
 
 export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
+                                       children,
+                                   }: {
+    children: React.ReactNode
 }) {
-  return (
+    return (
 
-    <html lang="en">
-    <head>
+        <html lang="en">
+        <head>
 
-      <link rel="shortcut icon" href="https://i.imgur.com/fW42vAv.png" />
-      <title>Seeing Asthma</title>
-    </head>
 
-      <body>
+            <title>Seeing Asthma</title>
+            <link rel="shortcut icon" href="https://i.imgur.com/fW42vAv.png" />
+            <link rel="icon"  href="https://i.imgur.com/fW42vAv.png" />
+        </head>
+
+        <body>
 
         <ChakraProvider>
 
 
-          <Navbar/>
-          
-          {children}
-          <ScrollToTopButton/>
-          </ChakraProvider></body>
-    </html>
-  )
+            <Navbar/>
+
+            {children}
+            <ScrollToTopButton/>
+        </ChakraProvider></body>
+        </html>
+    )
 }
