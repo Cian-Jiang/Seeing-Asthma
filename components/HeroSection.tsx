@@ -50,7 +50,7 @@ export default function HeroSection() {
           
           
           <Image
-            src="/aa.png"
+            src="https://i.imgur.com/0oKwc1y.png"
             alt="Asthma image"
             w={['90%', '80%']}  // Responsive width
             h="auto"  // Auto height to maintain aspect ratio
