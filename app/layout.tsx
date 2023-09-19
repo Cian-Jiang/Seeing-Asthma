@@ -18,25 +18,24 @@ export default function RootLayout({
     return (
 
         <html lang="en">
+        <head>
+
+
+            <title>Seeing Asthma</title>
+            <link rel="shortcut icon" href="https://i.imgur.com/fW42vAv.png" />
+            <link rel="icon"  href="https://i.imgur.com/fW42vAv.png" />
+        </head>
+
+        <body>
+
         <ChakraProvider>
-            <head>
-
-
-                <title>Seeing Asthma</title>
-                <link rel="shortcut icon" href="https://i.imgur.com/fW42vAv.png" />
-            </head>
-
-            <body>
-
-
 
 
             <Navbar/>
 
             {children}
             <ScrollToTopButton/>
-            </body>
-        </ChakraProvider>
+        </ChakraProvider></body>
         </html>
     )
 }
