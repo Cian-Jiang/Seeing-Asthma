@@ -202,40 +202,6 @@ class ImageRecognition(Resource):
 
 
 
-# def translate_chinese_to_english(chinese_name):
-#
-#     appid = '20210327000746929'
-#     secretKey = 'vW4FB634sDRtIoDw9e28'
-#
-#
-#     salt = random.randint(1, 10)
-#     code = appid + chinese_name + str(salt) + secretKey
-#     sign = hashlib.md5(code.encode()).hexdigest()
-#
-#     api = "http://api.fanyi.baidu.com/api/trans/vip/translate"
-#
-#     data = {
-#         "q": chinese_name,
-#         "from": "zh",
-#         "to": "en",
-#         "appid": appid,
-#         "salt": salt,
-#         "sign": sign
-#     }
-#
-#     response = requests.post(api, data)
-#
-#     try:
-#         result = response.json()
-#         dst = result.get("trans_result")[0].get("dst")
-#
-#     except Exception as e:
-#         dst = chinese_name
-#
-#     finally:
-#         return dst
-
-
 
 
 if __name__ == '__main__':
