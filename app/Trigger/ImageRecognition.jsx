@@ -251,97 +251,97 @@ export default function Home() {
                         ) : (
                             <>
                                 {hasUploadedImage ? (
-                    result !== null ? (
-                        result.length > 0 ? (
-                            <MyAccordion result={result} />
-                        ) : (
-                            
-                            <Box position="relative"
-                                 flex="0 0 calc(33% - 1rem)"
-                                 w='100%'
-                                 h='100%'
-                                 borderRadius="md"
-                                 overflow="hidden"
-                                 mb="2rem"
-                                 display='flex'
-                                 flexDirection='column'
-                                 alignItems='center'
-                                 justifyContent='center'
-                            >
-                                <ChakraText fontSize='2xl' color={'blue.400'}  as='b' textAlign='center'>
-                                    No result found.
-
-                                </ChakraText>
-                                <ChakraText fontSize='lg' color={'#939597'}   textAlign='center'>
-                                    <br/>
-                                    <br/>
-                                    Tips:
-                                    <br/>
-                                    PLease make sure no much clutter in the background.
-                                    Better to place the subject in the center.
-
-                                </ChakraText>
-
-                            </Box>
-                        )
-                    ) : (
-                        <Box position="relative"
-                                 flex="0 0 calc(33% - 1rem)"
-                                 w='100%'
-                                 h='100%'
-                                 borderRadius="md"
-                                 overflow="hidden"
-                                 mb="2rem"
-                                 display='flex'
-                                 flexDirection='column'
-                                 alignItems='center'
-                                 justifyContent='center'
-                            >
-                                <ChakraText fontSize='2xl' color={'blue.400'}  as='b' textAlign='center'>
-                                    Result will be shown after the image has been uploaded.
-
-                                </ChakraText>
-                                <ChakraText fontSize='lg' color={'#939597'}   textAlign='center'>
-                                    <br/>
-                                    <br/>
-                                    Tips:
-                                    <br/>
-                                    PLease make sure no much clutter in the background.
-                                    Better to place the subject in the center.
-
-                                </ChakraText>
-
-                            </Box>
-                    )
-                ) : (
-                    <Box position="relative"
-                                 flex="0 0 calc(33% - 1rem)"
-                                 w='100%'
-                                 h='100%'
-                                 borderRadius="md"
-                                 overflow="hidden"
-                                 mb="2rem"
-                                 display='flex'
-                                 flexDirection='column'
-                                 alignItems='center'
-                                 justifyContent='center'
-                            >
-                                <ChakraText fontSize='2xl' color={'blue.400'}  as='b' textAlign='center'>
-                                    Result will be shown after the image has been uploaded.
-
-                                </ChakraText>
-                                <ChakraText fontSize='lg' color={'#939597'}   textAlign='center'>
-                                    <br/>
-                                    <br/>
-                                    Tips:
-                                    <br/>
-                                    PLease make sure no much clutter in the background.
-                                    Better to place the subject in the center.
-
-                                </ChakraText>
-
-                            </Box>
-                )}
+                                    result !== null ? (
+                                        result.length > 0 ? (
+                                            <MyAccordion result={result} />
+                                        ) : (
+                                            
+                                            <Box position="relative"
+                                                 flex="0 0 calc(33% - 1rem)"
+                                                 w='100%'
+                                                 h='100%'
+                                                 borderRadius="md"
+                                                 overflow="hidden"
+                                                 mb="2rem"
+                                                 display='flex'
+                                                 flexDirection='column'
+                                                 alignItems='center'
+                                                 justifyContent='center'
+                                            >
+                                                <ChakraText fontSize='2xl' color={'blue.400'}  as='b' textAlign='center'>
+                                                    No result found.
+                
+                                                </ChakraText>
+                                                <ChakraText fontSize='lg' color={'#939597'}   textAlign='center'>
+                                                    <br/>
+                                                    <br/>
+                                                    Tips:
+                                                    <br/>
+                                                    PLease make sure no much clutter in the background.
+                                                    Better to place the subject in the center.
+                
+                                                </ChakraText>
+                
+                                            </Box>
+                                        )
+                                    ) : (
+                                        <Box position="relative"
+                                                 flex="0 0 calc(33% - 1rem)"
+                                                 w='100%'
+                                                 h='100%'
+                                                 borderRadius="md"
+                                                 overflow="hidden"
+                                                 mb="2rem"
+                                                 display='flex'
+                                                 flexDirection='column'
+                                                 alignItems='center'
+                                                 justifyContent='center'
+                                            >
+                                                <ChakraText fontSize='2xl' color={'blue.400'}  as='b' textAlign='center'>
+                                                    Result will be shown after the image has been uploaded.
+                
+                                                </ChakraText>
+                                                <ChakraText fontSize='lg' color={'#939597'}   textAlign='center'>
+                                                    <br/>
+                                                    <br/>
+                                                    Tips:
+                                                    <br/>
+                                                    PLease make sure no much clutter in the background.
+                                                    Better to place the subject in the center.
+                
+                                                </ChakraText>
+                
+                                            </Box>
+                                    )
+                                ) : (
+                                    <Box position="relative"
+                                                 flex="0 0 calc(33% - 1rem)"
+                                                 w='100%'
+                                                 h='100%'
+                                                 borderRadius="md"
+                                                 overflow="hidden"
+                                                 mb="2rem"
+                                                 display='flex'
+                                                 flexDirection='column'
+                                                 alignItems='center'
+                                                 justifyContent='center'
+                                            >
+                                                <ChakraText fontSize='2xl' color={'blue.400'}  as='b' textAlign='center'>
+                                                    Result will be shown after the image has been uploaded.
+                
+                                                </ChakraText>
+                                                <ChakraText fontSize='lg' color={'#939597'}   textAlign='center'>
+                                                    <br/>
+                                                    <br/>
+                                                    Tips:
+                                                    <br/>
+                                                    PLease make sure no much clutter in the background.
+                                                    Better to place the subject in the center.
+                
+                                                </ChakraText>
+                
+                                            </Box>
+                                )}
                             </>
                         )}
 
