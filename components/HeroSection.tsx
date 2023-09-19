@@ -27,7 +27,7 @@ export default function HeroSection() {
           py={{ base: 32, md: 36 }}>
           
           <Box
-            bgImage="https://i.imgur.com/BBJ7ib3.jpg"
+            bgImage="https://i.imgur.com/0oKwc1y.png"
             bgPosition="center top"
             bgSize="cover"
             pos="absolute"
