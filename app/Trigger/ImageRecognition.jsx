@@ -190,7 +190,7 @@ export default function Home() {
         <>
 
 
-            <SimpleGrid minChildWidth='320px' spacing='40px' m={5}>
+            <SimpleGrid minChildWidth='320px' spacing='40px' m={5} id="middle-section">
 
                 <Box position="relative"
                      p={3}

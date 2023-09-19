@@ -14,6 +14,7 @@ import {
   Icon,
   useColorModeValue,
   createIcon,
+  Link,
 } from '@chakra-ui/react'
 
 export default function HeroSection() {
@@ -71,13 +72,14 @@ export default function HeroSection() {
                 bg: 'cyan.500',
               }}
               as="a"
-              href="#middle-section"
+              href="/Trigger"
               >
-              Find out more about Asthma
+              Recognize Asthma Triggers around you!
             </Button>
-            
+
             
           </Stack>
+          
           <Image
             src="/aa.png"
             alt="Asthma image"
