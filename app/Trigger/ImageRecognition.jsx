@@ -1,27 +1,32 @@
-'use client'
+"use client";
 import { useState } from 'react';
-import axios from 'axios';
 import {
+    Tabs,
+    TabList,
+    Tab,
+    TabPanels,
+    TabPanel,
+    Stack,
+    Heading,
+    Text,
+    Box,
+    Button,
+    CircularProgress,
+    Flex,
+    useToast,
+    SimpleGrid,
     Accordion,
     AccordionItem,
     AccordionButton,
     AccordionPanel,
     AccordionIcon,
-    Box,
-    useToast,
-    Button,
-    Heading,
-    Text,
-    Flex,
-    CircularProgress,
-    SimpleGrid,
     Link,
 } from "@chakra-ui/react";
 import { useDisclosure,  Text as ChakraText ,  Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, useColorModeValue, Divider, Center } from "@chakra-ui/react";
 import { useEffect } from 'react';
-
 function MyAccordion({ result }) {
     const [showButton, setShowButton] = useState(false);
+    // console.log(result)
 
     useEffect(() => {
         const shouldShowButton = result.some(item => ['Dog', 'Flower', 'Cat', 'Plant', 'Tree'].includes(item.name));
@@ -35,23 +40,22 @@ function MyAccordion({ result }) {
         <div>
 
             <Accordion defaultIndex={[0]} allowMultiple>
-            {result.map((item, index) => (
-                <AccordionItem key={index}>
-                    <h2>
-                        <AccordionButton>
-                            <Box as="span" flex="1" textAlign="left" color={'blue.400'} fontSize="16px" fontWeight="bold">
-                                {item.name}
-                                {/*({item.score})*/}
-                            </Box>
-                            <AccordionIcon />
-                        </AccordionButton>
-                    </h2>
-                    <AccordionPanel pb={4}>
-                        {item.objdes}
-                    </AccordionPanel>
-                </AccordionItem>
-            ))}
-        </Accordion>
+                {Array.isArray(result) && result.map((item, index) => (
+                    <AccordionItem key={index}>
+                        <h2>
+                            <AccordionButton>
+                                <Box as="span" flex="1" textAlign="left" color={'blue.400'} fontSize="16px" fontWeight="bold">
+                                    {item.name}
+                                </Box>
+                                <AccordionIcon />
+                            </AccordionButton>
+                        </h2>
+                        <AccordionPanel pb={4}>
+                            {item.objdes}
+                        </AccordionPanel>
+                    </AccordionItem>
+                ))}
+            </Accordion>
             <br/>
             {showButton && (
                 <Center mt={4}>
@@ -73,147 +77,108 @@ function MyAccordion({ result }) {
     );
 }
 
-export default function Home() {
-    const [image, setImage] = useState([]);
+export default function Upload() {
+    const [image, setImage] = useState(null);
+    const [type, setType] = useState('Plant');
     const [result, setResult] = useState(null);
-    const toast = useToast();
     const [loading, setLoading] = useState(false);
     const [hasUploadedImage, setHasUploadedImage] = useState(false);
-
-    // useEffect(() => {
-    //     toast({
-    //         title: "Test",
-    //         description: "This is a test toast",
-    //         status: "info",
-    //         duration: 3000,
-    //         isClosable: true,
-    //     });
-    // }, []);
-
-
-
+    const toast = useToast();
+    const { isOpen, onOpen, onClose } = useDisclosure();
+    const [openModalId, setOpenModalId] = useState("");
+    // const [txt, setTxt] = useState("");
+    const [bgColor, setBgColor] = useState("");
 
     const handleImageChange = (e) => {
         const file = e.target.files[0];
-        // 检查文件是否是图片
-        if (file && file.type.startsWith('image/')) {
-            // 检查文件大小是否小于 4MB
-            if (file.size < 9 * 1024 * 1024) {
-                const reader = new FileReader();
-                reader.readAsDataURL(file);
-                reader.onloadend = () => {
-                    setImage(reader.result);
-                    // 显示成功的 Toast
-                    toast({
-                        title: "Success",
-                        description: "File uploaded successfully!",
-                        status: "success",
-                        duration: 3000,
-                        isClosable: true,
-                    });
-                };
-            } else {
-                // 显示文件过大的 Toast
-                toast({
-                    title: "Error",
-                    description: "File size should be less than 4MB.",
-                    status: "error",
-                    duration: 3000,
-                    isClosable: true,
-                });
-            }
+        setImage(file);
+    };
+
+    const handleTypeChange = (e) => {
+        setType(e.target.value);
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setLoading(true);
+
+        const formData = new FormData();
+        formData.append('image', image);
+
+
+        const response = await fetch('https://api.healthcoder.live/image_general', {
+            method: 'POST',
+            // // headers: {
+            //     'api_key': process.env.API_KEY, // Replace with your actual API key
+            // },
+            body: formData,
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            setResult(data);
+
+
         } else {
-            // 显示文件类型错误的 Toast
+            const errorBody = await response.text();
+            setResult(`Error: ${response.status} ${errorBody}`);
             toast({
                 title: "Error",
-                description: "Invalid file type. Please upload an image.",
+                description: errorBody,
                 status: "error",
-                duration: 3000,
+                duration: 5000,
                 isClosable: true,
             });
         }
-    };
-
-    const analyzeImage = async () => {
-        setLoading(true); // Set loading state to true
-
-        try {
-            const imageData = image.split('base64,')[1];
-            const res = await axios.post('/api/proxyGoogleVision', { image: imageData });
-            const googleApiResponse = res.data;
-
-            const labels = googleApiResponse.responses[0].labelAnnotations;
-            const filteredLabels = labels.filter((label) => label.score > 0.6);
-            const labelInfo = filteredLabels.map((label) => ({ description: label.description, score: label.score }));
-
-
-            // 调用自定义的 Next.js API 路由
-            const res2 = await axios.post('/api/analyzeImage', { labelInfo });
-            const enrichedLabels = res2.data;
-            //if data is empty, show a sentence
-            setResult(enrichedLabels);
-        } catch (error) {
-            console.error('Error analyzing image:', error.response ? error.response.data : error);
-        }
-
         setLoading(false);
     };
-
-
     const [uploadedImage, setUploadedImage] = useState(null);
     const handleImageUpload = (file) => {
         if (file) {
-          const reader = new FileReader();
-          reader.onload = (event) => {
-            setUploadedImage(event.target.result);
-            setHasUploadedImage(true);
-          };
-          reader.readAsDataURL(file);
-          //console.log(uploadedImage);
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                setUploadedImage(event.target.result);
+                setHasUploadedImage(true);
+            };
+            reader.readAsDataURL(file);
+            //console.log(uploadedImage);
         }
-      };
-      const handleGeneralImageChangeAndUpload = (e) => {
+    };
+    const handleImageChangeAndUpload = (e) => {
         handleImageChange(e); // 调用 handleImageChange 函数
         const file = e.target.files[0];
         handleImageUpload(file); // 调用 handleImageUpload 函数
-      };
+    };
 
-      useEffect(() => {
+    useEffect(() => {
         if (uploadedImage) {
             // uploadedImage已更新，设置背景图像
-            document.getElementById("general_image_display").style.backgroundImage = `url(${uploadedImage})`;
+            document.getElementById("image_display").style.backgroundImage = `url(${uploadedImage})`;
         }
     }, [uploadedImage]);
-
 
     return (
         <>
 
 
-            <SimpleGrid minChildWidth='320px' spacing='40px' m={5} id="middle-section">
+            <SimpleGrid minChildWidth='320px' spacing='40px' m={5}>
 
                 <Box position="relative"
                      p={3}
                      height='550px'
                      borderWidth='1px' borderRadius='lg' overflow='hidden'
-                     display="flex"
-                     flexDirection="column"
-                     alignItems="center" 
-                     justifyContent="center"
                 >
 
                     <ChakraText fontSize='3xl' color={'blue.400'}  as='b'>
-                        Upload an indoor or outdoor image
+                        General  Image Recognition
                         <br/>
                     </ChakraText>
                     <br/>
-                    <form style={{ display: 'flex', alignItems: 'center' }}>
-                        <label htmlFor="image">Image:</label>
-                        <input type="file" id="image" accept="image/*" onChange={handleGeneralImageChangeAndUpload} />
-                    </form>
+                    <label htmlFor="image">Image:</label>
+                    <input type="file" id="image" accept="image/*" onChange={handleImageChangeAndUpload} />
 
                     <Box
-                        id="general_image_display"
+                        id="image_display"
                         w='100%'
                         h='300px'
                         borderWidth="1px"
@@ -227,11 +192,10 @@ export default function Home() {
 
                     </Box>
                     <br/>
-                    <form>
-                    <Button onClick={analyzeImage}>Analyze</Button>
-                    </form>
-                    
+                    <form onSubmit={handleSubmit}>
 
+                        <Button type="submit">Submit</Button>
+                    </form>
 
 
 
@@ -239,119 +203,119 @@ export default function Home() {
 
                 <Box position="relative"
                      p={3}
-                      height='550px'
-                      borderWidth='1px' borderRadius='lg'
-                     overflow='hidden'
-                     // display='flex'
+                     height='550px'
+                     borderWidth='1px' borderRadius='lg'
+                     overflow='auto'
+                    // display='flex'
                      alignItems='center'
                      justifyContent='center'
                 >
-                         {loading ? (
-                            <CircularProgress isIndeterminate color='green.300' />
-                        ) : (
-                            <>
-                                {hasUploadedImage ? (
-                                    result !== null ? (
-                                        result.length > 0 ? (
-                                            <MyAccordion result={result} />
-                                        ) : (
-                                            
-                                            <Box position="relative"
-                                                 flex="0 0 calc(33% - 1rem)"
-                                                 w='100%'
-                                                 h='100%'
-                                                 borderRadius="md"
-                                                 overflow="hidden"
-                                                 mb="2rem"
-                                                 display='flex'
-                                                 flexDirection='column'
-                                                 alignItems='center'
-                                                 justifyContent='center'
-                                            >
-                                                <ChakraText fontSize='2xl' color={'blue.400'}  as='b' textAlign='center'>
-                                                    No result found.
-                
-                                                </ChakraText>
-                                                <ChakraText fontSize='lg' color={'#939597'}   textAlign='center'>
-                                                    <br/>
-                                                    <br/>
-                                                    Tips:
-                                                    <br/>
-                                                    PLease make sure no much clutter in the background.
-                                                    Better to place the subject in the center.
-                
-                                                </ChakraText>
-                
-                                            </Box>
-                                        )
-                                    ) : (
-                                        <Box position="relative"
-                                                 flex="0 0 calc(33% - 1rem)"
-                                                 w='100%'
-                                                 h='100%'
-                                                 borderRadius="md"
-                                                 overflow="hidden"
-                                                 mb="2rem"
-                                                 display='flex'
-                                                 flexDirection='column'
-                                                 alignItems='center'
-                                                 justifyContent='center'
-                                            >
-                                                <ChakraText fontSize='2xl' color={'blue.400'}  as='b' textAlign='center'>
-                                                    Result will be shown after the image has been uploaded.
-                
-                                                </ChakraText>
-                                                <ChakraText fontSize='lg' color={'#939597'}   textAlign='center'>
-                                                    <br/>
-                                                    <br/>
-                                                    Tips:
-                                                    <br/>
-                                                    PLease make sure no much clutter in the background.
-                                                    Better to place the subject in the center.
-                
-                                                </ChakraText>
-                
-                                            </Box>
-                                    )
-                                ) : (
-                                    <Box position="relative"
-                                                 flex="0 0 calc(33% - 1rem)"
-                                                 w='100%'
-                                                 h='100%'
-                                                 borderRadius="md"
-                                                 overflow="hidden"
-                                                 mb="2rem"
-                                                 display='flex'
-                                                 flexDirection='column'
-                                                 alignItems='center'
-                                                 justifyContent='center'
-                                            >
-                                                <ChakraText fontSize='2xl' color={'blue.400'}  as='b' textAlign='center'>
-                                                    Result will be shown after the image has been uploaded.
-                
-                                                </ChakraText>
-                                                <ChakraText fontSize='lg' color={'#939597'}   textAlign='center'>
-                                                    <br/>
-                                                    <br/>
-                                                    Tips:
-                                                    <br/>
-                                                    PLease make sure no much clutter in the background.
-                                                    Better to place the subject in the center.
-                
-                                                </ChakraText>
-                
-                                            </Box>
-                                )}
-                            </>
-                        )}
+                    {loading ? (
+                        <CircularProgress isIndeterminate color='green.300' />
+                    ) : Array.isArray(result) && result.length >= 1 ? (
+                        result && (
 
-                    </Box>
+                            <Box
+
+                                flex="0 0 calc(33% - 1rem)"
+                                // height="500px"
+                                w='100%'
+                                // borderWidth="1px"
+                                borderRadius="md"
+                                overflow="auto"
+
+                                mb="2rem"
+                            >
+
+                                <ChakraText fontSize='2xl' color={'blue.400'}  as='b'>
+                                    Here are the asthma triggers detected in the picture:
+
+                                </ChakraText>
+                                <br/>
+                                <br/>
+                                <MyAccordion result={result} />
+
+
+
+
+                            </Box>
+                        )
+
+                    ): (
+                        result ? (
+                            <Box position="relative"
+                                 flex="0 0 calc(33% - 1rem)"
+                                 w='100%'
+                                 h='100%'
+                                 borderRadius="md"
+                                 overflow="hidden"
+                                 mb="2rem"
+                                 display='flex'
+                                 alignItems='center'
+                                 flexDirection='column'
+                                 justifyContent='center'
+                            >
+                                <ChakraText fontSize='2xl' color={'red.400'}  as='b' textAlign='center'>
+                                    {result.split('"')[3]}
+
+                                    <br/>
+                                    <br/>
+                                    Please try again with a different photo.
+                                    <br/>
+                                </ChakraText>
+                                <ChakraText fontSize='lg' color={'#939597'}   textAlign='center'>
+                                    <br/>
+                                    <br/>
+                                    Tips:
+                                    <br/>
+                                    PLease make sure no much clutter in the background.
+                                    Better to place the subject in the center.
+
+                                </ChakraText>
+
+
+
+                            </Box>
+
+
+                        ) : (
+                            <Box position="relative"
+                                 flex="0 0 calc(33% - 1rem)"
+                                 w='100%'
+                                 h='100%'
+                                 borderRadius="md"
+                                 overflow="hidden"
+                                 mb="2rem"
+                                 display='flex'
+                                 flexDirection='column'
+                                 alignItems='center'
+                                 justifyContent='center'
+                            >
+                                <ChakraText fontSize='2xl' color={'blue.400'}  as='b' textAlign='center'>
+                                    Result will be shown after the image has been uploaded.
+
+                                </ChakraText>
+                                <ChakraText fontSize='lg' color={'#939597'}   textAlign='center'>
+                                    <br/>
+                                    <br/>
+                                    Tips:
+                                    <br/>
+                                    PLease make sure no much clutter in the background.
+                                    Better to place the subject in the center.
+
+                                </ChakraText>
+
+                            </Box>
+
+                        )
+                    )}
+
+                </Box>
 
             </SimpleGrid>
-
+            {/*</Flex>*/}
 
         </>
-       
+
     );
-    
 }
