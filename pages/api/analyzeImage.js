@@ -35,13 +35,15 @@ export default async (req, res) => {
         const enrichedLabels = matchedLabels.map((label) => {
 
             const dbObj = dbNames.find((dbObj) => dbObj.name === label.description);
-            if (label.description === 'Wood') {
-                label.description = 'Wood - Mould';
-            } else if (label.description === 'Shower') {
+            // if (label.description === 'Wood') {
+            //     label.description = 'Wood - Mould';
+            // } else
+            if (label.description === 'Shower') {
                 label.description = 'Shower - Mould';
             } else if (label.description === 'Sinks') {
                 label.description = 'Sinks - Mould';
             }
+
             return {
                 name: label.description,
                 score: label.score,
