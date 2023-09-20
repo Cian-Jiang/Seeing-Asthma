@@ -127,7 +127,8 @@ export default function Upload() {
                     <br/>
                     <label htmlFor="image">Image:</label>
                     <input type="file" id="image" accept="image/*" onChange={handlePlantImageChangeAndUpload} />
-
+                    <br/>
+                    <br/>
                     <Box
                         id="plant_image_display"
                         w='100%'
