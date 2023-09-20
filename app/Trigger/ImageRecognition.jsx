@@ -57,8 +57,13 @@ function MyAccordion({ result }) {
                     {item.name === "Cat" && (
                         <Center mt={2}>
                             <Link href="/Trigger/PlantPet?tab=Cat">
-                                <Button colorScheme="blue" variant="outline">
-                                    Cat Image Recognition
+                                <Button colorScheme={'green'} 
+                                        bg={'cyan.400'}
+                                        px={8}
+                                        _hover={{
+                                            bg: 'cyan.500',
+                                        }}>
+                                            Cat Image Recognition
                                 </Button>
                             </Link>
                         </Center>
@@ -66,8 +71,13 @@ function MyAccordion({ result }) {
                     {item.name === "Dog" && (
                         <Center mt={2}>
                             <Link href="/Trigger/PlantPet?tab=Dog">
-                                <Button colorScheme="blue" variant="outline">
-                                    Dog Image Recognition
+                                <Button colorScheme={'green'} 
+                                        bg={'cyan.400'}
+                                        px={8}
+                                        _hover={{
+                                            bg: 'cyan.500',
+                                        }}>
+                                            Dog Image Recognition
                                 </Button>
                             </Link>
                         </Center>
@@ -75,8 +85,13 @@ function MyAccordion({ result }) {
                     {(item.name === "Plant" || item.name === "Flower" || item.name === "Tree") && (
                         <Center mt={2}>
                             <Link href="/Trigger/PlantPet?tab=Plant">
-                                <Button colorScheme="blue" variant="outline">
-                                    Plant Image Recognition
+                                <Button colorScheme={'green'} 
+                                        bg={'cyan.400'}
+                                        px={8}
+                                        _hover={{
+                                            bg: 'cyan.500',
+                                        }}>
+                                            Plant Image Recognition
                                 </Button>
                             </Link>
                         </Center>
@@ -195,39 +210,54 @@ export default function Upload() {
 
                 <Box position="relative"
                      p={3}
-                     height='550px'
+                     height='575px'
                      borderWidth='1px' borderRadius='lg' overflow='hidden'
                 >
-
-                    <ChakraText fontSize='3xl' color={'blue.400'}  as='b'>
-                        General  Image Recognition
+                    
+                    <Flex direction="column" align="center" justify="center" h="100%">
+                        <ChakraText fontSize='3xl' color={'blue.400'}  as='b' textAlign='center'>
+                            General  Image Recognition
+                            <br/>
+                        </ChakraText>
                         <br/>
-                    </ChakraText>
-                    <br/>
-                    <label htmlFor="image">Image:</label>
-                    <input type="file" id="image" accept="image/*" onChange={handleImageChangeAndUpload} />
-                    <br/>
-                    <br/>
-                    <Box
-                        id="image_display"
-                        w='100%'
-                        h='300px'
-                        borderWidth="1px"
-                        borderColor="black"
-                        backgroundPosition="center"
-                        backgroundSize="contain"
-                        backgroundRepeat="no-repeat"
-                        backgroundImage={hasUploadedImage ? `url(${image})` : 'url(/2.png)'}
+                        <div>
+                            <label htmlFor="image">Image: </label>
+                            <input type="file" id="image" accept="image/*" onChange={handleImageChangeAndUpload} />
+                        </div>
+                        
+                        <br/>
+                        <Box
+                            id="image_display"
+                            w='100%'
+                            h='300px'
+                            borderWidth="0px"
+                            borderColor="none"
+                            backgroundPosition="center"
+                            backgroundSize="contain"
+                            backgroundRepeat="no-repeat"
+                            backgroundImage={hasUploadedImage ? `url(${image})` : 'url(/2.png)'}
 
-                    >
+                        >
 
-                    </Box>
-                    <br/>
-                    <form onSubmit={handleSubmit}>
+                        </Box>
+                        <br/>
+                        <form onSubmit={handleSubmit}>
+                            <Center>
+                                <Button colorScheme={'green'}
+                                        bg={'cyan.400'}
+                                        px={8}
+                                        _hover={{
+                                            bg: 'cyan.500',
+                                        }}
+                                        type="submit">
+                                    Submit
+                                </Button>
+                            </Center>
+                        </form>
 
-                        <Button type="submit">Submit</Button>
-                    </form>
+                    </Flex>
 
+                    
 
 
                 </Box>
@@ -258,7 +288,7 @@ export default function Upload() {
                                 mb="2rem"
                             >
 
-                                <ChakraText fontSize='2xl' color={'blue.400'}  as='b'>
+                                <ChakraText fontSize='2xl' color={'blue.400'}  as='b' textAlign='center'>
                                     Here are the asthma triggers detected in the picture:
 
                                 </ChakraText>
@@ -299,7 +329,7 @@ export default function Upload() {
                                     <br/>
                                     Tips:
                                     <br/>
-                                    PLease make sure no much clutter in the background.
+                                    Please make sure no much clutter in the background.
                                     Better to place the subject in the center.
 
                                 </ChakraText>
@@ -331,7 +361,7 @@ export default function Upload() {
                                     <br/>
                                     Tips:
                                     <br/>
-                                    PLease make sure no much clutter in the background.
+                                    Please make sure no much clutter in the background.
                                     Better to place the subject in the center.
 
                                 </ChakraText>

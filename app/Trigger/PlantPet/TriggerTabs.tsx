@@ -48,9 +48,9 @@ export default function TriggerTabs() {
                     <Tab>Cat Trigger</Tab>
                     <Tab>Dog Trigger</Tab>
                 </TabList>
-                <br/>
+                
                 <Divider />
-                <br/>
+                
                 <TabPanels>
                     <TabPanel>
                       <PlantImage/>

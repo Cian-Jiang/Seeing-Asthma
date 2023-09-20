@@ -52,15 +52,15 @@ export default function PlantHeroSection() {
           <br/>
 
           <Text color={'gray.500'}>
-          Although a plant or pet may be considered hypoallergenic,this also&nbsp;
+          Although a plant or pet may be considered hypoallergenic, this also&nbsp;
               <Text color='tomato' as='b' fontSize='xl'>
                   doesn`t mean they are safe for you personally.
               </Text>
               <br/>
               Before taking home a pet or plant, consider seeing an allergist to rule out all breeds you may be more sensitive to.
           </Text>
-          <br/>
-          <br/>
+          
+          
       </Box>
 
   )

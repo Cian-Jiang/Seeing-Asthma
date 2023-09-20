@@ -63,10 +63,10 @@ export default function Upload() {
             setResult(data);
 
             if (data.safe === "yes") {
-                setTxt("Congratulations, that’s a hypoallergenic plant!");
+                setTxt("Congratulations, that’s a Hypoallergenic Plant!");
                 setBgColor("#A0DAA9");
             } else {
-                setTxt("Sorry, this is not a hypoallergenic plant!");
+                setTxt("Sorry, that's not a Hypoallergenic Plant!");
                 setBgColor("tomato");
             }
 
@@ -116,7 +116,7 @@ export default function Upload() {
 
                 <Box position="relative"
                      p={3}
-                     height='550px'
+                     height='575px'
                      borderWidth='1px' borderRadius='lg' overflow='hidden'
                 >
 
@@ -125,7 +125,7 @@ export default function Upload() {
                         <br/>
                     </ChakraText>
                     <br/>
-                    <label htmlFor="image">Image:</label>
+                    <label htmlFor="image">Image: </label>
                     <input type="file" id="image" accept="image/*" onChange={handlePlantImageChangeAndUpload} />
                     <br/>
                     <br/>
@@ -133,10 +133,10 @@ export default function Upload() {
                         id="plant_image_display"
                         w='100%'
                         h='300px'
-                        borderWidth="1px"
-                        borderColor="black"
+                        borderWidth="0px"
+                        borderColor="none"
                         backgroundPosition="center"
-                        backgroundSize="cover"
+                        backgroundSize="contain"
                         backgroundRepeat="no-repeat"
                         backgroundImage={hasUploadedImage ? `url(${image})` : 'url(/2.png)'}
 
@@ -146,7 +146,15 @@ export default function Upload() {
                     <br/>
                     <form onSubmit={handleSubmit}>
 
-                        <Button type="submit">Submit</Button>
+                        <Button colorScheme={'green'} 
+                                bg={'cyan.400'}
+                                px={8}
+                                _hover={{
+                                    bg: 'cyan.500',
+                                }}
+                                type = 'Submit'>
+                                    Submit
+                        </Button>
                     </form>
 
 
@@ -197,7 +205,25 @@ export default function Upload() {
                                         <ChakraText fontWeight="bold" textAlign="center" mb="2">
                                             {result.name}
                                         </ChakraText>
-                                        <Button onClick={() => { setOpenModalId(result.name); onOpen(); }}>More info</Button>
+
+                                        <Button colorScheme={'green'} 
+                                                bg={'cyan.400'}
+                                                px={8}
+                                                _hover={{
+                                                    bg: 'cyan.500',
+                                                }}
+                                                type = 'Submit'>
+                                            Submit
+                                        </Button>
+
+                                        <Button colorScheme={'green'} 
+                                                bg={'cyan.400'}
+                                                _hover={{
+                                                    bg: 'cyan.500',
+                                                }}
+                                                onClick={() => { setOpenModalId(result.name); onOpen(); }}>
+                                            More info
+                                        </Button>
                                         <Modal isOpen={isOpen && openModalId === result.name} onClose={() => { setOpenModalId(null); onClose(); }}>
 
                                             <ModalOverlay />
@@ -206,7 +232,12 @@ export default function Upload() {
                                                 <ModalCloseButton />
                                                 <ModalBody>{result.description}</ModalBody>
                                                 <ModalFooter>
-                                                    <Button colorScheme="blue" mr={3} onClick={onClose}>
+                                                    <Button colorScheme={'green'} 
+                                                            bg={'cyan.400'}
+                                                            _hover={{
+                                                                bg: 'cyan.500',
+                                                            }} 
+                                                            onClick={onClose}>
                                                         Close
                                                     </Button>
                                                 </ModalFooter>
@@ -242,7 +273,7 @@ export default function Upload() {
                                         <br/>
                                         Tips:
                                         <br/>
-                                        PLease make sure no much clutter in the background.
+                                        Please make sure no much clutter in the background.
                                         Better to place the subject in the center.
 
                                     </ChakraText>
@@ -274,7 +305,7 @@ export default function Upload() {
                                         <br/>
                                         Tips:
                                         <br/>
-                                        PLease make sure no much clutter in the background.
+                                        Please make sure no much clutter in the background.
                                         Better to place the subject in the center.
 
                                     </ChakraText>
