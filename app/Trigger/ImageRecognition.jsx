@@ -29,10 +29,11 @@ function MyAccordion({ result }) {
     // console.log(result)
 
     useEffect(() => {
-        const shouldShowButton = result.some(item => ['Dog', 'Flower', 'Cat', 'Plant', 'Tree'].includes(item.name));
+        const shouldShowButton = result.some(item => ['Cat', 'Dog', 'Flower', 'Plant', 'Tree'].includes(item.name));
         setShowButton(shouldShowButton);
     }, [result]);
     const bgColor = useColorModeValue('blue.50', 'blue.900');
+    
 
     // console.log(result)
     // console.log()
@@ -40,21 +41,50 @@ function MyAccordion({ result }) {
         <div>
 
             <Accordion defaultIndex={[0]} allowMultiple>
-                {Array.isArray(result) && result.map((item, index) => (
-                    <AccordionItem key={index}>
-                        <h2>
-                            <AccordionButton>
-                                <Box as="span" flex="1" textAlign="left" color={'blue.400'} fontSize="16px" fontWeight="bold">
-                                    {item.name}
-                                </Box>
-                                <AccordionIcon />
-                            </AccordionButton>
-                        </h2>
-                        <AccordionPanel pb={4}>
-                            {item.objdes}
-                        </AccordionPanel>
-                    </AccordionItem>
-                ))}
+            {Array.isArray(result) && result.map((item, index) => (
+                <AccordionItem key={index}>
+                    <h2>
+                        <AccordionButton>
+                            <Box as="span" flex="1" textAlign="left" color={'blue.400'} fontSize="16px" fontWeight="bold">
+                                {item.name}
+                            </Box>
+                            <AccordionIcon />
+                        </AccordionButton>
+                    </h2>
+                    <AccordionPanel pb={4}>
+                        {item.objdes}
+                    </AccordionPanel>
+                    {item.name === "Cat" && (
+                        <Center mt={2}>
+                            <Link href="/Trigger/PlantPet?tab=Cat">
+                                <Button colorScheme="blue" variant="outline">
+                                    Cat Image Recognition
+                                </Button>
+                            </Link>
+                        </Center>
+                    )}
+                    {item.name === "Dog" && (
+                        <Center mt={2}>
+                            <Link href="/Trigger/PlantPet?tab=Dog">
+                                <Button colorScheme="blue" variant="outline">
+                                    Dog Image Recognition
+                                </Button>
+                            </Link>
+                        </Center>
+                    )}
+                    {(item.name === "Plant" || item.name === "Flower" || item.name === "Tree") && (
+                        <Center mt={2}>
+                            <Link href="/Trigger/PlantPet?tab=Plant">
+                                <Button colorScheme="blue" variant="outline">
+                                    Plant Image Recognition
+                                </Button>
+                            </Link>
+                        </Center>
+                    )}
+                    {/* Add similar conditionals for other categories if necessary */}
+                </AccordionItem>
+            ))}
+
             </Accordion>
             <br/>
             {showButton && (
@@ -79,13 +109,13 @@ function MyAccordion({ result }) {
 
 export default function Upload() {
     const [image, setImage] = useState(null);
-    const [type, setType] = useState('Plant');
+    //const [type, setType] = useState('Plant');
     const [result, setResult] = useState(null);
     const [loading, setLoading] = useState(false);
     const [hasUploadedImage, setHasUploadedImage] = useState(false);
     const toast = useToast();
-    const { isOpen, onOpen, onClose } = useDisclosure();
-    const [openModalId, setOpenModalId] = useState("");
+    //const { isOpen, onOpen, onClose } = useDisclosure();
+    //const [openModalId, setOpenModalId] = useState("");
     // const [txt, setTxt] = useState("");
     const [bgColor, setBgColor] = useState("");
 
@@ -176,7 +206,8 @@ export default function Upload() {
                     <br/>
                     <label htmlFor="image">Image:</label>
                     <input type="file" id="image" accept="image/*" onChange={handleImageChangeAndUpload} />
-
+                    <br/>
+                    <br/>
                     <Box
                         id="image_display"
                         w='100%'
@@ -184,7 +215,7 @@ export default function Upload() {
                         borderWidth="1px"
                         borderColor="black"
                         backgroundPosition="center"
-                        backgroundSize="cover"
+                        backgroundSize="contain"
                         backgroundRepeat="no-repeat"
                         backgroundImage={hasUploadedImage ? `url(${image})` : 'url(/2.png)'}
 
