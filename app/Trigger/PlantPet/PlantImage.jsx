@@ -206,15 +206,7 @@ export default function Upload() {
                                             {result.name}
                                         </ChakraText>
 
-                                        <Button colorScheme={'green'} 
-                                                bg={'cyan.400'}
-                                                px={8}
-                                                _hover={{
-                                                    bg: 'cyan.500',
-                                                }}
-                                                type = 'Submit'>
-                                            Submit
-                                        </Button>
+                                        
 
                                         <Button colorScheme={'green'} 
                                                 bg={'cyan.400'}
