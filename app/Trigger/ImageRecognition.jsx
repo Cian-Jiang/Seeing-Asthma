@@ -53,8 +53,7 @@ function MyAccordion({ result }) {
                     </h2>
                     <AccordionPanel pb={4}>
                         {item.objdes}
-                    </AccordionPanel>
-                    {item.name === "Cat" && (
+                        {item.name === "Cat" && (
                         <Center mt={2}>
                             <Link href="/Trigger/PlantPet?tab=Cat">
                                 <Button colorScheme={'green'} 
@@ -97,6 +96,8 @@ function MyAccordion({ result }) {
                         </Center>
                     )}
                     {/* Add similar conditionals for other categories if necessary */}
+                    </AccordionPanel>
+                    
                 </AccordionItem>
             ))}
 
