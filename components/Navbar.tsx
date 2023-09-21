@@ -72,7 +72,7 @@ export default function Navbar() {
 }
 
 const DesktopNav = () => {
-  const [selectedNavItem, setSelectedNavItem] = useState('Home');
+  const [selectedNavItem, setSelectedNavItem] = useState('');
   const linkColor = useColorModeValue('gray.600', 'gray.200')
   const linkHoverColor = useColorModeValue('gray.800', 'white')
   const popoverContentBgColor = useColorModeValue('white', 'gray.800')
@@ -157,7 +157,7 @@ const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
 }
 
 const MobileNav = () => {
-  const [selectedNavItem, setSelectedNavItem] = useState('Home');
+  const [selectedNavItem, setSelectedNavItem] = useState('');
   return (
       <Stack bg={useColorModeValue('white', 'gray.800')} p={4} display={{ md: 'none' }}>
         {NAV_ITEMS.map((navItem) => (

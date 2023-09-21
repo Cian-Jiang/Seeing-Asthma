@@ -53,50 +53,49 @@ function MyAccordion({ result }) {
                     </h2>
                     <AccordionPanel pb={4}>
                         {item.objdes}
+                        {item.name === "Cat" && (
+                            <Center mt={2}>
+                                <Link href="/Trigger/PlantPet?tab=Cat">
+                                    <Button colorScheme={'green'} 
+                                            bg={'cyan.400'}
+                                            px={8}
+                                            _hover={{
+                                                bg: 'cyan.500',
+                                            }}>
+                                                Cat Image Recognition
+                                    </Button>
+                                </Link>
+                            </Center>
+                        )}
+                        {item.name === "Dog" && (
+                            <Center mt={2}>
+                                <Link href="/Trigger/PlantPet?tab=Dog">
+                                    <Button colorScheme={'green'} 
+                                            bg={'cyan.400'}
+                                            px={8}
+                                            _hover={{
+                                                bg: 'cyan.500',
+                                            }}>
+                                                Dog Image Recognition
+                                    </Button>
+                                </Link>
+                            </Center>
+                        )}
+                        {(item.name === "Plant" || item.name === "Flower" || item.name === "Tree") && (
+                            <Center mt={2}>
+                                <Link href="/Trigger/PlantPet?tab=Plant">
+                                    <Button colorScheme={'green'} 
+                                            bg={'cyan.400'}
+                                            px={8}
+                                            _hover={{
+                                                bg: 'cyan.500',
+                                            }}>
+                                                Plant Image Recognition
+                                    </Button>
+                                </Link>
+                            </Center>
+                        )}
                     </AccordionPanel>
-                    {item.name === "Cat" && (
-                        <Center mt={2}>
-                            <Link href="/Trigger/PlantPet?tab=Cat">
-                                <Button colorScheme={'green'} 
-                                        bg={'cyan.400'}
-                                        px={8}
-                                        _hover={{
-                                            bg: 'cyan.500',
-                                        }}>
-                                            Cat Image Recognition
-                                </Button>
-                            </Link>
-                        </Center>
-                    )}
-                    {item.name === "Dog" && (
-                        <Center mt={2}>
-                            <Link href="/Trigger/PlantPet?tab=Dog">
-                                <Button colorScheme={'green'} 
-                                        bg={'cyan.400'}
-                                        px={8}
-                                        _hover={{
-                                            bg: 'cyan.500',
-                                        }}>
-                                            Dog Image Recognition
-                                </Button>
-                            </Link>
-                        </Center>
-                    )}
-                    {(item.name === "Plant" || item.name === "Flower" || item.name === "Tree") && (
-                        <Center mt={2}>
-                            <Link href="/Trigger/PlantPet?tab=Plant">
-                                <Button colorScheme={'green'} 
-                                        bg={'cyan.400'}
-                                        px={8}
-                                        _hover={{
-                                            bg: 'cyan.500',
-                                        }}>
-                                            Plant Image Recognition
-                                </Button>
-                            </Link>
-                        </Center>
-                    )}
-                    {/* Add similar conditionals for other categories if necessary */}
                 </AccordionItem>
             ))}
 
