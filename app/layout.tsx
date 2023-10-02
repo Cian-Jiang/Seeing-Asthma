@@ -1,5 +1,6 @@
 "use client"
-import { ChakraProvider, CSSReset } from '@chakra-ui/react';
+import { ChakraProvider, CSSReset,   } from '@chakra-ui/react';
+
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import Navbar from '@/components/Navbar'
@@ -18,22 +19,26 @@ export default function RootLayout({
   return (
 
     <html lang="en">
+
     <head>
 
-      <link rel="shortcut icon" href="https://i.imgur.com/fW42vAv.png" />
+
       <title>Seeing Asthma</title>
+      <link rel="shortcut icon" href="https://i.imgur.com/fW42vAv.png" />
+
     </head>
 
       <body>
-
-        <ChakraProvider>
+      <ChakraProvider>
 
 
           <Navbar/>
-          
+
           {children}
           <ScrollToTopButton/>
-          </ChakraProvider></body>
+      </ChakraProvider>
+          </body>
+
     </html>
   )
 }
