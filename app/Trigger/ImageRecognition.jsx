@@ -290,7 +290,7 @@ export default function Upload() {
                             >
 
                                 <ChakraText fontSize='2xl' color={'blue.400'}  as='b' textAlign='center'>
-                                    Here are the asthma triggers detected in the picture:
+                                    Here are the potential asthma triggers detected in the picture:
 
                                 </ChakraText>
                                 <br/>
