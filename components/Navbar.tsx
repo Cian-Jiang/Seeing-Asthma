@@ -257,23 +257,6 @@ const NAV_ITEMS: Array<NavItem> = [
      
     ],
   },
-  {
-    label: 'Asthma Diet Management',
-    children: [
-      
-      {
-        label: 'Asthma Healthy Ingredients',
-        subLabel: 'Find healthy ingredients benefit your child',
-        href: '/Diet',
-      },
-      {
-        label: 'Cooking Recipe',
-        subLabel: 'Check cooking recipe and add it to your childs diet',
-        href: '/Diet/Cooking',
-      },
-     
-    ],
-  },
   
 
 ]
