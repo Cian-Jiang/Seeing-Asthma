@@ -23,7 +23,7 @@ export default function Home() {
     const [selectedIngredients, setSelectedIngredients] = useState([]);
     const [videos, setVideos] = useState([]);
 
-    const handleIngredientChange = (values: ((prevState: never[]) => never[]) | (string | number)[]) => {
+    const handleIngredientChange = (values) => {
         // @ts-ignore
         setSelectedIngredients(values);
     };
@@ -111,10 +111,7 @@ export default function Home() {
                                     <Text>{video.description}</Text>
                                 </Stack>
                             </CardBody>
-                            <Divider />
-                            <Button as="a" href={video.videoUrl} target="_blank">
-                                Watch Video
-                            </Button>
+                            
                         </LinkBox>
                     ))}
                 </Flex>
