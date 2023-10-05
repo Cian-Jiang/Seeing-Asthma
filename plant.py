@@ -11,6 +11,7 @@ from io import BytesIO
 import requests
 from werkzeug.utils import secure_filename
 
+
 app = Flask(__name__)
 CORS(app, expose_headers=["api_key"])
 app.config.from_object(Config)
@@ -102,7 +103,7 @@ def analyze_image(image_data):
             "requests": [
                 {
                     "image": {"content": img},
-                    "features": [{"type": "LABEL_DETECTION", "maxResults": 50}],
+                    "features": [{"type": "LABEL_DETECTION", "maxResults": 80}],
                 }
             ]
         }
@@ -112,10 +113,11 @@ def analyze_image(image_data):
         google_api_response = json.loads(google_vision_response.text)
 
         labels = google_api_response['responses'][0]['labelAnnotations']
-        filtered_labels = [label for label in labels if label['score'] > 0.6]
+        #print(labels)
+        filtered_labels = [label for label in labels if label['score'] > 0.5]
         label_info = [{"description": label["description"], "score": label["score"]} for label in filtered_labels]
 
-        print(label_info)
+        #print(label_info)
         return label_info
 
     except Exception as e:
@@ -171,6 +173,7 @@ def get_plant_info_from_db(plant_chinese_name, object_type):
         database=Config.DB_NAME
     )
     cursor = mydb.cursor()
+    print(object_type)
     if object_type == 'Cat':
         query = "SELECT name, objdes, imageurl, safe FROM Cat_new WHERE chinese_name=%s"
         cursor.execute(query, (plant_chinese_name,))
@@ -191,12 +194,12 @@ def get_plant_info_from_db(plant_chinese_name, object_type):
         else:
             return None
     else:
-        query = "SELECT name, objdes, imageurl FROM {} WHERE chinese_name=%s".format(object_type)
+        query = "SELECT name, objdes, imageurl, safe FROM Plant_new WHERE chinese_name=%s"
         cursor.execute(query, (plant_chinese_name,))
         result = cursor.fetchone()
         if result:
-            name, des, imageurl = result  # Unpacked tuple
-            return {"name": name, "description": des, "imageurl": imageurl}
+            name, des, imageurl, safe = result  # Unpacked tuple
+            return {"name": name, "description": des, "imageurl": imageurl,  "safe": safe}
         else:
             return None
 
@@ -341,6 +344,289 @@ class GeneralImageRecognition(Resource):
         else:
             return {"error": "No image provided"}, 400
 
+
+
+
+
+
+
+
+def get_bound(image_data, object_type):
+    try:
+
+        img = base64.b64encode(image_data).decode("utf-8")  # Decode bytes to UTF-8 string
+
+        # Google Cloud Vision API
+        GOOGLE_CLOUD_VISION_API_KEY = Config.GOOGLE_CLOUD_VISION_API_KEY
+        google_vision_url = f"https://vision.googleapis.com/v1/images:annotate?key={GOOGLE_CLOUD_VISION_API_KEY}"
+
+        # Prepare the request payload
+        google_vision_payload = {
+            "requests": [
+                {
+                    "image": {"content": img},
+                    "features": [{"type": "OBJECT_LOCALIZATION", "maxResults": 50}],
+                }
+            ]
+        }
+
+        # Perform Google Vision API call
+        google_vision_response = requests.post(google_vision_url, json=google_vision_payload)
+        google_api_response = json.loads(google_vision_response.text)
+
+        bounding_polys = []
+        object_type = ["Cat", "Dog", "Plant"]
+
+        for obj in google_api_response['responses'][0]['localizedObjectAnnotations']:
+
+            if obj['name'] in object_type:
+
+                bounding_polys.append([obj['name'], obj['boundingPoly']['normalizedVertices']])
+
+        return bounding_polys
+
+
+
+    except Exception as e:
+        print(f"Error analyzing image: {e}")
+        return None
+
+@api.route('/all_in_one')
+class test(Resource):
+
+    def post(self):
+
+        api_key = request.headers.get('api_key')
+        if api_key is None:
+            api_key = request.form.get('key')
+        if api_key is None:
+            api_key = request.headers.get('API-Key')
+
+
+        if not validate_api_key(api_key):
+            return {"error": "Invalid API Key"}, 401
+
+
+        image_file = request.files.get('image')
+        if image_file:
+            # 检查文件类型
+            if not valid_image(image_file):
+                return {"error": "File verification failed. Supported formats: PNG, JPG, JPEG. "
+                                 "Please make sure the file size does not exceed 3.5M."}, 400
+
+            image_file.seek(0)
+            image_data = image_file.read()
+            recognized_labals = analyze_image(image_data)
+            iteminfo = get_info_from_db(recognized_labals)
+
+            if not iteminfo:
+                return {"error": "Sorry, no asthma trigger found in the picture."}, 404
+
+            search_terms = ["Cat", "Dog", "Plant"]
+            object_type = []
+            for item in iteminfo:
+                for term in search_terms:
+                    if term.lower() in item['name'].lower():
+                        object_type.append(term)
+
+
+            bounding_polys = get_bound(image_data, object_type)
+            obj = crop_and_encode(image_data, bounding_polys)
+            print(bounding_polys)
+
+
+            if iteminfo:
+                return {"iteminfo": iteminfo,
+                         "obj": obj
+                        }, 200  # Directly return the dictionary
+
+
+            else:
+                return {"error": "Sorry, no asthma trigger found in the picture."}, 404
+        else:
+            return {"error": "No image provided"}, 400
+
+
+def crop_and_encode(image_data, bounding_polys):
+    # Load the image from image_data
+    image = Image.open(BytesIO(image_data))
+    width, height = image.size
+
+    objs = []
+    for obj in bounding_polys:
+        print(obj)
+        # Extract coordinates from bounding_poly
+        min_x = min(vertex['x'] for vertex in obj[1])
+        max_x = max(vertex['x'] for vertex in obj[1])
+        min_y = min(vertex['y'] for vertex in obj[1])
+        max_y = max(vertex['y'] for vertex in obj[1])
+
+        # Calculate pixel coordinates
+        left, upper, right, lower = min_x * width, min_y * height, max_x * width, max_y * height
+
+        # Crop the image
+        cropped_image = image.crop((left, upper, right, lower))
+
+
+
+        # # Convert the cropped image to base64
+        buffered = BytesIO()
+        cropped_image.save(buffered, format="PNG")
+
+        recognized_name = baidu_image_recognition(buffered.getvalue(), obj[0])
+        print(recognized_name)
+        obj_info = get_plant_info_from_db(recognized_name, obj[0])
+        print(obj_info)
+        if obj_info:
+            obj_info['image'] = base64.b64encode(buffered.getvalue()).decode("utf-8")
+            obj[1] = obj_info
+            objs.append(obj_info)
+
+
+
+
+    return objs
+
+
+@api.route('/recipe_video')
+class GetYoutubeVideo(Resource):
+    @api.doc(params={
+        'api_key': {'description': 'The API key for authorization', 'in': 'header', 'type': 'string', 'required': True},
+        'ingredients': {'description': 'The ingredients to search for in the recipe videos', 'in': 'formData', 'type': 'string', 'required': True}
+    })
+    def post(self):
+        """
+        Fetch YouTube videos based on recipe ingredients.
+        This endpoint returns a list of YouTube video information based on the provided recipe ingredients.
+
+        :returns: A list of dictionaries containing video title, description, thumbnail URL, and video URL.
+        :rtype: list
+        """
+        api_key = request.headers.get('api_key')
+        if api_key is None:
+            api_key = request.form.get('key')
+        if api_key is None:
+            api_key = request.headers.get('API-Key')
+
+
+        if not validate_api_key(api_key):
+            return {"error": "Invalid API Key"}, 401
+
+        query = ' recipe,' + request.form.get('ingredients')
+
+
+        GOOGLE_CLOUD_API_KEY = Config.GOOGLE_CLOUD_VISION_API_KEY
+
+        google_vision_url = f"https://youtube.googleapis.com/youtube/v3/search?key={GOOGLE_CLOUD_API_KEY}&part=snippet&q={query}&type=video"
+
+
+        # Perform Google Vision API call
+        response = requests.get(google_vision_url)
+        if response.status_code != 200:
+            return {"error": "YouTube API request failed"}, response.status_code
+        google_api_response = json.loads(response.text)
+        print(google_api_response)
+
+        video_info_list = []
+
+
+        for item in google_api_response.get('items', []):
+
+            title = item['snippet']['title']
+            description = item['snippet']['description']
+            thumbnail_url = item['snippet']['thumbnails']['high']['url']
+            video_url = f"https://www.youtube.com/watch?v={item['id']['videoId']}"
+
+
+            video_info = {
+                "title": title,
+                "description": description,
+                "thumbnailUrl": thumbnail_url,
+                "videoUrl": video_url
+            }
+
+            # 将当前视频的信息添加到列表中
+            video_info_list.append(video_info)
+
+        return {"videos": video_info_list}, 200
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@api.route('/image_test')
+class ImageTest(Resource):
+    @api.doc(params={'api_key': 'Your API key', 'type': 'Type of object to recognize (Plant, Cat, Dog)', 'image': 'The image file'})
+
+    def post(self):
+        # print(request.headers)
+        # print(request.form)
+        api_key = request.headers.get('api_key')
+        # print(f"API Key: {api_key}")
+        if api_key is None:
+            api_key = request.form.get('key')
+        if api_key is None:
+            api_key = request.headers.get('API-Key')
+        object_type = request.form.get('type')
+        # print(f"API Key: {api_key}, Object Type: {object_type}")
+
+        if not validate_api_key(api_key):
+            return {"error": "Invalid API Key"}, 401
+
+        if object_type not in ['Plant', 'Cat', 'Dog']:
+            return {"error": "Invalid type provided", "status": "failure"}, 400
+
+        # print(object_type)
+        image_file = request.files.get('image')
+
+        if image_file:
+
+            if not valid_image(image_file):
+                return {"error": "File verification failed. Supported formats: PNG, JPG, JPEG. "
+                                         "Please make sure the file size does not exceed 3.5M."}, 400
+
+            # 重新定位文件指针，以便再次读取文件内容
+            image_file.seek(0)
+            image_data = image_file.read()
+
+            recognized_name = baidu_image_recognition(image_data, object_type)
+            print(f"Recognized Name: {recognized_name}")
+
+            if recognized_name == "非动物":
+                return {"error": "No animal found in the picture. Please check your images and try again."}, 404
+            elif recognized_name == "非植物":
+                return {"error": "No plant found in the picture. Please check your images and try again."}, 404
+
+            # plant_info = get_plant_info_from_db(recognized_name, object_type)
+            # print(f"Plant Info: {plant_info}")
+
+            if recognized_name:
+                return recognized_name, 200  # Directly return the dictionary
+
+            else:
+                if object_type == 'Plant':
+                    return {"error": "No high-risk plants were found."}, 404
+                elif object_type == 'Cat':
+                    return {"error": "Sorry, our model has not yet collected data for this breed."}, 404
+                else:
+                    return {"error": "Sorry, our model has not yet collected data for this breed."}, 404
+        else:
+            return {"error": "No image provided"}, 400
 
 
 

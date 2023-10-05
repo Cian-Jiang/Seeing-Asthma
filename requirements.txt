@@ -1,5 +1,5 @@
 mysql-connector == 2.2.9
-pillow
+pillow == 10.0.0
 flask == 2.2.5
 flask_restx == 1.1.0
 pydantic == 2.1.1
