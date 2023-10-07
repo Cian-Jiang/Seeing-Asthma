@@ -22,6 +22,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/Trigger/ImageRecognition.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/Trigger/ImageRecognition.jsx", "app/Diet/Cooking/title.jsx"],
   "exclude": ["node_modules"]
 }

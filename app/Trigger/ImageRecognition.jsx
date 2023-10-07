@@ -21,90 +21,48 @@ import {
     AccordionPanel,
     AccordionIcon,
     Link,
+    Checkbox,
 } from "@chakra-ui/react";
 import { useDisclosure,  Text as ChakraText ,  Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, useColorModeValue, Divider, Center } from "@chakra-ui/react";
 import { useEffect } from 'react';
 function MyAccordion({ result }) {
     const [showButton, setShowButton] = useState(false);
+    
+
+    const items = result.iteminfo;
+    const objs = result.obj;
     // console.log(result)
 
     useEffect(() => {
-        const shouldShowButton = result.some(item => ['Cat', 'Dog', 'Flower', 'Plant', 'Tree'].includes(item.name));
+        const shouldShowButton = items.some(item => ['Cat', 'Dog', 'Flower', 'Plant', 'Tree'].includes(item.name));
         setShowButton(shouldShowButton);
-    }, [result]);
+    }, [items]);
     const bgColor = useColorModeValue('blue.50', 'blue.900');
     
 
     // console.log(result)
     // console.log()
     return (
-        <div>
-
-            <Accordion defaultIndex={[0]} allowMultiple>
-            {Array.isArray(result) && result.map((item, index) => (
-                <AccordionItem key={index}>
-                    <h2>
-                        <AccordionButton>
-                            <Box as="span" flex="1" textAlign="left" color={'blue.400'} fontSize="16px" fontWeight="bold">
-                                {item.name}
-                            </Box>
-                            <AccordionIcon />
-                        </AccordionButton>
-                    </h2>
-                    <AccordionPanel pb={4}>
-                        {item.objdes}
-                        {item.name === "Cat" && (
-                        <Center mt={2}>
-                            <Link href="/Trigger/PlantPet?tab=Cat">
-                                <Button colorScheme={'green'} 
-                                        bg={'cyan.400'}
-                                        px={8}
-                                        _hover={{
-                                            bg: 'cyan.500',
-                                        }}>
-                                            Cat Image Recognition
-                                </Button>
-                            </Link>
-                        </Center>
-                    )}
-                    {item.name === "Dog" && (
-                        <Center mt={2}>
-                            <Link href="/Trigger/PlantPet?tab=Dog">
-                                <Button colorScheme={'green'} 
-                                        bg={'cyan.400'}
-                                        px={8}
-                                        _hover={{
-                                            bg: 'cyan.500',
-                                        }}>
-                                            Dog Image Recognition
-                                </Button>
-                            </Link>
-                        </Center>
-                    )}
-                    {(item.name === "Plant" || item.name === "Flower" || item.name === "Tree") && (
-                        <Center mt={2}>
-                            <Link href="/Trigger/PlantPet?tab=Plant">
-                                <Button colorScheme={'green'} 
-                                        bg={'cyan.400'}
-                                        px={8}
-                                        _hover={{
-                                            bg: 'cyan.500',
-                                        }}>
-                                            Plant Image Recognition
-                                </Button>
-                            </Link>
-                        </Center>
-                    )}
-                    {/* Add similar conditionals for other categories if necessary */}
-                    </AccordionPanel>
-                    
-                </AccordionItem>
-            ))}
-
+        <Box>
+           
+                <><Accordion defaultIndex={[0]} allowMultiple>
+                {items.map((item, index) => (
+                    <AccordionItem key={index}>
+                        <h2>
+                            <AccordionButton>
+                                <Box flex="1" textAlign="left" color={'blue.400'} fontSize="16px" fontWeight="bold">
+                                    {item.name}
+                                </Box>
+                                <AccordionIcon />
+                            </AccordionButton>
+                        </h2>
+                        <AccordionPanel pb={4}>
+                            <Text mb={2}>{item.objdes}</Text>
+                        </AccordionPanel>
+                    </AccordionItem>
+                ))}
             </Accordion>
-            <br/>
-            {showButton && (
-                <Center mt={4}>
+            <Center mt={4}>
                     <Link href="/Trigger/PlantPet">
                         <Text
                             textTransform={'uppercase'}
@@ -118,8 +76,47 @@ function MyAccordion({ result }) {
                         </Text>
                     </Link>
                 </Center>
-            )}
-        </div>
+            </>
+
+
+           
+        </Box>
+    );
+}
+
+function ObjDetails({ objs }) {
+    return (
+        <Box mt={4}>
+            <ChakraText fontSize='2xl' color={'blue.400'} as='b' textAlign='center'>
+                Object Details:
+            </ChakraText>
+            <br/>
+            {objs.length === 0 ? (
+                <Flex alignItems="center" justifyContent="center" height="250px">
+                    <ChakraText fontSize='2xl' color={'gray.400'}  as='b' textAlign='center'>No object details have been shown. Please try another picture.</ChakraText>
+                </Flex>
+                
+            ) : ( <Accordion defaultIndex={[0]} allowMultiple>
+                {objs.map((obj, index) => (
+                    <AccordionItem key={index}>
+                        <h2>
+                            <AccordionButton>
+                                <Box flex="1" textAlign="left" color={'blue.400'} fontSize="16px" fontWeight="bold">
+                                {obj.name}
+                                </Box>
+                                <AccordionIcon />
+                            </AccordionButton>
+                        </h2>
+                        <AccordionPanel pb={4}>
+                            <Text mb={2}>{obj.description}</Text>
+                            <Text>Safe: {obj.safe}</Text>
+                            <img src={`data:image/png;base64,${obj.image}`}></img>
+                        </AccordionPanel>
+                    </AccordionItem>
+                ))}
+            </Accordion>)}
+           
+        </Box>
     );
 }
 
@@ -129,6 +126,7 @@ export default function Upload() {
     const [result, setResult] = useState(null);
     const [loading, setLoading] = useState(false);
     const [hasUploadedImage, setHasUploadedImage] = useState(false);
+    const [showObjDetails, setShowObjDetails] = useState(true);
     const toast = useToast();
     //const { isOpen, onOpen, onClose } = useDisclosure();
     //const [openModalId, setOpenModalId] = useState("");
@@ -152,7 +150,7 @@ export default function Upload() {
         formData.append('image', image);
 
 
-        const response = await fetch('https://api.healthcoder.live/image_general', {
+        const response = await fetch('https://api.healthcoder.live/all_in_one', {
             method: 'POST',
             // // headers: {
             //     'api_key': process.env.API_KEY, // Replace with your actual API key
@@ -255,6 +253,13 @@ export default function Upload() {
                                 </Button>
                             </Center>
                         </form>
+                        <Checkbox 
+                            isChecked={showObjDetails}
+                            onChange={(e) => setShowObjDetails(e.target.checked)}
+                            mt={2}
+                        >
+                            Display Object Details
+                        </Checkbox>
 
                     </Flex>
 
@@ -274,8 +279,9 @@ export default function Upload() {
                 >
                     {loading ? (
                         <CircularProgress isIndeterminate color='green.300' />
-                    ) : Array.isArray(result) && result.length >= 1 ? (
-                        result && (
+                    ) : (result && result.iteminfo && Array.isArray(result.iteminfo) && result.obj) ? (
+
+                        (
 
                             <Box
 
@@ -296,10 +302,7 @@ export default function Upload() {
                                 <br/>
                                 <br/>
                                 <MyAccordion result={result} />
-
-
-
-
+                                
                             </Box>
                         )
 
@@ -373,6 +376,11 @@ export default function Upload() {
                     )}
 
                 </Box>
+                {result && result.obj && showObjDetails &&(
+                <Box position="relative" p={3} height='550px' borderWidth='1px' borderRadius='lg' overflow='auto'>
+                    <ObjDetails objs={result.obj} />
+                </Box>
+            )}
 
             </SimpleGrid>
             {/*</Flex>*/}
