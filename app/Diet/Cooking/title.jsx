@@ -73,7 +73,7 @@ export default function Home() {
             >
                
 
-                <Text style={{ fontSize: '35px'}} color={'blue.400'} >Alright, lets cook today!</Text>
+                <Text style={{ fontSize: '35px'}} color={'blue.400'} >Alright, let`s cook today!</Text>
                 <Text style={{ fontSize: '20px'}} color={'gray.500'}>🥘 First, choose the ingredients (you can click on the options below)</Text>
                 <br/>
                 <CheckboxGroup
@@ -109,7 +109,7 @@ export default function Home() {
                 </CheckboxGroup>
                 <br/>
                 <Button onClick={handleSubmit} isDisabled={selectedIngredients.length === 0}>
-                    🍲 Lets see the recipe combinations!</Button>
+                    🍲 Let`s see the recipe combinations!</Button>
             </Flex>
 
             <Flex wrap="wrap" justify="center" mt="6">

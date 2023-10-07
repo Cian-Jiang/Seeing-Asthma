@@ -268,7 +268,7 @@ const NAV_ITEMS: Array<NavItem> = [
       },
       {
         label: 'Cooking Recipe',
-        subLabel: 'Check cooking recipe and add it to your childs diet',
+        subLabel: 'Check cooking recipe and add it to your child`s diet',
         href: '/Diet/Cooking',
       },
      
