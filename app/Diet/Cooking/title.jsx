@@ -22,6 +22,7 @@ import { useState } from "react";
 export default function Home() {
     const [selectedIngredients, setSelectedIngredients] = useState([]);
     const [videos, setVideos] = useState([]);
+    const allIngredients = ["Potato", "Carrot", "Cauliflower", "pork", "Sausage"];
 
     const handleIngredientChange = (values) => {
         // @ts-ignore
@@ -43,6 +44,19 @@ export default function Home() {
         const data = await response.json();
         setVideos(data.videos);
     };
+    //https://blog.csdn.net/weixin_45664217/article/details/119895716
+    const handleRandomSelection = () => {
+        var randomIngredients = [];
+        
+        for (let i = 0; i < 3; i++) {
+            const randomIndex = Math.floor(Math.random() * allIngredients.length);
+            randomIngredients.push(allIngredients[randomIndex]);
+            allIngredients.splice(randomIndex, 1);
+        }
+    
+        setSelectedIngredients(randomIngredients);
+    };
+    
 
 
     return (
@@ -64,8 +78,11 @@ export default function Home() {
                 <br/>
                 <CheckboxGroup
                     onChange={(values) => handleIngredientChange(values)}
-                    defaultValue={selectedIngredients}
+                    value={selectedIngredients}
                 >
+                    <Button onClick={handleRandomSelection} mt={4}>
+                        🎲 Randomly Pick 3 Ingredients
+                    </Button>
                     <Flex>
                         <Text style={{ fontSize: '20px'}}>🥬 Vegetables</Text>
 
@@ -87,6 +104,7 @@ export default function Home() {
                     <Flex>
                         <Checkbox value="pork" color={'gray.500'}>🐷 pork</Checkbox>
                         <Checkbox value="Sausage" color={'gray.500'}>🌭Sausage</Checkbox>
+                        
                     </Flex>
                 </CheckboxGroup>
                 <br/>
