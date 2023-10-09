@@ -46,12 +46,12 @@ export default function PlantHeroSection() {
             </Text>
             <br />
             <Text as={'span'} color={'blue.400'}>
-              Asthma healthy ingredients
+            Asthma-Friendly Exercises
             </Text>
           </Heading>
           <br/>
           <Text color={'gray.500'}>
-          We are here to provide guidance about what nutritious foods are helpful for asthma
+          Remember: Always consult with a medical professional before undertaking any new exercise regimen to ensure safety and risk reduction.
           </Text>
           <br/>
           <br/>
