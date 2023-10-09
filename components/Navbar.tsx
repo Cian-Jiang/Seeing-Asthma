@@ -262,8 +262,8 @@ const NAV_ITEMS: Array<NavItem> = [
     children: [
       
       {
-        label: 'Asthma Healthy Ingredients',
-        subLabel: 'Find healthy ingredients benefit your child',
+        label: 'Asthma Healthy Exercises',
+        subLabel: 'Find healthy exercises benefit your child',
         href: '/Diet',
       },
       {
