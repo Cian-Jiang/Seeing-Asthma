@@ -22,7 +22,7 @@ import { useState } from "react";
 export default function Home() {
     const [selectedIngredients, setSelectedIngredients] = useState([]);
     const [videos, setVideos] = useState([]);
-    const allIngredients = ["Potato", "Carrot", "Cauliflower", "pork", "Sausage"];
+    const allIngredients = ["Potato", "Carrot", "Cauliflower", "pork", "Sausage", "Broccoli","Sweet potato","Carrot","Kale","Spinach","Salmon","Tuna","Herring","Diary","Eggs","Soy","Wheat", "Tomato", "Soy"];
 
     const handleIngredientChange = (values) => {
         // @ts-ignore
@@ -84,28 +84,60 @@ export default function Home() {
                         🎲 Randomly Pick 3 Ingredients
                     </Button>
                     <Flex>
-                        <Text style={{ fontSize: '20px'}}>🥬 Vegetables</Text>
+                        <Box mr={5}>
+                            <Flex>
+                                <Text style={{ fontSize: '20px'}}>🟢 Safe for asthma</Text>
 
-                    </Flex>
-                   
-                    <Flex>
+                            </Flex>
+                            <Flex><Checkbox value="Potato" color={'gray.500'}>🥔Potato</Checkbox></Flex>
+                                
+                            <Flex><Checkbox value="Cauliflower" color={'gray.500'}>🥦Cauliflower</Checkbox></Flex>
+                            <Flex><Checkbox value="Pork" color={'gray.500'}>🐷 Pork</Checkbox></Flex>
+                            <Flex><Checkbox value="Sausage" color={'gray.500'}>🌭Sausage</Checkbox></Flex>
+                            <Flex><Checkbox value="Broccoli" color={'gray.500'}>🥦Broccoli</Checkbox></Flex>
+                            <Flex><Checkbox value="Sweet potato" color={'gray.500'}>🍠Sweet potato</Checkbox></Flex>
+                            <Flex><Checkbox value="Tomato" color={'gray.500'}>🍅Tomato</Checkbox></Flex>
+                            <Flex><Checkbox value="Carrot" color={'gray.500'}>🥕Carrot</Checkbox></Flex>
+                            <Flex><Checkbox value="Kale" color={'gray.500'}>🌿Kale</Checkbox></Flex>
+                            <Flex><Checkbox value="Spinach" color={'gray.500'}>🥬Spinach</Checkbox></Flex>
+                            <Flex><Checkbox value="Salmon" color={'gray.500'}>🍣Salmon</Checkbox></Flex>
+                        </Box>
+                        
+                        <Box mr={5}>
+                            <Flex>
+                                <Text style={{ fontSize: '20px'}}>🟡 Maybe safe for asthma</Text>
 
+                            </Flex>
+                            
+                            
+                            <Flex><Checkbox value="Tuna" color={'gray.500'}>🐟Tuna</Checkbox></Flex>
+                            <Flex><Checkbox value="Wheat" color={'gray.500'}>🌾Wheat</Checkbox></Flex>
+                            <Flex><Checkbox value="Soy" color={'gray.500'}>🧊Soy</Checkbox></Flex>
+                            <Flex><Checkbox value="Herring" color={'gray.500'}>🎣Herring</Checkbox></Flex>
+                            <Flex><Checkbox value="Dairy" color={'gray.500'}>🧀Dairy</Checkbox></Flex>
+                            <Flex><Checkbox value="Eggs" color={'gray.500'}>🥚Eggs</Checkbox></Flex>
+                                
+                            
+                        </Box>
+                    
+                        <Box mr={5}>
+                            <Flex>
+                                <Text style={{ fontSize: '20px'}}>🔴 No good for asthma</Text>
 
-                        <Checkbox value="Potato" color={'gray.500'}>🥔Potato</Checkbox>
-                        <Checkbox value="Carrot" color={'gray.500'}>🥕Carrot</Checkbox>
-                        <Checkbox value="Cauliflower" color={'gray.500'}>🥦Cauliflower</Checkbox>
-                    </Flex>
-                    <br/>
-                    <Flex>
-                        <Text style={{ fontSize: '20px'}}>🥩 Meats</Text>
+                            </Flex>
+                            
+                            <Flex><Checkbox value="Pickle" color={'gray.500'} isDisabled={true}>🥫Pickle</Checkbox></Flex>
+                            <Flex><Checkbox value="Shrimp" color={'gray.500'} isDisabled={true}>🦐Shrimp</Checkbox></Flex>
+                            <Flex><Checkbox value="Beans" color={'gray.500'} isDisabled={true}> 🫘Beans</Checkbox></Flex>
+                            <Flex><Checkbox value="Processed meat" color={'gray.500'} isDisabled={true}>🥩Processed meat</Checkbox></Flex>
+                            <Flex><Checkbox value="Shellfish" color={'gray.500'} isDisabled={true}> 🦪Shellfish</Checkbox></Flex>
+                            
+
+                        </Box>
 
                     </Flex>
                     
-                    <Flex>
-                        <Checkbox value="pork" color={'gray.500'}>🐷 pork</Checkbox>
-                        <Checkbox value="Sausage" color={'gray.500'}>🌭Sausage</Checkbox>
-                        
-                    </Flex>
+                   
                 </CheckboxGroup>
                 <br/>
                 <Button onClick={handleSubmit} isDisabled={selectedIngredients.length === 0}>
