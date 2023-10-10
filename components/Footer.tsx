@@ -10,7 +10,7 @@ import {
     useColorModeValue,
     VisuallyHidden,
 } from '@chakra-ui/react'
-import { FaInstagram, FaTwitter, FaYoutube } from 'react-icons/fa'
+import { FaInstagram, FaTwitter, FaYoutube, FaEnvelopeOpenText } from 'react-icons/fa'
 import { ReactNode } from 'react'
 
 const SocialButton = ({
@@ -76,7 +76,7 @@ export default function Footer() {
             <FaYoutube />
           </SocialButton>
           <SocialButton label={'Instagram'} href={'https://mahara.infotech.monash.edu/group/view.php?id=2416'}>
-            <FaInstagram />
+            <FaEnvelopeOpenText />
           </SocialButton>
         </Stack>
       </Container>
