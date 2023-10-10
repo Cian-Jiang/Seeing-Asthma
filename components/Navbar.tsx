@@ -232,16 +232,16 @@ const NAV_ITEMS: Array<NavItem> = [
     href: '/AsthmaLibrary',
   },
   {
-    label: 'Thunderstorm Asthma',
+    label: 'Kids Section',
     href: '/AsthmaGame',
   },
   {
-    label: 'What Triggers Asthma?',
+    label: 'Asthma Triggers',
     href: '/TriggerLibrary',
   },
   
   {
-    label: 'Asthma Trigger',
+    label: 'Indentify Trigger',
     children: [
       
       {
@@ -258,7 +258,7 @@ const NAV_ITEMS: Array<NavItem> = [
     ],
   },
   {
-    label: 'Asthma Diet Management',
+    label: 'Asthma Management',
     children: [
       
       {
