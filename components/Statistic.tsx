@@ -63,7 +63,7 @@ export default function Statistics() {
     const chartRef = useRef(null);
     const [chartInstance, setChartInstance] = useState(null);
     const [chartData, setChartData] = useState({}); // Data for the Chart.js chart
-    const [year, setYear] = useState('2010');  // Add this line
+    const [year, setYear] = useState('2020');  // Add this line
 
     // Fetch data
     useEffect(() => {
@@ -180,8 +180,9 @@ export default function Statistics() {
                 <StatsCard title={'Serious psychological distress caused by asthma'} stat={'11% of people with asthma'}/>
             </SimpleGrid>
             <Box mt={10}>
-                <HStack spacing='24px'>
-                    <Box mt={10} flexBasis="70%">
+                <Flex direction={{base: "column", md: "row"}} gap={6} >
+                    <Box mt={10} flex={{base: 1, md: "70%"}}>
+
 
                         <chakra.h2 textAlign={'center'} fontSize={'2xl'} py={5} fontWeight={'medium'}>
                             {year} Australian hospital admissions for asthma by age group
@@ -264,7 +265,7 @@ export default function Statistics() {
                         </Accordion>
                     </Box>
 
-                </HStack>
+                </Flex>
             </Box>
 
         </Box>
