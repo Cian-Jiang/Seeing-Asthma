@@ -109,7 +109,7 @@ function ObjDetails({ objs }) {
                         </h2>
                         <AccordionPanel pb={4}>
                             <Text mb={2}>{obj.description}</Text>
-                            <Text>Safe: {obj.safe}</Text>
+                            <Text>Hypoallergenic: {obj.safe}</Text>
                             <img src={`data:image/png;base64,${obj.image}`}></img>
                         </AccordionPanel>
                     </AccordionItem>
