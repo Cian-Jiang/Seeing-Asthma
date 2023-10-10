@@ -105,16 +105,7 @@ export default function Cards() {
     return (
 
         <Box textAlign="center">
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <Heading marginTop="1">
-            <Text textDecoration="none" _hover={{ textDecoration: 'none' }}>
-            Find out asthma triggers around you
-
-            </Text>
-          </Heading>
+            
             <Tabs variant='soft-rounded' colorScheme='blue' onChange={(index) => setTabIndex(index)} >
                 <br/>
                 <Divider />

@@ -215,7 +215,7 @@ export default function Upload() {
                     
                     <Flex direction="column" align="center" justify="center" h="100%">
                         <ChakraText fontSize='3xl' color={'blue.400'}  as='b' textAlign='center'>
-                            General  Image Recognition
+                            Uplaod an image of your surrounding
                             <br/>
                         </ChakraText>
                         <br/>
@@ -258,7 +258,7 @@ export default function Upload() {
                             onChange={(e) => setShowObjDetails(e.target.checked)}
                             mt={2}
                         >
-                            Display Object Details
+                            Identify Trigger Details
                         </Checkbox>
 
                     </Flex>

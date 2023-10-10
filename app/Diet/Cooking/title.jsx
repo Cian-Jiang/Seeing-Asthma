@@ -122,7 +122,7 @@ export default function Home() {
                     
                         <Box mr={5}>
                             <Flex>
-                                <Text style={{ fontSize: '20px'}}>🔴 No good for asthma</Text>
+                                <Text style={{ fontSize: '20px'}}>🔴 Not good for asthma</Text>
 
                             </Flex>
                             
