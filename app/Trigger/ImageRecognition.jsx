@@ -109,7 +109,9 @@ function ObjDetails({ objs }) {
                         </h2>
                         <AccordionPanel pb={4}>
                             <Text mb={2}>{obj.description}</Text>
-                            <Text>Hypoallergenic: {obj.safe}</Text>
+                            <Text>
+                            Hypoallergenic: <span style={{ color: obj.safe === 'yes' ? 'green' : 'red' }}>{obj.safe}</span>
+                            </Text>
                             <img src={`data:image/png;base64,${obj.image}`}></img>
                         </AccordionPanel>
                     </AccordionItem>
@@ -215,7 +217,7 @@ export default function Upload() {
                     
                     <Flex direction="column" align="center" justify="center" h="100%">
                         <ChakraText fontSize='3xl' color={'blue.400'}  as='b' textAlign='center'>
-                            Uplaod an image of your surrounding
+                            Upload an image of your surrounding
                             <br/>
                         </ChakraText>
                         <br/>
