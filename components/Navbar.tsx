@@ -241,7 +241,7 @@ const NAV_ITEMS: Array<NavItem> = [
   },
   
   {
-    label: 'Indentify Trigger',
+    label: 'Identify Triggers',
     children: [
       
       {
