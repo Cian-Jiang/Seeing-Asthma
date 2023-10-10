@@ -16,9 +16,10 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react'
 
-export default function PlantHeroSection() {
+export default function DietHeroSection() {
   return (
-      <Box textAlign="center"
+    <>
+    <Box textAlign="center"
            alignItems='center'
            justifyContent='center'>
           <br/>
@@ -56,6 +57,9 @@ export default function PlantHeroSection() {
           <br/>
           <br/>
       </Box>
+    </>
+      
+
 
   )
 }
