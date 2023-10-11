@@ -1,3 +1,6 @@
+#Please never run the updated Python API locally because the program adds the ability to automatically update the API key.
+# If you run this program locally, this will cause the cloud apikey to become invalid.
+
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from flask_restx import Api, Resource, fields
