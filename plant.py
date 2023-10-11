@@ -11,11 +11,12 @@ from io import BytesIO
 import requests
 from werkzeug.utils import secure_filename
 
-
 app = Flask(__name__)
 CORS(app, expose_headers=["api_key"])
 app.config.from_object(Config)
 api = Api(app, version='1.0', title='Image Recognition API', description='An API for image recognition')
+
+
 # ns = api.namespace('recognition', description='Recognition operations')
 
 # 验证API密钥
@@ -23,6 +24,7 @@ def validate_api_key(api_key):
     # if api_key != Config.API_KEY :
     #    return False
     return True
+
 
 # 调用百度API进行图片识别
 def baidu_image_recognition(image_data, object_type):
@@ -113,18 +115,16 @@ def analyze_image(image_data):
         google_api_response = json.loads(google_vision_response.text)
 
         labels = google_api_response['responses'][0]['labelAnnotations']
-        #print(labels)
+        # print(labels)
         filtered_labels = [label for label in labels if label['score'] > 0.5]
         label_info = [{"description": label["description"], "score": label["score"]} for label in filtered_labels]
 
-        #print(label_info)
+        # print(label_info)
         return label_info
 
     except Exception as e:
         print(f"Error analyzing image: {e}")
         return None
-
-
 
 
 def get_info_from_db(recognized_labels):
@@ -164,6 +164,7 @@ def get_info_from_db(recognized_labels):
 
     return enriched_labels
 
+
 # 从MySQL数据库获取植物信息
 def get_plant_info_from_db(plant_chinese_name, object_type):
     mydb = mysql.connector.connect(
@@ -199,7 +200,7 @@ def get_plant_info_from_db(plant_chinese_name, object_type):
         result = cursor.fetchone()
         if result:
             name, des, imageurl, safe = result  # Unpacked tuple
-            return {"name": name, "description": des, "imageurl": imageurl,  "safe": safe}
+            return {"name": name, "description": des, "imageurl": imageurl, "safe": safe}
         else:
             return None
 
@@ -248,8 +249,8 @@ def valid_image(image_file):
 
 @api.route('/image_recognition')
 class ImageRecognition(Resource):
-    @api.doc(params={'api_key': 'Your API key', 'type': 'Type of object to recognize (Plant, Cat, Dog)', 'image': 'The image file'})
-
+    @api.doc(params={'api_key': 'Your API key', 'type': 'Type of object to recognize (Plant, Cat, Dog)',
+                     'image': 'The image file'})
     def post(self):
         # print(request.headers)
         # print(request.form)
@@ -275,7 +276,7 @@ class ImageRecognition(Resource):
 
             if not valid_image(image_file):
                 return {"error": "File verification failed. Supported formats: PNG, JPG, JPEG. "
-                                         "Please make sure the file size does not exceed 3.5M."}, 400
+                                 "Please make sure the file size does not exceed 3.5M."}, 400
 
             # 重新定位文件指针，以便再次读取文件内容
             image_file.seek(0)
@@ -308,7 +309,14 @@ class ImageRecognition(Resource):
 
 @api.route('/image_general')
 class GeneralImageRecognition(Resource):
-
+    @api.doc(
+        description="General triggers recognition of an image",
+        params={
+            'api_key': 'API key for authorization',
+            'type': 'Type of object',
+            'image': 'The image file'
+        }
+    )
     def post(self):
 
         api_key = request.headers.get('api_key')
@@ -320,7 +328,6 @@ class GeneralImageRecognition(Resource):
 
         if not validate_api_key(api_key):
             return {"error": "Invalid API Key"}, 401
-
 
         image_file = request.files.get('image')
         if image_file:
@@ -334,8 +341,6 @@ class GeneralImageRecognition(Resource):
             recognized_labals = analyze_image(image_data)
             iteminfo = get_info_from_db(recognized_labals)
 
-
-
             if iteminfo:
                 return iteminfo, 200  # Directly return the dictionary
 
@@ -343,12 +348,6 @@ class GeneralImageRecognition(Resource):
                 return {"error": "Sorry, no asthma trigger found in the picture."}, 404
         else:
             return {"error": "No image provided"}, 400
-
-
-
-
-
-
 
 
 def get_bound(image_data, object_type):
@@ -373,6 +372,7 @@ def get_bound(image_data, object_type):
         # Perform Google Vision API call
         google_vision_response = requests.post(google_vision_url, json=google_vision_payload)
         google_api_response = json.loads(google_vision_response.text)
+        print(google_api_response)
 
         bounding_polys = []
         object_type = ["Cat", "Dog", "Plant"]
@@ -380,7 +380,6 @@ def get_bound(image_data, object_type):
         for obj in google_api_response['responses'][0]['localizedObjectAnnotations']:
 
             if obj['name'] in object_type:
-
                 bounding_polys.append([obj['name'], obj['boundingPoly']['normalizedVertices']])
 
         return bounding_polys
@@ -391,9 +390,16 @@ def get_bound(image_data, object_type):
         print(f"Error analyzing image: {e}")
         return None
 
+
 @api.route('/all_in_one')
 class test(Resource):
-
+    @api.doc(
+        description="Perform multiple analyses on a single image",
+        params={
+            'api_key': 'API key for authorization',
+            'image': 'The image file'
+        }
+    )
     def post(self):
 
         api_key = request.headers.get('api_key')
@@ -402,10 +408,8 @@ class test(Resource):
         if api_key is None:
             api_key = request.headers.get('API-Key')
 
-
         if not validate_api_key(api_key):
             return {"error": "Invalid API Key"}, 401
-
 
         image_file = request.files.get('image')
         if image_file:
@@ -418,6 +422,7 @@ class test(Resource):
             image_data = image_file.read()
             recognized_labals = analyze_image(image_data)
             iteminfo = get_info_from_db(recognized_labals)
+            print(iteminfo)
 
             if not iteminfo:
                 return {"error": "Sorry, no asthma trigger found in the picture."}, 404
@@ -429,15 +434,16 @@ class test(Resource):
                     if term.lower() in item['name'].lower():
                         object_type.append(term)
 
-
+            obj = []
             bounding_polys = get_bound(image_data, object_type)
-            obj = crop_and_encode(image_data, bounding_polys)
-            print(bounding_polys)
 
+            if bounding_polys:
+                obj = crop_and_encode(image_data, bounding_polys)
+                # print(bounding_polys)
 
             if iteminfo:
                 return {"iteminfo": iteminfo,
-                         "obj": obj
+                        "obj": obj
                         }, 200  # Directly return the dictionary
 
 
@@ -467,8 +473,6 @@ def crop_and_encode(image_data, bounding_polys):
         # Crop the image
         cropped_image = image.crop((left, upper, right, lower))
 
-
-
         # # Convert the cropped image to base64
         buffered = BytesIO()
         cropped_image.save(buffered, format="PNG")
@@ -482,18 +486,19 @@ def crop_and_encode(image_data, bounding_polys):
             obj[1] = obj_info
             objs.append(obj_info)
 
-
-
-
     return objs
 
 
 @api.route('/recipe_video')
 class GetYoutubeVideo(Resource):
-    @api.doc(params={
-        'api_key': {'description': 'The API key for authorization', 'in': 'header', 'type': 'string', 'required': True},
-        'ingredients': {'description': 'The ingredients to search for in the recipe videos', 'in': 'formData', 'type': 'string', 'required': True}
-    })
+    @api.doc(
+        description="Fetch YouTube videos based on recipe ingredients",
+        params={
+            'api_key': 'API key for authorization',
+            'ingredients': 'The ingredients to search for in the recipe videos'
+        }
+    )
+
     def post(self):
         """
         Fetch YouTube videos based on recipe ingredients.
@@ -508,17 +513,14 @@ class GetYoutubeVideo(Resource):
         if api_key is None:
             api_key = request.headers.get('API-Key')
 
-
         if not validate_api_key(api_key):
             return {"error": "Invalid API Key"}, 401
 
         query = ' recipe,' + request.form.get('ingredients')
 
-
         GOOGLE_CLOUD_API_KEY = Config.GOOGLE_CLOUD_VISION_API_KEY
 
         google_vision_url = f"https://youtube.googleapis.com/youtube/v3/search?key={GOOGLE_CLOUD_API_KEY}&part=snippet&q={query}&type=video"
-
 
         # Perform Google Vision API call
         response = requests.get(google_vision_url)
@@ -529,14 +531,11 @@ class GetYoutubeVideo(Resource):
 
         video_info_list = []
 
-
         for item in google_api_response.get('items', []):
-
             title = item['snippet']['title']
             description = item['snippet']['description']
             thumbnail_url = item['snippet']['thumbnails']['high']['url']
             video_url = f"https://www.youtube.com/watch?v={item['id']['videoId']}"
-
 
             video_info = {
                 "title": title,
@@ -551,28 +550,16 @@ class GetYoutubeVideo(Resource):
         return {"videos": video_info_list}, 200
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @api.route('/image_test')
 class ImageTest(Resource):
-    @api.doc(params={'api_key': 'Your API key', 'type': 'Type of object to recognize (Plant, Cat, Dog)', 'image': 'The image file'})
-
+    @api.doc(
+        description="Test recognition of an image",
+        params={
+            'api_key': 'API key for authorization',
+            'type': 'Type of object to recognize (Plant, Cat, Dog)',
+            'image': 'The image file'
+        }
+    )
     def post(self):
         # print(request.headers)
         # print(request.form)
@@ -598,7 +585,7 @@ class ImageTest(Resource):
 
             if not valid_image(image_file):
                 return {"error": "File verification failed. Supported formats: PNG, JPG, JPEG. "
-                                         "Please make sure the file size does not exceed 3.5M."}, 400
+                                 "Please make sure the file size does not exceed 3.5M."}, 400
 
             # 重新定位文件指针，以便再次读取文件内容
             image_file.seek(0)
@@ -629,9 +616,5 @@ class ImageTest(Resource):
             return {"error": "No image provided"}, 400
 
 
-
 if __name__ == '__main__':
     app.run(debug=True)
-
-
-
