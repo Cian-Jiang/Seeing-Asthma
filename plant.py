@@ -15,6 +15,7 @@ app = Flask(__name__)
 CORS(app, expose_headers=["api_key"])
 app.config.from_object(Config)
 api = Api(app, version='1.0', title='Image Recognition API', description='An API for image recognition')
+Access_token = "24.758f813c934a3033ac4a380a6df00e03.2592000.1699658069.282335-39169061"
 
 
 # ns = api.namespace('recognition', description='Recognition operations')
@@ -36,7 +37,9 @@ def baidu_image_recognition(image_data, object_type):
     API_KEY = 'i23a3ushd123egiqwuoasqw2378qer12132'
 
     params = {"image": img}
-    access_token = Config.Access_token
+
+    access_token = Access_token
+    print(access_token)
     request_url = request_url + "?access_token=" + access_token
     headers = {'content-type': 'application/x-www-form-urlencoded'}
     response = requests.post(request_url, data=params, headers=headers)
@@ -86,6 +89,7 @@ def baidu_image_recognition(image_data, object_type):
 
         return name
     else:
+        getBaiduKey()
         print(f"Failed to get response from Baidu API. Status code: {response.status_code}")
         return None
 
@@ -245,6 +249,31 @@ def valid_image(image_file):
     except Exception as e:
 
         return False
+
+
+def getBaiduKey():
+    url = "https://aip.baidubce.com/oauth/2.0/token?grant_type=client_credentials&client_id=Lt0yFLMYI2eoKP1To0f8LDpI&client_secret=kr4tPodzltuqwk89ON1GGYrlyyUfEdg9"
+
+    payload = ""
+    headers = {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+    }
+
+    response = requests.request("POST", url, headers=headers, data=payload)
+
+    global Access_token
+
+    Access_token = response.json()['access_token']
+
+    print(response.text)
+
+
+@api.route('/key')
+class GetKey(Resource):
+    def get(self):
+        getBaiduKey()
+        return {"key": "update baidu key success"}, 200
 
 
 @api.route('/image_recognition')
@@ -617,4 +646,5 @@ class ImageTest(Resource):
 
 
 if __name__ == '__main__':
+    getBaiduKey()
     app.run(debug=True)
