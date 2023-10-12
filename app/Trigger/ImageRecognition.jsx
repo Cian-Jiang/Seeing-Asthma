@@ -24,7 +24,7 @@ import {
     Checkbox,
 } from "@chakra-ui/react";
 import { useDisclosure,  Text as ChakraText ,  Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, useColorModeValue, Divider, Center } from "@chakra-ui/react";
-import { useEffect } from 'react';
+import { useEffect} from 'react';
 function MyAccordion({ result }) {
     const [showButton, setShowButton] = useState(false);
     
@@ -57,7 +57,7 @@ function MyAccordion({ result }) {
                             </AccordionButton>
                         </h2>
                         <AccordionPanel pb={4}>
-                            <Text mb={2}>{item.objdes}</Text>
+                            <Text mb={2} align={'justify'}>{item.objdes}</Text>
                         </AccordionPanel>
                     </AccordionItem>
                 ))}
@@ -72,7 +72,7 @@ function MyAccordion({ result }) {
                             bg={bgColor}
                             p={2}
                             rounded={'md'}>
-                            Click to identify whether plants and pets
+                            Click to identify plants or pets
                         </Text>
                     </Link>
                 </Center>
@@ -86,11 +86,11 @@ function MyAccordion({ result }) {
 
 function ObjDetails({ objs }) {
     return (
-        <Box mt={4}>
-            <ChakraText fontSize='2xl' color={'blue.400'} as='b' textAlign='center'>
+        <Box>
+            <ChakraText fontSize='2xl' color={'blue.400'} fontWeight={'bold'} textAlign='center'>
                 Object Details:
             </ChakraText>
-            <br/>
+            
             {objs.length === 0 ? (
                 <Flex alignItems="center" justifyContent="center" height="250px">
                     <ChakraText fontSize='2xl' color={'gray.400'}  as='b' textAlign='center'>No object details have been shown. Please try another picture.</ChakraText>
@@ -108,11 +108,40 @@ function ObjDetails({ objs }) {
                             </AccordionButton>
                         </h2>
                         <AccordionPanel pb={4}>
-                            <Text mb={2}>{obj.description}</Text>
-                            <Text>
-                            Hypoallergenic: <span style={{ color: obj.safe === 'yes' ? 'green' : 'red' }}>{obj.safe}</span>
-                            </Text>
-                            <img src={`data:image/png;base64,${obj.image}`}></img>
+                            <Text mb={2} align='justify'>{obj.description}</Text>
+                            
+                            <Box
+                            w='100%'
+                            h='300px'
+                            borderWidth="0px"
+                            borderColor="none"
+                            backgroundPosition="center"
+                            backgroundSize="contain"
+                            backgroundRepeat="no-repeat"
+                            display="flex"
+                            flexDirection="column"
+                            alignItems="center"
+                            justifyContent="center"
+                        >
+                            <ChakraText 
+                                fontWeight="bold" 
+                                textAlign="center" 
+                                fontSize='3xl' 
+                                width="100%"
+                                backgroundColor={obj.safe === 'yes' ? "#A0DAA9":"tomato"}
+                            >
+                                {obj.safe === 'yes' ? "It is Hypoallergenic" : "It's not Hypoallergenic"}
+                            </ChakraText>
+                            <Box
+                                w='100%'
+                                h='300px'
+                                backgroundPosition="center"
+                                backgroundSize="contain"
+                                backgroundRepeat="no-repeat"
+                                backgroundImage={`data:image/png;base64,${obj.image}`}
+                            />
+                        </Box>
+                            
                         </AccordionPanel>
                     </AccordionItem>
                 ))}
@@ -217,13 +246,17 @@ export default function Upload() {
                     
                     <Flex direction="column" align="center" justify="center" h="100%">
                         <ChakraText fontSize='3xl' color={'blue.400'}  as='b' textAlign='center'>
-                            Upload an image of your surrounding
+                            Upload an Image of your surroundings
                             <br/>
                         </ChakraText>
                         <br/>
                         <div>
                             <label htmlFor="image">Image: </label>
-                            <input type="file" id="image" accept="image/*" onChange={handleImageChangeAndUpload} />
+                            <input 
+                            type="file" 
+                            id="image" 
+                            accept="image/*" 
+                            onChange={handleImageChangeAndUpload} />
                         </div>
                         
                         <br/>
@@ -297,12 +330,11 @@ export default function Upload() {
                                 mb="2rem"
                             >
 
-                                <ChakraText fontSize='2xl' color={'blue.400'}  as='b' textAlign='center'>
-                                    Here are the potential asthma triggers detected in the picture:
+                                <ChakraText fontSize='2xl' color={'blue.400'} align='center' fontWeight={'bold'} mb='2'>
+                                    Here are the potential Asthma triggers detected in the picture:
 
                                 </ChakraText>
-                                <br/>
-                                <br/>
+                            
                                 <MyAccordion result={result} />
                                 
                             </Box>

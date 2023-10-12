@@ -66,7 +66,7 @@ const BlogAuthor = (props: BlogAuthorProps) => {
 const ArticleList = () => {
   return (
     <Container maxW={'7xl'} p="12">
-      <Heading as="h1">Authoritative articles, news, etc.</Heading>
+      <Heading as="h1" textAlign='center'>Authoritative Articles & News</Heading>
       
       
       <VStack paddingTop="40px" spacing="2" alignItems="flex-start">

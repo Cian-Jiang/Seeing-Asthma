@@ -42,16 +42,16 @@ export default function PlantHeroSection() {
                 bg: 'blue.400',
                 zIndex: -1,
               }}>
-              Recognize
+              Choose
             </Text>
             <br />
             <Text as={'span'} color={'blue.400'}>
-            cooking recipe 
+              Cooking Recipe 
             </Text>
           </Heading>
           <br/>
           <Text color={'gray.500'}>
-           Let`s learn about the recipes for dishes that are good for asthma and incorporate these ingredients into my child`s diet.
+           Let's learn about the recipes for dishes that are good for asthma and incorporate these ingredients into your child's diet.
           </Text>
           <br/>
           <br/>

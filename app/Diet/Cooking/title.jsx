@@ -17,9 +17,11 @@ import {
     LinkOverlay,
     Link,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { useState, useRef } from "react";
+
 
 export default function Home() {
+    const boxRef = useRef(null);
     const [selectedIngredients, setSelectedIngredients] = useState([]);
     const [videos, setVideos] = useState([]);
     const allIngredients = ["Potato", "Carrot", "Cauliflower", "pork", "Sausage", "Broccoli","Sweet potato","Carrot","Kale","Spinach","Salmon","Tuna","Herring","Diary","Eggs","Soy","Wheat", "Tomato", "Soy"];
@@ -43,25 +45,25 @@ export default function Home() {
         });
         const data = await response.json();
         setVideos(data.videos);
-    };
-    //https://blog.csdn.net/weixin_45664217/article/details/119895716
-    const handleRandomSelection = () => {
-        var randomIngredients = [];
-        
-        for (let i = 0; i < 3; i++) {
-            const randomIndex = Math.floor(Math.random() * allIngredients.length);
-            randomIngredients.push(allIngredients[randomIndex]);
-            allIngredients.splice(randomIndex, 1);
+
+        if (boxRef.current) {
+            window.scrollTo({
+                top: boxRef.current.offsetTop,
+                behavior: 'smooth'
+            });
         }
-    
-        setSelectedIngredients(randomIngredients);
     };
-    
+
+    const handleClearSelection = () => {
+        setSelectedIngredients([]);
+    };
 
 
     return (
         <Box>
-
+            <Text style={{ fontSize: '35px'}} color={'blue.400'} align='center'>Alright, let's cook today!</Text>
+            <Text style={{ fontSize: '20px'}} color={'gray.500'} align='center'>🥘 First, choose the ingredients (by selecting the options below)</Text>
+            <br/>
 
             <Flex
                 direction="column"
@@ -69,26 +71,30 @@ export default function Home() {
                 justify="center"
                 m="auto"
                 mt={10}
-                w="50%"
+                width="100%"
             >
                
 
-                <Text style={{ fontSize: '35px'}} color={'blue.400'} >Alright, let`s cook today!</Text>
-                <Text style={{ fontSize: '20px'}} color={'gray.500'}>🥘 First, choose the ingredients (you can click on the options below)</Text>
-                <br/>
+                
                 <CheckboxGroup
                     onChange={(values) => handleIngredientChange(values)}
                     value={selectedIngredients}
                 >
-                    <Button onClick={handleRandomSelection} mt={4}>
-                        🎲 Randomly Pick 3 Ingredients
-                    </Button>
-                    <Flex>
-                        <Box mr={5}>
+                    
+                    <Flex flexDirection={["column", "column", "row"]}  justify='center' wrap='wrap' width='100%' maxW='1200px'>
+                        <Box width={['100%', "100%", '32%']} 
+                            mb={10} 
+                            mr={[0, 0, 2]} 
+                            display="flex" 
+                            flexDirection="column" 
+                            alignItems="center" 
+                            justifyContent="center"
+                            >
                             <Flex>
-                                <Text style={{ fontSize: '20px'}}>🟢 Safe for asthma</Text>
+                                <Text style={{ fontSize: '20px'}}>🟢 Safe for Asthma </Text>
 
                             </Flex>
+                            <br/>
                             <Flex><Checkbox value="Potato" color={'gray.500'}>🥔Potato</Checkbox></Flex>
                                 
                             <Flex><Checkbox value="Cauliflower" color={'gray.500'}>🥦Cauliflower</Checkbox></Flex>
@@ -103,12 +109,19 @@ export default function Home() {
                             <Flex><Checkbox value="Salmon" color={'gray.500'}>🍣Salmon</Checkbox></Flex>
                         </Box>
                         
-                        <Box mr={5}>
+                        <Box width={['100%', "100%", '32%']} 
+                            mb={10} 
+                            mr={[0, 0, 2]}
+                            display="flex" 
+                            flexDirection="column" 
+                            alignItems="center" 
+                            //justifyContent="center"
+                            >
                             <Flex>
-                                <Text style={{ fontSize: '20px'}}>🟡 Maybe safe for asthma</Text>
+                                <Text style={{ fontSize: '20px'}}>🟡 Maybe Safe for Asthma</Text>
 
                             </Flex>
-                            
+                            <br/>
                             
                             <Flex><Checkbox value="Tuna" color={'gray.500'}>🐟Tuna</Checkbox></Flex>
                             <Flex><Checkbox value="Wheat" color={'gray.500'}>🌾Wheat</Checkbox></Flex>
@@ -120,12 +133,19 @@ export default function Home() {
                             
                         </Box>
                     
-                        <Box mr={5}>
+                        <Box width={['100%', "100%", '32%']} 
+                            mb={6} 
+                            display="flex" 
+                            flexDirection="column"
+                            alignItems="center" 
+                            //justifyContent="center"
+                            >
                             <Flex>
-                                <Text style={{ fontSize: '20px'}}>🔴 Not good for asthma</Text>
+                                <Text style={{ fontSize: '20px'}}>🔴 Not Safe for Asthma</Text>
 
                             </Flex>
-                            
+                            <br/>
+
                             <Flex><Checkbox value="Pickle" color={'gray.500'} isDisabled={true}>🥫Pickle</Checkbox></Flex>
                             <Flex><Checkbox value="Shrimp" color={'gray.500'} isDisabled={true}>🦐Shrimp</Checkbox></Flex>
                             <Flex><Checkbox value="Beans" color={'gray.500'} isDisabled={true}> 🫘Beans</Checkbox></Flex>
@@ -140,16 +160,53 @@ export default function Home() {
                    
                 </CheckboxGroup>
                 <br/>
-                <Button onClick={handleSubmit} isDisabled={selectedIngredients.length === 0}>
-                    🍲 Let`s see the recipe combinations!</Button>
+
+                <Flex mt={4} spacing={4}>
+
+                    <Button 
+                        colorScheme={'green'} 
+                        bg={'cyan.400'} 
+                        px={6}
+                        _hover={{
+                            bg: 'cyan.500',
+                        }}
+                        onClick={handleSubmit} 
+                        isDisabled={selectedIngredients.length === 0}
+                        width="100%"
+                        mr={4}
+                    >
+                        Get Recipes
+                    </Button>
+
+                    <Button 
+                        onClick={handleClearSelection} 
+                        bg={'red.500'}
+                        px={6}
+                        color={'white'}
+                        _hover={{
+                            bg: 'red.400',
+                        }}
+                        isDisabled={selectedIngredients.length === 0}
+                        width="100%"
+                        
+                    >
+                        Clear Selection
+                    </Button>
+
+                </Flex>
+
             </Flex>
 
-            <Flex wrap="wrap" justify="center" mt="6">
+            <Box ref={boxRef}>
+                <Flex wrap="wrap" justify="center" mt="6">
                     {videos.map((video, index) => (
-                        <LinkBox as={Card} maxW="sm" m="4" key={index}>
+                        <LinkBox as={Card} key={index} width={[ '100%', '50%', '31%' ]}>
                             <CardBody>
                                 <Link href={video.videoUrl} target="_blank">
-                                    <Image src={video.thumbnailUrl} borderRadius="lg" />
+                                    <Flex alignItems="center" justifyContent="center">
+                                        <Image src={video.thumbnailUrl} borderRadius="lg" />
+                                    </Flex>
+
                                 </Link>
                                 
                                 <Stack mt="6" spacing="3">
@@ -158,13 +215,15 @@ export default function Home() {
                                             {video.title}
                                         </Link>
                                     </Heading>
-                                    <Text>{video.description}</Text>
+                                    <Text align='justify'>{video.description}</Text>
                                 </Stack>
                             </CardBody>
                             
                         </LinkBox>
                     ))}
                 </Flex>
+            </Box>
+            
         </Box>
 
 

@@ -66,7 +66,7 @@ const BlogAuthor = (props: BlogAuthorProps) => {
 const ArticleList = () => {
   return (
     <Container maxW={'7xl'} p="12">
-      <Heading as="h1">The most typical asthma symptoms</Heading>
+      <Heading as="h1" textAlign='center'>Common Asthma Symptoms</Heading>
       <Box
         marginTop={{ base: '1', sm: '5' }}
         display="flex"
@@ -114,15 +114,16 @@ const ArticleList = () => {
           marginTop={{ base: '3', sm: '0' }}>
           
           <Heading marginTop="1">
-            <Text textDecoration="none" _hover={{ textDecoration: 'none' }} color={'cyan.800'}>
-            -Persistent Cough
+            <Text textDecoration="none" _hover={{ textDecoration: 'none' }} color={'cyan.800'} align='center'>
+            Persistent Cough
             </Text>
           </Heading>
           <Text
             as="p"
             marginTop="2"
             color={useColorModeValue('gray.700', 'gray.200')}
-            fontSize="lg">
+            fontSize="lg"
+            align='center'>
             A cough that&apos;s worse at night, during exercise, or when excited might indicate asthma.
           </Text>
           
@@ -142,15 +143,16 @@ const ArticleList = () => {
           marginTop={{ base: '3', sm: '0' }}>
         
           <Heading marginTop="1">
-            <Text textDecoration="none" _hover={{ textDecoration: 'none' }} color={'cyan.800'}>
-            -Wheezing  
+            <Text textDecoration="none" _hover={{ textDecoration: 'none' }} color={'cyan.800'} align='center'>
+            Wheezing  
             </Text>
           </Heading>
           <Text
             as="p"
             marginTop="2"
             color={useColorModeValue('gray.700', 'gray.200')}
-            fontSize="lg">
+            fontSize="lg"
+            align='center'>
              Listen for high-pitched whistling sounds while breathing, especially at night or early morning.
 
           </Text>
@@ -241,15 +243,16 @@ const ArticleList = () => {
           marginTop={{ base: '3', sm: '0' }}>
           
           <Heading marginTop="1">
-            <Text textDecoration="none" _hover={{ textDecoration: 'none' }} color={'cyan.800'}>
-            -Shortness of Breath 
+            <Text textDecoration="none" _hover={{ textDecoration: 'none' }} color={'cyan.800'} align='center'>
+            Shortness of Breath 
             </Text>
           </Heading>
           <Text
             as="p"
             marginTop="2"
             color={useColorModeValue('gray.700', 'gray.200')}
-            fontSize="lg">
+            fontSize="lg"
+            align='center'>
             Watch for faster breathing, using shoulders, and avoiding physical activities.
           </Text>
           
@@ -269,15 +272,16 @@ const ArticleList = () => {
           marginTop={{ base: '3', sm: '0' }}>
         
           <Heading marginTop="1">
-            <Text textDecoration="none" _hover={{ textDecoration: 'none' }} color={'cyan.800'}>
-            -Chest Tightness
+            <Text textDecoration="none" _hover={{ textDecoration: 'none' }} color={'cyan.800'} align='center'>
+            Chest Tightness
             </Text>
           </Heading>
           <Text
             as="p"
             marginTop="2"
             color={useColorModeValue('gray.700', 'gray.200')}
-            fontSize="lg">
+            fontSize="lg"
+            align='center'>
              Children might complain of chest discomfort or feeling a weight on their chest.
           </Text>
           <br/>
@@ -320,27 +324,31 @@ const ArticleList = () => {
         
       </Box>
       <br/>
+      <br/>
       <Heading marginTop="1">
-            <Text textDecoration="none" _hover={{ textDecoration: 'none' }} color={'cyan.800'}>
-            -MORE SYMPTOMS TO WATCH OUT FOR: 
+            <Text textDecoration="none" _hover={{ textDecoration: 'none' }} color={'cyan.800'} align='center'>
+            More Symptoms: 
             </Text>
           </Heading>
+          <br/>
           <Text
             as="p"
             marginTop="2"
             color={useColorModeValue('gray.700', 'gray.200')}
-            fontSize="lg">
-             · Breathing in and out of the soft area at the bottom of the throat (where it meets the chest)<br/>
+            fontSize="lg"
+            align='center'
+          >
+            <strong>•</strong> Breathing in and out of the soft area at the bottom of the throat (where it meets the chest)<br/><br/>
 
-· Drawing in or jerking up and down the abdomen<br/>
+            <strong>•</strong> Drawing in or jerking up and down the abdomen<br/><br/>
 
-· Muscles between the ribs are sucked in when breathing.<br/>
+            <strong>•</strong> Muscles between the ribs are sucked in when breathing.<br/><br/>
 
-· Blue lips<br/>
+            <strong>•</strong> Blue lips<br/><br/>
 
-· Inability to finish a sentence or eat because of difficulty breathing.<br/>
+            <strong>•</strong> Inability to finish a sentence or eat because of difficulty breathing.<br/><br/>
 
-          </Text>
+        </Text>
 
       
     </Container>

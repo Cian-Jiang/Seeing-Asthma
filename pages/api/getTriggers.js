@@ -28,7 +28,7 @@ export default async function handler(req, res) {
             query('SELECT * FROM Cat_new WHERE safe = "yes" ORDER BY Count DESC'),
             query('SELECT * FROM Dog_new WHERE safe = "yes" ORDER BY Count DESC'),
             query('SELECT * FROM Object'),
-            query('SELECT * FROM Plant')
+            query('SELECT * FROM Plant_new WHERE safe = "no"')
         ])
             .then(([cats, dogs, objects, plants]) => {
                 res.status(200).json({ cats, dogs, objects, plants });

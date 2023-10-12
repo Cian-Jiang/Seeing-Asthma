@@ -116,7 +116,7 @@ export default function Upload() {
 
                 <Box position="relative"
                      p={3}
-                     height='550px'
+                     height='575px'
                      borderWidth='1px' borderRadius='lg' overflow='hidden'
                 >
 

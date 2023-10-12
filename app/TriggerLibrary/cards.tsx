@@ -36,7 +36,7 @@ export default function Cards() {
         }
     };
 
-    const renderCards = (items: any[]) => {
+    const renderCards = (items: any[], category: string) => {
         return (
             <Flex wrap="wrap" justify="space-between">
                 {items.map((item) => (
@@ -52,13 +52,18 @@ export default function Cards() {
                         onMouseLeave={handleHoverLeave}
                         onClick={() => handleClick(item.id)}
                         position="relative"
-                        style={{
-                            transition: 'transform 0.6s',
-                            transformStyle: 'preserve-3d'
-                        }}
                     >
                         {/* front of the card */}
-                        <Box position="absolute" width="100%" height="100%">
+                        <Box position="absolute" 
+                            width="100%" 
+                            height="100%" 
+                            style={{
+                                backfaceVisibility: 'hidden',
+                                transition: 'transform 0.6s',
+                                transformStyle: 'preserve-3d',
+                                transform: isFlipped === item.id ? 'rotateY(180deg)' : 'rotateY(0deg)'
+                            }}
+                        >
                             <Box height="300px" overflow="hidden">
                                 <img
                                     src={item.imageurl}
@@ -72,20 +77,42 @@ export default function Cards() {
                             </Box>
                             <Box p="4" flexDirection="column" alignItems="center">
                                 <ChakraText fontWeight="bold" textAlign="center" mb="2">
-                                    {item.name}
+                                    {category === 'objects' ? item.display_name : item.name}
                                 </ChakraText>
                             </Box>
                         </Box>
     
                         {/* back of the card */}
-                        <Box position="absolute" width="100%" height="100%" backgroundColor="white" display={isFlipped === item.id ? 'block' : 'none'} >
+                        <Box position="absolute" 
+                            width="100%" 
+                            height="100%" 
+                            backgroundColor="white" 
+                            style={{
+                                backfaceVisibility: 'hidden',
+                                transition: 'transform 0.6s',
+                                transformStyle: 'preserve-3d',
+                                transform: isFlipped === item.id ? 'rotateY(0deg)' : 'rotateY(180deg)'
+                            }}
+                        >
+                            <Box height="300px" 
+                            overflow="hidden" 
+                            display='flex' 
+                            flexDirection="column" 
+                            justifyContent="center" 
+                            style={{
+                                backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.75)), url(${item.imageurl})`, // Set the image as background with a fade effect
+                                backgroundSize: 'cover', // Cover the entire box with the image
+                                backgroundPosition: 'center' // Center the image
+                            }}>
+                                
+                                <br/>
+                                <ChakraText fontWeight="bold" textAlign="center" mb="2">
+                                    {item.objdes}
+                                </ChakraText>
+                            </Box>
                             <Box p="4" flexDirection="column" alignItems="center">
                                 <ChakraText fontWeight="bold" textAlign="center" mb="2">
-                                    {item.name}
-                                </ChakraText>
-                                <br/>
-                                <ChakraText fontWeight="normal" textAlign="center" mb="2">
-                                    {item.objdes}
+                                    {category === 'objects' ? item.display_name : item.name}
                                 </ChakraText>
                             </Box>
                         </Box>
@@ -111,8 +138,8 @@ export default function Cards() {
                 <Divider />
                 <br/>
                 <TabList justifyContent="center" flexWrap="wrap">
-                    <Tab>Common ASTHMA Triggers</Tab>
-                    <Tab>Asthma-inducing plants</Tab>
+                    <Tab>Common Asthma Triggers</Tab>
+                    <Tab>Asthma-Inducing Plants</Tab>
                     <Center height='50px'>
                         <Divider orientation='vertical' />
                     </Center>
@@ -123,10 +150,10 @@ export default function Cards() {
                 <Divider />
                 <TabPanels p='2rem' bg={bg}>
                     <TabPanel>
-                        {renderCards(data.objects)}</TabPanel>
+                        {renderCards(data.objects, 'objects')}</TabPanel>
 
                     <TabPanel>
-                        {renderCards(data.plants)}</TabPanel>
+                        {renderCards(data.plants, 'plants')}</TabPanel>
 
                     <TabPanel>
                          <ChakraText>
@@ -145,7 +172,7 @@ export default function Cards() {
                         <br/>
                         <Divider />
                         <br/>
-                        {renderCards(data.cats)}
+                        {renderCards(data.cats, 'cats')}
                     </TabPanel>
 
                     <TabPanel>
@@ -162,7 +189,7 @@ export default function Cards() {
                         <br/>
                         <Divider />
                         <br/>
-                        {renderCards(data.dogs)}
+                        {renderCards(data.dogs,'dogs')}
                     </TabPanel>
                 </TabPanels>
             </Tabs>

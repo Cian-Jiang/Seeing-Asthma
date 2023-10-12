@@ -24,6 +24,7 @@ import {
   ChevronRightIcon,
 } from '@chakra-ui/icons'
 import { useState } from 'react'
+import Link from 'next/link';
 
 export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure()
@@ -39,9 +40,15 @@ export default function Navbar() {
             borderStyle={'solid'}
             borderColor={useColorModeValue('gray.200', 'gray.900')}
             align={'center'}
-            zIndex={10}>
-            <Image src="/MicrosoftTeams-image (2).png" alt="Logo" h={8} w={8} mr={2} />
-            <Text fontWeight={600}>Seeing Asthma</Text>
+            zIndex={10}
+        >
+          <Link href='/'>
+            <Flex align="center">
+              <Image src="/MicrosoftTeams-image (2).png" alt="Logo" h={8} w={8} mr={2} />
+              <Text fontWeight={600}>Seeing Asthma</Text>
+            </Flex>
+          </Link>
+            
           <Flex
               flex={{ base: 1, md: 'auto' }}
               ml={{ base: -2 }}
@@ -246,7 +253,7 @@ const NAV_ITEMS: Array<NavItem> = [
       
       {
         label: 'General Triggers',
-        subLabel: 'Find possible triggers in your home',
+        subLabel: 'Find potential triggers in your home',
         href: '/Trigger',
       },
       {
@@ -263,7 +270,7 @@ const NAV_ITEMS: Array<NavItem> = [
       
       {
         label: 'Asthma Healthy Exercises',
-        subLabel: 'Find healthy exercises benefit your child',
+        subLabel: 'Find healthy exercises that benefit your child',
         href: '/Diet',
       },
       {

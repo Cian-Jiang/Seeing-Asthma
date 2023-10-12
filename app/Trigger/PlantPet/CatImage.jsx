@@ -116,8 +116,11 @@ export default function Upload() {
 
                 <Box position="relative"
                      p={3}
-                     height='550px'
-                     borderWidth='1px' borderRadius='lg' overflow='hidden'
+                     height='575px'
+                     borderWidth='1px' 
+                     borderRadius='lg' 
+                     overflow='hidden'
+                     b
                 >
 
                     <ChakraText fontSize='3xl' color={'blue.400'}  as='b'>

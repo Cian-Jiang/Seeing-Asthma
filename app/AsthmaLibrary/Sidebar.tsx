@@ -46,7 +46,7 @@ const LinkItems: Array<LinkItemProps> = [
   { name: 'Asthma in Children', icon: FiUser, content: <div><HomeContent/></div> },
   { name: 'Asthma Symptoms', icon: FiEye, content: <div><TrendingContent/></div> },
   { name: 'Live a Healthy Life', icon: FiArchive, content: <div><ExploreContent/></div> },
-  { name: 'Authoritative articles and news', icon: FiStar, content: <div><Content/></div> },
+  { name: 'Authoritative Articles & News', icon: FiStar, content: <div><Content/></div> },
   
 ];
 
@@ -123,10 +123,7 @@ const SidebarContent = ({
       pos="fixed"
       h="full"
       {...rest}>
-      <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
-        <Image src="/MicrosoftTeams-image (2).png" alt="Logo" w="90px" h="auto" />
-        <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
-      </Flex>
+      <br/>
       {LinkItems.map((link) => (
         <NavItem
           key={link.name}
@@ -163,10 +160,9 @@ const NavItem = ({ icon, children, isActive, onClick, ...rest }: NavItemProps) =
         borderRadius="lg"
         role="group"
         cursor="pointer"
-        _hover={{
-          bg: isActive ? 'cyan.400' : 'transparent', 
-          color: isActive ? 'white' : 'currentColor', 
-        }}
+        bg={isActive ? 'blue.100' : 'transparent'}
+        //color={isActive ? 'white' : 'currentColor'} 
+        
         onClick={onClick} 
         {...rest}
       >
@@ -174,9 +170,6 @@ const NavItem = ({ icon, children, isActive, onClick, ...rest }: NavItemProps) =
           <Icon
             mr="4"
             fontSize="16"
-            _groupHover={{
-              color: 'white',
-            }}
             as={icon}
           />
         )}

@@ -44,9 +44,9 @@ export default function Features() {
 
         <Stack spacing={4}   >
           
-          <Heading>Understanding symptoms</Heading>
+          <Heading>Understanding Symptoms</Heading>
           <Text color={'gray.500'} fontSize={'lg'}>
-            We provide authoritative artivles for you to learn about Asthma and expecially Asthma on children so that you can protect you kids.
+            We provide authoritative articles for you to learn about Asthma and expecially Asthma on children so that you can protect you kids.
           </Text>
           <Stack
             spacing={4}

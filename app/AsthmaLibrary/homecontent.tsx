@@ -66,7 +66,6 @@ const BlogAuthor = (props: BlogAuthorProps) => {
 const ArticleList = () => {
   return (
     <Container maxW={'7xl'} p="12">
-      <Heading as="h1">You have to know about asthma</Heading>
       <Box
         marginTop={{ base: '1', sm: '5' }}
         display="flex"
@@ -114,15 +113,16 @@ const ArticleList = () => {
           marginTop={{ base: '3', sm: '0' }}>
           
           <Heading marginTop="1">
-            <Text textDecoration="none" _hover={{ textDecoration: 'none' }} color={'cyan.800'}>
-            -How can Asthma Impact Your Child?
+            <Text textDecoration="none" _hover={{ textDecoration: 'none' }} color={'cyan.800'} align='center'>
+            How can Asthma Impact Your Child?
             </Text>
           </Heading>
           <Text
             as="p"
             marginTop="2"
             color={useColorModeValue('gray.700', 'gray.200')}
-            fontSize="lg">
+            fontSize="lg"
+            align='center'>
               Asthma affects all age groups, especially children. It&apos;s caused by inflamed airways that restrict breathing. Untreated asthma can lead to sleep disturbances, missed school, and even hospitalization.
           </Text>
           
@@ -130,9 +130,9 @@ const ArticleList = () => {
         </Box>
       </Box>
       
-      <VStack paddingTop="40px" spacing="2" alignItems="flex-start">
-        <Heading as="h2" color={'cyan.800'}>-Does Your Child Have Asthma?</Heading>
-        <Text as="h1" fontSize="3xl" color="red.400">
+      <VStack paddingTop="40px" spacing="2">
+        <Heading as="h2" textAlign="center" color={'cyan.800'}>Does Your Child Have Asthma?</Heading>
+        <Text as="h1" fontSize="3xl" color="red.400" align='center'>
           If your child experiences any of the symptoms in Asthma Symptoms page,
           consult a doctor. Early detection and management are crucial for their well-being.
         </Text>

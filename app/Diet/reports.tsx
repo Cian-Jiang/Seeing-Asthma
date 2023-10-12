@@ -49,7 +49,7 @@ export default function Reports() {
         <Stack spacing={4}>
         
         <Heading marginTop="1">
-            <Text textDecoration="none" _hover={{ textDecoration: 'none' }} color={'cyan.800'}>
+            <Text textDecoration="none" _hover={{ textDecoration: 'none' }} color={'cyan.800'} align='center'>
             Walking  
             </Text>
           </Heading>
@@ -57,24 +57,15 @@ export default function Reports() {
             as="p"
             marginTop="2"
             color={useColorModeValue('gray.700', 'gray.200')}
-            fontSize="lg">
-            Benefit: Walking is a gentle form of exercise that helps in maintaining lung health and makes breathing easier.
-
-          </Text>
-          <Text
-            as="p"
-            marginTop="2"
-            color={useColorModeValue('gray.700', 'gray.200')}
-            fontSize="lg">
-            Reason: Walking is a low-intensity aerobic exercise that is good for both the lungs as well as heart.
-
-          </Text>
-          <Text
-            as="p"
-            marginTop="2"
-            color={useColorModeValue('gray.700', 'gray.200')}
-            fontSize="lg">
-            Caution: Walking should preferably be done in warm weather. Cold and dry air may trigger or worsen asthma symptoms. Some people may require medication before exercise. Warming up and cooling down is essential to prevent any asthma flare ups.
+            fontSize="lg"
+            align='justify'>
+            <strong>Benefit:</strong> Walking is a gentle form of exercise that helps in maintaining lung health and makes breathing easier.
+            <br/><br/>
+          
+            <strong>Reason:</strong> Walking is a low-intensity aerobic exercise that is good for both the lungs as well as heart.
+            <br/><br/>
+            
+            <strong>Caution:</strong> Walking should preferably be done in warm weather. Cold and dry air may trigger or worsen asthma symptoms. Some people may require medication before exercise. Warming up and cooling down is essential to prevent any asthma flare ups.
           </Text>
           
         </Stack>
@@ -85,7 +76,7 @@ export default function Reports() {
         <Stack spacing={4}>
           
         <Heading marginTop="1">
-            <Text textDecoration="none" _hover={{ textDecoration: 'none' }} color={'cyan.800'}>
+            <Text textDecoration="none" _hover={{ textDecoration: 'none' }} color={'cyan.800'} align='center'>
             Swimming
             </Text>
           </Heading>
@@ -93,22 +84,13 @@ export default function Reports() {
             as="p"
             marginTop="2"
             color={useColorModeValue('gray.700', 'gray.200')}
-            fontSize="lg">
-            Benefit: Swimming is considered one of the best exercises for asthmatics due to favourable conditions inside a swimming pool.
-          </Text>
-          <Text
-            as="p"
-            marginTop="2"
-            color={useColorModeValue('gray.700', 'gray.200')}
-            fontSize="lg">
-            Reason: Warm water and moist air can reduce the risk of asthma symptoms while exercising your lungs.
-          </Text>
-          <Text
-            as="p"
-            marginTop="2"
-            color={useColorModeValue('gray.700', 'gray.200')}
-            fontSize="lg">
-            Caution: Chlorine in swimming pools may worsen symptoms or even cause asthma attacks in some people. Some people may require medication before exercise. Warming up before exercise and cooling down afterwards can help alleviate some symptoms.
+            fontSize="lg"
+            align="justify">
+            <strong>Benefit:</strong> Swimming is considered one of the best exercises for asthmatics due to favourable conditions inside a swimming pool.
+            <br/><br/>
+            <strong>Reason:</strong> Warm water and moist air can reduce the risk of asthma symptoms while exercising your lungs.
+            <br/><br/>
+            <strong>Caution:</strong> Chlorine in swimming pools may worsen symptoms or even cause asthma attacks in some people. Some people may require medication before exercise. Warming up before exercise and cooling down afterwards can help alleviate some symptoms.
           </Text>
           
         </Stack>
@@ -139,7 +121,7 @@ export default function Reports() {
         <Stack spacing={4}>
           
         <Heading marginTop="1">
-            <Text textDecoration="none" _hover={{ textDecoration: 'none' }} color={'cyan.800'}>
+            <Text textDecoration="none" _hover={{ textDecoration: 'none' }} color={'cyan.800'} align='center'>
             Hiking
             </Text>
           </Heading>
@@ -147,23 +129,13 @@ export default function Reports() {
             as="p"
             marginTop="2"
             color={useColorModeValue('gray.700', 'gray.200')}
-            fontSize="lg">
-            Benefit: Hiking provides an opportunity to exercise in nature and enjoy fresh air.
-
-          </Text>
-          <Text
-            as="p"
-            marginTop="2"
-            color={useColorModeValue('gray.700', 'gray.200')}
-            fontSize="lg">
-            Reason: Choosing a route that is relatively flat or has a slow and steady incline can provide a good way to exercise the lungs without putting too much strain on them.
-          </Text>
-          <Text
-            as="p"
-            marginTop="2"
-            color={useColorModeValue('gray.700', 'gray.200')}
-            fontSize="lg">
-            Caution: Allergens (like pollens), cold and dry weather conditions can aggravate asthma symptoms. Some people may require pre-exercise medications may be required. It is important to follow proper warm up and cool down routines before and after the activity.
+            fontSize="lg"
+            align='justify'>
+            <strong>Benefit:</strong> Hiking provides an opportunity to exercise in nature and enjoy fresh air.
+            <br/><br/>
+            <strong>Reason:</strong> Choosing a route that is relatively flat or has a slow and steady incline can provide a good way to exercise the lungs without putting too much strain on them.
+            <br/><br/>
+            <strong>Caution:</strong> Allergens (like pollens), cold and dry weather conditions can aggravate asthma symptoms. Some people may require pre-exercise medications may be required. It is important to follow proper warm up and cool down routines before and after the activity.
           </Text>
           
         </Stack>
