@@ -1,5 +1,5 @@
 'use client';
-import React from 'react'
+import React, { useState, useEffect} from 'react';
   
 import {
     Accordion,
@@ -7,6 +7,7 @@ import {
     AccordionIcon,
     AccordionItem,
     AccordionPanel,
+    AspectRatio,
     Avatar,
     Box,
     Button,
@@ -44,11 +45,18 @@ export default function Video() {
     const causesDisclosure = useDisclosure();
     const riskDisclosure = useDisclosure();
     const firstDisclosure = useDisclosure();
+
+    const [shouldDisplayGame, setShouldDisplayGame] = useState(false);
+
+    useEffect(() => {
+        setShouldDisplayGame(window.innerWidth >= 1024 && window.innerHeight >= 676);
+    }, []);
+    
   return (
     <>
         <Card maxWidth="90%" mx="auto">
             <CardHeader justifyContent="center" alignItems="center">
-                <Heading  as={"span"} color={"cyan.400"} textAlign="center">
+                <Heading  color={"cyan.400"} textAlign="center">
                     Let&apos;s learn how to prevent it!
                 </Heading>
             </CardHeader>
@@ -66,7 +74,15 @@ export default function Video() {
                 </h2>
                 <AccordionPanel pb={4}>
                     <div style={{ display: 'flex', justifyContent: 'center' }}>
-                        <iframe width="1024" height="676" src="https://www.youtube.com/embed/_dTtfCesHhQ?si=hB7jddSrai44tgn9" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
+                        <AspectRatio ratio={16/9} width='100%'>
+                            <iframe 
+                                src="https://www.youtube.com/embed/_dTtfCesHhQ?si=hB7jddSrai44tgn9" 
+                                title="YouTube video player" 
+                                frameBorder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                allowFullScreen>    
+                            </iframe>
+                        </AspectRatio>
                     </div>
                 </AccordionPanel>
             </AccordionItem>
@@ -81,16 +97,26 @@ export default function Video() {
                     </AccordionButton>
                 </h2>
                 <AccordionPanel pb={4}>
-                    <div style={{ display: 'flex', justifyContent: 'center' }}>
-                        <iframe
-                            src="https://cian-jiang.github.io/AsthmaGame/"
-                            title="External Content"
-                            width="1024"
-                            height="676"
-                        >
-                            Your browser does not support iframes.
-                        </iframe>
-                    </div>
+                    
+                        {shouldDisplayGame ? (
+                            <div style={{ 
+                                    height: '676px', 
+                                    display: 'flex', 
+                                    justifyContent: 'center'
+                                }}>
+                                <iframe
+                                    src="https://cian-jiang.github.io/AsthmaGame/"
+                                    title="External Content"
+                                    width="1024"
+                                    height="676"
+                                >
+                                    Your browser does not support iframes.
+                                </iframe>
+                            </div>
+                        ) : (
+                            <Text>Your screen size is too small to display the game. Please use a larger screen.</Text>
+                        )}
+                    
                 </AccordionPanel>
             </AccordionItem>
 
@@ -123,9 +149,8 @@ export default function Video() {
                                         <Modal isOpen={symptomsDisclosure.isOpen} onClose={symptomsDisclosure.onClose}>
                                             <ModalOverlay />
                                             <ModalContent>
-                                                <ModalHeader>What are the symptoms?</ModalHeader>
-                                                <ModalCloseButton />
-                                                <ModalBody>
+                                                <ModalHeader textAlign={'center'}>What are the symptoms?</ModalHeader>
+                                                <ModalBody textAlign={'justify'}>
                                                     Symptoms associated with thunderstorm asthma include wheeze, chest tightness, difficulty breathing and
                                                     cough. The symptoms can escalate very quickly and may become life threatening.
                                                 </ModalBody>
@@ -145,14 +170,13 @@ export default function Video() {
                                         <Modal isOpen={causesDisclosure.isOpen} onClose={causesDisclosure.onClose}>
                                             <ModalOverlay />
                                             <ModalContent>
-                                                <ModalHeader>What causes thunderstorm asthma?</ModalHeader>
-                                                <ModalCloseButton />
-                                                <ModalBody>
+                                                <ModalHeader textAlign={'center'}>What causes thunderstorm asthma?</ModalHeader>
+                                                <ModalBody textAlign={'justify'}>
                                                     The cause of thunderstorm asthma is not fully understood.
-                                                    <br/>
+                                                    <br/><br/>
                                                     Exposure to high concentrations of very small fragments of pollen appears to be an important part of the cause of thunderstorm asthma.
-                                                    <br/>It is thought that moisture in the air during a thunderstorm swells pollen grains which burst, generating tiny fragments of pollen. Airflows in some thunderstorms concentrate these fragments in high numbers at ground level where they may be breathed in and affect people at risk of asthma symptoms.
-                                                    <br/>In NSW, high levels of rye grass pollen appear to be associated with thunderstorm asthma in some areas.
+                                                    <br/><br/>It is thought that moisture in the air during a thunderstorm swells pollen grains which burst, generating tiny fragments of pollen. Airflows in some thunderstorms concentrate these fragments in high numbers at ground level where they may be breathed in and affect people at risk of asthma symptoms.
+                                                    <br/><br/>In NSW, high levels of rye grass pollen appear to be associated with thunderstorm asthma in some areas.
                                                 </ModalBody>
                                                 <ModalFooter>
                                                     <Button colorScheme="blue" mr={3} onClick={causesDisclosure.onClose}>
@@ -169,9 +193,8 @@ export default function Video() {
                                         <Modal isOpen={riskDisclosure.isOpen} onClose={riskDisclosure.onClose}>
                                             <ModalOverlay />
                                             <ModalContent>
-                                                <ModalHeader>Who is at risk?</ModalHeader>
-                                                <ModalCloseButton />
-                                                <ModalBody>
+                                                <ModalHeader textAlign={'center'}>Who is at risk?</ModalHeader>
+                                                <ModalBody textAlign={'justify'}>
                                                     People with asthma, people with undiagnosed asthma, people with hay fever (allergic rhinitis),
                                                     and especially people who wheeze and sneeze during spring.
                                                 </ModalBody>
@@ -192,8 +215,7 @@ export default function Video() {
                                         <Modal isOpen={firstDisclosure.isOpen} onClose={firstDisclosure.onClose}>
                                             <ModalOverlay />
                                             <ModalContent>
-                                                <ModalHeader> What situation needs to immediately call triple zero [000] for an ambulance?</ModalHeader>
-                                                <ModalCloseButton />
+                                                <ModalHeader textAlign={'center'}> What situation needs to immediately call triple zero [000] for an ambulance?</ModalHeader>
                                                 <ModalBody>
                                                     <UnorderedList>
                                                         <ListItem>Obvious difficulty breathing</ListItem>

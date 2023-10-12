@@ -20,7 +20,9 @@ export default function CallToActionWithVideo() {
   return (
     <Container maxW={'7xl'}>
       <Stack
-        align={'center'}
+        textAlign={'center'}
+        alignItems='center'
+        justifyContent='center'
         spacing={{ base: 8, md: 10 }}
         py={{ base: 20, md: 28 }}
         direction={{ base: 'column', md: 'row' }}>
@@ -49,18 +51,18 @@ export default function CallToActionWithVideo() {
                 Thunderstorm Asthma
             </Text>
           </Heading>
-          <Text color={'gray.500'}>
+          <Text color={'gray.500'} align={'justify'}>
               Epidemic thunderstorm asthma is thought to be triggered by an uncommon combination of high pollen levels and a certain type of thunderstorm, causing a large number of people to develop asthma symptoms over a short period of time.
           </Text>
-            <Text color={'gray.500'}>
+            <Text color={'gray.500'} align={'justify'}>
                 It says: Australia is highly vulnerable to any adverse impact of climate change on allergens and allergic diseases,A combination of high pollen levels, strong winds, hot temperatures, air moisture and a cold front triggered severe asthma attacks.
 
             </Text>
-            <Text color={'gray.500'}>
+            <Text color={'gray.500'} align={'justify'}>
                 This underlying vulnerability was highlighted in November 2016 when the world&apos;s largest, most
                 catastrophic epidemic thunderstorm asthma event occurred in Melbourne.
             </Text>
-            <Text color={'gray.500'}>
+            <Text color={'gray.500'} align={'justify'}>
                 Ten people died during or soon after a thunderstorm asthma event in Melbourne on November 21, 2016 which saw an unprecedented surge in demand for ambulances.
             </Text>
         </Stack>
@@ -71,8 +73,8 @@ export default function CallToActionWithVideo() {
           position={'relative'}
           w={'full'}>
           <Blob
-            w={'150%'}
-            h={'150%'}
+            w={'100%'}
+            h={'100%'}
             position={'absolute'}
             top={'-20%'}
             left={0}

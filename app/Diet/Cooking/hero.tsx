@@ -51,7 +51,7 @@ export default function PlantHeroSection() {
           </Heading>
           <br/>
           <Text color={'gray.500'}>
-           Let's learn about the recipes for dishes that are good for asthma and incorporate these ingredients into your child's diet.
+           Let&apos;s learn about the recipes for dishes that are good for asthma and incorporate these ingredients into your child&apos;s diet.
           </Text>
           <br/>
           <br/>

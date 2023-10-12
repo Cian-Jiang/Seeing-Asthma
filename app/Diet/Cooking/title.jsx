@@ -61,7 +61,7 @@ export default function Home() {
 
     return (
         <Box>
-            <Text style={{ fontSize: '35px'}} color={'blue.400'} align='center'>Alright, let's cook today!</Text>
+            <Text style={{ fontSize: '35px'}} color={'blue.400'} align='center'>Alright, let&apos;s cook today!</Text>
             <Text style={{ fontSize: '20px'}} color={'gray.500'} align='center'>🥘 First, choose the ingredients (by selecting the options below)</Text>
             <br/>
 
