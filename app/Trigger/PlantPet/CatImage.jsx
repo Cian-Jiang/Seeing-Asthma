@@ -73,13 +73,7 @@ export default function Upload() {
         } else {
             const errorBody = await response.text();
             setResult(`Error: ${response.status} ${errorBody}`);
-            toast({
-                title: "Error",
-                description: errorBody,
-                status: "error",
-                duration: 5000,
-                isClosable: true,
-            });
+            
         }
         setLoading(false);
     };
@@ -127,6 +121,9 @@ export default function Upload() {
                         Cat Image Recognition
                         <br/>
                     </ChakraText>
+                    <Text color={'gray.500'}>
+                        Recognise your cats&apos; species, to find out if they are safe for you!
+                    </Text>
                     <br/>
                     <label htmlFor="image">Image: </label>
                     <input type="file" id="image" accept="image/*" onChange={handleImageChangeAndUpload} />
@@ -166,7 +163,7 @@ export default function Upload() {
 
                 <Box position="relative"
                      p={3}
-                      height='550px'
+                      height='575px'
                       borderWidth='1px' borderRadius='lg'
                      overflow='hidden'
                      // display='flex'
@@ -221,7 +218,9 @@ export default function Upload() {
                                             <ModalContent>
                                                 <ModalHeader>{result.name}</ModalHeader>
                                                 <ModalCloseButton />
-                                                <ModalBody>{result.description}</ModalBody>
+                                                <ModalBody>
+                                                    <Text align='justify'>{result.description}</Text>
+                                                </ModalBody>
                                                 <ModalFooter>
                                                 <Button colorScheme={'green'} 
                                                             bg={'cyan.400'}

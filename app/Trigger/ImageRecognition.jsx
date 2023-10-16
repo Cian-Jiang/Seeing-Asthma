@@ -88,12 +88,12 @@ function ObjDetails({ objs }) {
     return (
         <Box>
             <ChakraText fontSize='2xl' color={'blue.400'} fontWeight={'bold'} textAlign='center'>
-                Object Details:
+                Trigger Details:
             </ChakraText>
             
             {objs.length === 0 ? (
                 <Flex alignItems="center" justifyContent="center" height="250px">
-                    <ChakraText fontSize='2xl' color={'gray.400'}  as='b' textAlign='center'>No object details have been shown. Please try another picture.</ChakraText>
+                    <ChakraText fontSize='2xl' color={'gray.400'}  as='b' textAlign='center'>No trigger details have been found. Please try another picture.</ChakraText>
                 </Flex>
                 
             ) : ( <Accordion defaultIndex={[0]} allowMultiple>
@@ -156,6 +156,7 @@ export default function Upload() {
     //const [type, setType] = useState('Plant');
     const [result, setResult] = useState(null);
     const [loading, setLoading] = useState(false);
+    const [loadingObjDetails, setLoadingObjDetails] = useState(false);
     const [hasUploadedImage, setHasUploadedImage] = useState(false);
     const [showObjDetails, setShowObjDetails] = useState(true);
     const toast = useToast();
@@ -176,6 +177,7 @@ export default function Upload() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
+        setLoadingObjDetails(true);
 
         const formData = new FormData();
         formData.append('image', image);
@@ -197,15 +199,16 @@ export default function Upload() {
         } else {
             const errorBody = await response.text();
             setResult(`Error: ${response.status} ${errorBody}`);
-            toast({
-                title: "Error",
-                description: errorBody,
-                status: "error",
-                duration: 5000,
-                isClosable: true,
-            });
+            // toast({
+            //     title: "Errory",
+            //     description: errorBody,
+            //     status: "error",
+            //     duration: 5000,
+            //     isClosable: true,
+            // });
         }
         setLoading(false);
+        setLoadingObjDetails(false);
     };
     const [uploadedImage, setUploadedImage] = useState(null);
     const handleImageUpload = (file) => {
@@ -305,7 +308,7 @@ export default function Upload() {
 
                 <Box position="relative"
                      p={3}
-                     height='550px'
+                     height='575px'
                      borderWidth='1px' borderRadius='lg'
                      overflow='auto'
                     // display='flex'
@@ -313,7 +316,9 @@ export default function Upload() {
                      justifyContent='center'
                 >
                     {loading ? (
-                        <CircularProgress isIndeterminate color='green.300' />
+                        <Flex  alignContent={'center'} justifyContent={'center'}>
+                            <CircularProgress isIndeterminate color='green.300'/>
+                        </Flex>
                     ) : (result && result.iteminfo && Array.isArray(result.iteminfo) && result.obj) ? (
 
                         (
@@ -367,8 +372,8 @@ export default function Upload() {
                                     <br/>
                                     Tips:
                                     <br/>
-                                    Please make sure no much clutter in the background.
-                                    Better to place the subject in the center.
+                                    Please make sure there is not much clutter in the background.
+                                    It is better to have the subject in the center.
 
                                 </ChakraText>
 
@@ -410,11 +415,19 @@ export default function Upload() {
                     )}
 
                 </Box>
-                {result && result.obj && showObjDetails &&(
-                <Box position="relative" p={3} height='550px' borderWidth='1px' borderRadius='lg' overflow='auto'>
-                    <ObjDetails objs={result.obj} />
-                </Box>
-            )}
+                {loadingObjDetails ? (
+                    <Flex alignContent={'center'} justifyContent={'center'}>
+                        <CircularProgress isIndeterminate color='green.300'/>
+                    </Flex>
+                ) : (
+                    result && result.obj && showObjDetails && (
+                        <Box position="relative" p={3} height='575px' borderWidth='1px' borderRadius='lg' overflow='auto'>
+                            <ObjDetails objs={result.obj} />
+                        </Box>
+                    )
+            
+                )}
+                
 
             </SimpleGrid>
             {/*</Flex>*/}

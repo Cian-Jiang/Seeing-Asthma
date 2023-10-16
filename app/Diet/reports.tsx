@@ -112,7 +112,7 @@ export default function Reports() {
             rounded={'md'}
             alt={'feature image'}
             src={
-              './MicrosoftTeams-image (6).png'
+              './Hiking.png'
             }
             objectFit={'cover'}
           />

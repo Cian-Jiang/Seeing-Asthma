@@ -23,11 +23,33 @@ import {
   ChevronDownIcon,
   ChevronRightIcon,
 } from '@chakra-ui/icons'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link';
+
+interface NavItem {
+  label: string;
+  href?: string;
+  children?: NavItem[];
+  // ... other properties
+}
+
+
+function isActiveNavItem(navItem: NavItem, currentPath: string) {
+  if (navItem.href && navItem.href === currentPath) {
+    return true;
+  }
+
+  if (navItem.children) {
+    return navItem.children.some(child => child.href === currentPath);
+  }
+
+  return false;
+}
+
 
 export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure()
+
   return (
       <Box className="sticky-navbar">
         <Flex
@@ -40,6 +62,7 @@ export default function Navbar() {
             borderStyle={'solid'}
             borderColor={useColorModeValue('gray.200', 'gray.900')}
             align={'center'}
+            justify={'space-between'}
             zIndex={10}
         >
           <Link href='/'>
@@ -49,17 +72,7 @@ export default function Navbar() {
             </Flex>
           </Link>
             
-          <Flex
-              flex={{ base: 1, md: 'auto' }}
-              ml={{ base: -2 }}
-              display={{ base: 'flex', md: 'none' }}>
-            <IconButton
-                onClick={onToggle}
-                icon={isOpen ? <CloseIcon w={3} h={3} /> : <HamburgerIcon w={5} h={5} />}
-                variant={'ghost'}
-                aria-label={'Toggle Navigation'}
-            />
-          </Flex>
+          
           <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
             
 
@@ -67,7 +80,18 @@ export default function Navbar() {
               <DesktopNav />
             </Flex>
           </Flex>
-
+          <Flex
+              
+              display={{ base: 'flex', md: 'none' }}
+              >
+            <IconButton
+                
+                onClick={onToggle}
+                icon={isOpen ? <CloseIcon w={3} h={3} /> : <HamburgerIcon w={5} h={5} />}
+                variant={'ghost'}
+                aria-label={'Toggle Navigation'}
+            />
+          </Flex>
 
         </Flex>
 
@@ -83,47 +107,62 @@ const DesktopNav = () => {
   const linkColor = useColorModeValue('gray.600', 'gray.200')
   const linkHoverColor = useColorModeValue('gray.800', 'white')
   const popoverContentBgColor = useColorModeValue('white', 'gray.800')
+  const [currentPath, setCurrentPath] = useState('');
+
+  
+
+  useEffect(() => {
+    setCurrentPath(window.location.pathname);
+  }, []);
+  
 
   return (
       <Stack direction={'row'} spacing={4}>
-        {NAV_ITEMS.map((navItem) => (
-            <Box key={navItem.label}>
-              <Popover trigger={'hover'} placement={'bottom-start'}>
-                <PopoverTrigger>
-                  <Box
-                      as="a"
-                      p={2}
-                      href={navItem.href ?? '#'}
-                      fontSize={'sm'}
-                      fontWeight={500}
-                      color={selectedNavItem === navItem.label ? 'blue.500' : linkColor}
-                      _hover={{
-                        textDecoration: 'none',
-                        color: linkHoverColor,
-                      }}
-                      onClick={() => setSelectedNavItem(navItem.label)}>
-                    {navItem.label}
-                  </Box>
-                </PopoverTrigger>
+        {NAV_ITEMS.map((navItem) => {
+            const isCurrent = isActiveNavItem(navItem, currentPath);
+            return (
+              <Box key={navItem.label}>
+                <Popover trigger={'hover'} placement={'bottom-start'}>
+                  <PopoverTrigger>
+                    <Box
+                        as="a"
+                        p={2}
+                        href={navItem.href ?? '#'}
+                        fontSize={'sm'}
+                        fontWeight={isCurrent ? 'bold' : '500'}
+                        color={isCurrent ? 'black' : 'currentcolor'}
+                        //backgroundColor={isCurrent ? 'cyan.300' : 'transparent'}
+                        //borderRadius="md"
+                        //color={isCurrent? 'marroon' : 'currentcolor'}
+                        //color={selectedNavItem === navItem.label ? 'blue.500' : linkColor}
+                        _hover={{
+                          textDecoration: 'none',
+                          color: linkHoverColor,
+                        }}
+                        onClick={() => setSelectedNavItem(navItem.label)}>
+                      {navItem.label}
+                    </Box>
+                  </PopoverTrigger>
 
-                {navItem.children && (
-                    <PopoverContent
-                        border={0}
-                        boxShadow={'xl'}
-                        bg={popoverContentBgColor}
-                        p={4}
-                        rounded={'xl'}
-                        minW={'sm'}>
-                      <Stack>
-                        {navItem.children.map((child) => (
-                            <DesktopSubNav key={child.label} {...child} />
-                        ))}
-                      </Stack>
-                    </PopoverContent>
-                )}
-              </Popover>
-            </Box>
-        ))}
+                  {navItem.children && (
+                      <PopoverContent
+                          border={0}
+                          boxShadow={'xl'}
+                          bg={popoverContentBgColor}
+                          p={4}
+                          rounded={'xl'}
+                          minW={'sm'}>
+                        <Stack>
+                          {navItem.children.map((child) => (
+                              <DesktopSubNav key={child.label} {...child} />
+                          ))}
+                        </Stack>
+                      </PopoverContent>
+                  )}
+                </Popover>
+              </Box>
+            )
+        })}
       </Stack>
   )
 }
@@ -178,13 +217,15 @@ const MobileNavItem = ({ label, children, href }: NavItem) => {
   const { isOpen, onToggle } = useDisclosure()
 
   return (
-      <Stack spacing={4} onClick={children && onToggle}>
+      <Stack spacing={0} onClick={children && onToggle}>
         <Box
+            display="flex"
+            flexDirection="row"
+            justifyContent="space-between"
+            alignItems="center"
             py={2}
             as="a"
             href={href ?? '#'}
-            justifyContent="space-between"
-            alignItems="center"
             _hover={{
               textDecoration: 'none',
             }}>
@@ -204,7 +245,7 @@ const MobileNavItem = ({ label, children, href }: NavItem) => {
 
         <Collapse in={isOpen} animateOpacity style={{ marginTop: '0!important' }}>
           <Stack
-              mt={2}
+              mt={0}
               pl={4}
               borderLeft={1}
               borderStyle={'solid'}

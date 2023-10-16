@@ -122,7 +122,7 @@ const ArticleList = () => {
             marginTop="2"
             color={useColorModeValue('gray.700', 'gray.200')}
             fontSize="lg"
-            align='center'>
+            align='justify'>
               Asthma affects all age groups, especially children. It&apos;s caused by inflamed airways that restrict breathing. Untreated asthma can lead to sleep disturbances, missed school, and even hospitalization.
           </Text>
           

@@ -57,7 +57,8 @@ export default function Footer() {
         spacing={4}
         justify={{ base: 'center', md: 'space-between' }}
         align={{ base: 'center', md: 'center' }}>
-          <br/>
+        <Stack direction={'row'} spacing={6} align='center'>
+          
           <Avatar
               size="2xl"
               src={
@@ -65,19 +66,20 @@ export default function Footer() {
               }
               mb={4}
           />
-          <Text fontWeight={600}>Seeing Asthma</Text>
-        <Text>© 2023 health coder </Text>
-        <Stack direction={'row'} spacing={6}>
-          {/*<SocialButton label={'Twitter'} href={'#'}>*/}
-          {/*  <FaTwitter />*/}
-          {/*</SocialButton>*/}
-          <SocialButton label={'YouTube'} href={'https://www.youtube.com/channel/UC31qrqvS8rh_SvUVrUY0XQw'}>
+          <Stack direction={'column'} align="center">
+            <Text fontWeight={600}>Seeing Asthma</Text>
+            <Text>© 2023 health coder </Text>
+            <Stack direction={'row'} spacing={6} justify='center'>
+              <SocialButton label={'YouTube'} href={'https://www.youtube.com/channel/UC31qrqvS8rh_SvUVrUY0XQw'}>
 
-            <FaYoutube />
-          </SocialButton>
-          <SocialButton label={'Instagram'} href={'https://mahara.infotech.monash.edu/group/view.php?id=2416'}>
-            <FaEnvelopeOpenText />
-          </SocialButton>
+              <FaYoutube />
+              </SocialButton>
+              <SocialButton label={'Instagram'} href={'https://mahara.infotech.monash.edu/group/view.php?id=2416'}>
+              <FaEnvelopeOpenText />
+              </SocialButton>
+            </Stack>
+            
+          </Stack>
         </Stack>
       </Container>
     </Box>

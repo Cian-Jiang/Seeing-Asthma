@@ -131,7 +131,7 @@ const ArticleList = () => {
             marginTop="2"
             color={useColorModeValue('gray.700', 'gray.200')}
             fontSize="lg"
-            align='center'>
+            align='justify'>
             Yes! Early detection and proper management are vital in ensuring a child can have a healthy and active life. If your child has any of the symptoms above meet with your GP today and ensure you and your child have all the tools in your arsenal to combat Asthma!
           </Text>
           

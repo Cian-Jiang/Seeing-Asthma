@@ -48,10 +48,10 @@ function StatsCard(props: StatsCardProps) {
       border={'1px solid'}
       borderColor={useColorModeValue('gray.800', 'gray.500')}
       rounded={'lg'}>
-      <StatLabel fontWeight={'medium'} isTruncated>
+      <StatLabel fontWeight={'medium'} isTruncated textAlign={'center'}>
         {title}
       </StatLabel>
-      <StatNumber fontSize={'2xl'} fontWeight={'medium'}>
+      <StatNumber fontSize={'2xl'} fontWeight={'medium'} textAlign={'center'}>
         {stat}
       </StatNumber>
     </Stat>
@@ -172,12 +172,12 @@ export default function Statistics() {
     return (
         <Box maxW="7xl" mx={'auto'} pt={5} px={{base: 2, sm: 12, md: 17}} >
             <chakra.h1 textAlign={'center'} fontSize={'4xl'} py={10} fontWeight={'bold'}>
-                Statistic about Asthma in Australia
+                Statistics about Asthma in Australia
             </chakra.h1>
             <SimpleGrid columns={{base: 1, md: 3}} spacing={{base: 5, lg: 8}}>
-                <StatsCard title={'Childhood asthmatics'} stat={'10% of Australian children'}/>
-                <StatsCard title={'Annual health expenditure on asthma'} stat={'$900 million'}/>
-                <StatsCard title={'Serious psychological distress caused by asthma'} stat={'11% of people with asthma'}/>
+                <StatsCard title={'Childhood Asthmatics'} stat={'10% of Australian children'}/>
+                <StatsCard title={'Annual health expenditure on Asthma'} stat={'$900 million'}/>
+                <StatsCard title={'Serious psychological distress caused by Asthma'} stat={'11% of people with Asthma'}/>
             </SimpleGrid>
             <Box mt={10}>
                 <Flex direction={{base: "column", md: "row"}} gap={6} >
@@ -185,7 +185,7 @@ export default function Statistics() {
 
 
                         <chakra.h2 textAlign={'center'} fontSize={'2xl'} py={5} fontWeight={'medium'}>
-                            {year} Australian hospital admissions for asthma by age group
+                            {year} Australian hospital admissions for Asthma by age group
                         </chakra.h2>
                         <Select placeholder="Select year" onChange={e => setYear(e.target.value)}>
                             {/* Loop through years 2010 to 2020 and create options */}
@@ -214,13 +214,13 @@ export default function Statistics() {
                             <AccordionItem>
                                 <h2>
                                     <AccordionButton>
-                                        <Box as="span" flex='1' textAlign='left'>
+                                        <Box as="span" flex='1' textAlign='center'>
                                             High Incidence in Younger Age Groups
                                         </Box>
                                         <AccordionIcon />
                                     </AccordionButton>
                                 </h2>
-                                <AccordionPanel pb={4}>
+                                <AccordionPanel pb={4} textAlign={'justify'}>
                                     The chart distinctly shows that the age groups of 0-4, 5-9, and 10-14 have the
                                     highest rates of hospitalizations due to asthma. The number of cases in these age
                                     brackets is several times to several tens of times higher than in other age groups.
@@ -232,13 +232,13 @@ export default function Statistics() {
                             <AccordionItem>
                                 <h2>
                                     <AccordionButton>
-                                        <Box as="span" flex='1' textAlign='left'>
+                                        <Box as="span" flex='1' textAlign='center'>
                                             Decline with Age
                                         </Box>
                                         <AccordionIcon />
                                     </AccordionButton>
                                 </h2>
-                                <AccordionPanel pb={4}>
+                                <AccordionPanel pb={4} textAlign={'justify'}>
                                     As age increases, there is a noticeable decline in the number of people hospitalized
                                     due to asthma. This trend suggests that asthma-related hospitalizations become
                                     less frequent with age.
@@ -248,13 +248,13 @@ export default function Statistics() {
                             <AccordionItem>
                                 <h2>
                                     <AccordionButton>
-                                        <Box as="span" flex='1' textAlign='left'>
+                                        <Box as="span" flex='1' textAlign='center'>
                                             Gender-Specific Trends
                                         </Box>
                                         <AccordionIcon />
                                     </AccordionButton>
                                 </h2>
-                                <AccordionPanel pb={4}>
+                                <AccordionPanel pb={4} textAlign={'justify'}>
                                     For the age group 0-14, males are more likely to be hospitalized due to asthma
                                     compared to females. However, this trend reverses after the age of 14, where
                                     females are more likely to be hospitalized for asthma conditions.

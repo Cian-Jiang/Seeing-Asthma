@@ -44,8 +44,8 @@ export default function Features() {
 
         <Stack spacing={4}   >
           
-          <Heading>Understanding Symptoms</Heading>
-          <Text color={'gray.500'} fontSize={'lg'}>
+          <Heading textAlign={'center'}>Understanding Symptoms</Heading>
+          <Text color={'gray.500'} fontSize={'lg'} textAlign={'justify'}>
             We provide authoritative articles for you to learn about Asthma and expecially Asthma on children so that you can protect you kids.
           </Text>
           <Stack
@@ -117,8 +117,8 @@ export default function Features() {
 
         <Stack spacing={4}>
           
-          <Heading>Learning in game</Heading>
-          <Text color={'gray.500'} fontSize={'lg'}>
+          <Heading textAlign={'center'}>Learning in game</Heading>
+          <Text color={'gray.500'} fontSize={'lg'} textAlign={'justify'}>
             Epidemic thunderstorm asthma is thought to be triggered by an uncommon combination of high pollen levels
             and a certain type of thunderstorm, causing a large number of people to develop asthma symptoms over a
             short period of time.

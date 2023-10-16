@@ -106,7 +106,7 @@ export default function Cards() {
                             }}>
                                 
                                 <br/>
-                                <ChakraText fontWeight="bold" textAlign="center" mb="2">
+                                <ChakraText fontWeight="bold" textAlign="justify" mb="2" padding={2}>
                                     {item.objdes}
                                 </ChakraText>
                             </Box>
