@@ -101,10 +101,10 @@ Team Number: TA 09
 
 | Role | Name | LinkedIn |
 |------|------|----------|
-| Business Analysis | Kaijia Yu | [Kaijia Yu](https://www.linkedin.com/in/kaijia-yu) |
+| Business Analysis | Kaijia Yu | [Kaijia Yu](https://www.linkedin.com/in/kaijia-yu-a8817b289/) |
 | Full Stack Engineer | Ridong Jiang | [Ridong Jiang](https://www.linkedin.com/in/ridong-jiang-259716274/) |
-| Front-end Engineer | Shiyu Wu | [Shiyu Wu](https://www.linkedin.com/in/shiyu-wu) |
-| Data Specialist | Navrattan Singh Dhillon | [Navrattan Dhillon](https://www.linkedin.com/in/navrattan-dhillon) |
-| Cyber Security Specialist | Sonia Lakhani | [Sonia Lakhani](https://www.linkedin.com/in/sonia-lakhani) |
+| Front-end Engineer | Shiyu Wu | [Shiyu Wu](https://www.linkedin.com/in/shiyu-wu-0a5391219/) |
+| Data Specialist | Navrattan Singh Dhillon | [Navrattan Dhillon](https://www.linkedin.com/in/navrattan-dhillon/) |
+| Cyber Security Specialist | Sonia Lakhani | [Sonia Lakhani](https://www.linkedin.com/in/sonia-lakhani-37422048/) |
 
 For more detailed information, please refer to the Product Document, Maintenance Document, and Support Document in the Handover Documents folder.
