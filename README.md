@@ -6,13 +6,14 @@ Here's a README.md for the Seeing Asthma project based on the provided documenta
 ## Table of Contents
 1. [Product Overview](#product-overview)
 2. [Media](#media)
-3. [Architecture](#architecture)
-4. [Start Up Requirements](#start-up-requirements)
-5. [Installation](#installation)
-6. [Database](#database)
-7. [Security](#security)
-8. [Backup and Recovery](#backup-and-recovery)
-9. [Team Information](#team-information) 
+3. [Team Information](#team-information) 
+4. [Architecture](#architecture)
+5. [Start Up Requirements](#start-up-requirements)
+6. [Installation](#installation)
+7. [Database](#database)
+8. [Security](#security)
+9. [Backup and Recovery](#backup-and-recovery)
+    
 
 ## Product Overview
 
@@ -22,9 +23,22 @@ The Seeing Asthma website is an integrated platform with not only comprehensive 
 
 ## Media
 
-- [Product Video](https://youtu.be/_bjrJoSmcJs)
 - [Learning Journey](https://youtu.be/KlgEz3U3ZJo)
 - [Elevator Pitch of Seeing Asthma](https://youtu.be/s0P_4FHHbCs)
+- [Product Video](https://youtu.be/_bjrJoSmcJs)
+
+## Team Information
+
+Team Name: Healthy Coder
+Team Number: TA 09
+
+| Role | Name | LinkedIn |
+|------|------|----------|
+| Business Analysis | Kaijia Yu | [Kaijia Yu](https://www.linkedin.com/in/kaijia-yu-a8817b289/) |
+| Full Stack Engineer | Ridong Jiang | [Ridong Jiang](https://www.linkedin.com/in/ridong-jiang-259716274/) |
+| Front-end Engineer | Shiyu Wu | [Shiyu Wu](https://www.linkedin.com/in/shiyu-wu-0a5391219/) |
+| Data Specialist | Navrattan Singh Dhillon | [Navrattan Dhillon](https://www.linkedin.com/in/navrattan-dhillon/) |
+| Cyber Security Specialist | Sonia Lakhani | [Sonia Lakhani](https://www.linkedin.com/in/sonia-lakhani-37422048/) |
 
 ## Architecture
 
@@ -93,18 +107,5 @@ Security measures include:
 ### Website
 - Source code is stored on GitHub
 - Vercel deployment allows for instant rollbacks and version history
-
-## Team Information
-
-Team Name: Healthy Coder
-Team Number: TA 09
-
-| Role | Name | LinkedIn |
-|------|------|----------|
-| Business Analysis | Kaijia Yu | [Kaijia Yu](https://www.linkedin.com/in/kaijia-yu-a8817b289/) |
-| Full Stack Engineer | Ridong Jiang | [Ridong Jiang](https://www.linkedin.com/in/ridong-jiang-259716274/) |
-| Front-end Engineer | Shiyu Wu | [Shiyu Wu](https://www.linkedin.com/in/shiyu-wu-0a5391219/) |
-| Data Specialist | Navrattan Singh Dhillon | [Navrattan Dhillon](https://www.linkedin.com/in/navrattan-dhillon/) |
-| Cyber Security Specialist | Sonia Lakhani | [Sonia Lakhani](https://www.linkedin.com/in/sonia-lakhani-37422048/) |
 
 For more detailed information, please refer to the Product Document, Maintenance Document, and Support Document in the Handover Documents folder.
