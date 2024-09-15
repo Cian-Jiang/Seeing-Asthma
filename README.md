@@ -107,4 +107,4 @@ Team Number: TA 09
 | Data Specialist | Navrattan Singh Dhillon | [Navrattan Dhillon](https://www.linkedin.com/in/navrattan-dhillon) |
 | Cyber Security Specialist | Sonia Lakhani | [Sonia Lakhani](https://www.linkedin.com/in/sonia-lakhani) |
 
-For more detailed information, please refer to the Product Document, Maintenance Document, and Support Document.
+For more detailed information, please refer to the Product Document, Maintenance Document, and Support Document in the Handover Documents folder.
